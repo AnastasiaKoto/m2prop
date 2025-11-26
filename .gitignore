@@ -1,0 +1,17 @@
+/bitrix/*
+/.osp/
+/upload/
+/.htaccess
+/local/php_interface/
+/docker-compose.yml
+/instruction.txt
+/nginx/
+/php/
+/www/
+/include/
+.*
+!.gitignore
+/robots.txt
+/sitemap.xml
+*sitemap*
+*.log
