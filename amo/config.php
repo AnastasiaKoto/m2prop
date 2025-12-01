@@ -1,10 +1,9 @@
 <?php
-$subdomain     = 'altayapart';
-$client_secret = ''; // Секретный ключ
-$client_id     = ''; // ID интеграции
-$code          = ''; // Код авторизации
-$redirect_uri  = 'http://m2property.ru/amo/amo.php';
-$domain = 'm2property.ru';
-$pipeline_id = 7885906;
-$user_amo = 10762602;
-$access_token = '';
+return [
+'subdomain' => 'altayapart',
+'redirect_uri' => 'http://m2property.ru/amo/amo.php',
+'domain' => 'm2property.ru',
+'pipeline_id' => 7885906,
+'user_amo' => 10762602,
+'access_token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZmZTU5MzAxMWE2ZDg1YmNhZWVkNDM3NWVkMDFhMWNiNzZmOTBjYjJhZDExZDJlNzFkODc4YzQ2YTk2ZjJhMDU2NTc5MjczZTA2ODM3MWJjIn0.eyJhdWQiOiJiZGU0ODk1OC00NGFhLTQzNTMtOWJhNC03OGRiYThjY2MzZTciLCJqdGkiOiI2ZmU1OTMwMTFhNmQ4NWJjYWVlZDQzNzVlZDAxYTFjYjc2ZjkwY2IyYWQxMWQyZTcxZDg3OGM0NmE5NmYyYTA1NjU3OTI3M2UwNjgzNzFiYyIsImlhdCI6MTc2NDU3NDAxOCwibmJmIjoxNzY0NTc0MDE4LCJleHAiOjE5MjIzMTM2MDAsInN1YiI6IjEwNzYyNjAyIiwiZ3JhbnRfdHlwZSI6IiIsImFjY291bnRfaWQiOjMxNjEzMTE0LCJiYXNlX2RvbWFpbiI6ImFtb2NybS5ydSIsInZlcnNpb24iOjIsInNjb3BlcyI6WyJjcm0iLCJmaWxlcyIsImZpbGVzX2RlbGV0ZSIsIm5vdGlmaWNhdGlvbnMiLCJwdXNoX25vdGlmaWNhdGlvbnMiXSwiaGFzaF91dWlkIjoiMTI2YmVmZmItODEyZi00YmIzLTg1NGUtMGM1ZTEyNDQzZjk4IiwidXNlcl9mbGFncyI6MCwiYXBpX2RvbWFpbiI6ImFwaS1iLmFtb2NybS5ydSJ9.ltJc_Vlm0qZQTe7tFGt11bZ0WJu2mqLxF2kVLmLQbe7du7g5xoXiBevix-sQOWi9_omqnL-MqqRfK6LBshc-9IYoAaCKshS-TNYrmUEIHlheMeAR4byY8yVxSpQo_YcSrfOfVriEEhI3i-oGKHdh43wG6b8tWT9Im6Iiat0wWvHGYO54AGs1TCRFn7EcIc2G7FH7Rs8N5KXoZSbBVNcK0D-dJP-BN7oov1__TXkX81vuyKSBXqSd8rHJmGKqUA_e1Ifn_RTp-hddkgDl4xIaFwi4d8R_tBxDzMOktMbFBZ-XJFuNVqQ6ssQtpLYjsM88OXpCYTNVjY01jP30OeEaag'
+];

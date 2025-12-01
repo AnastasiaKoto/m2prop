@@ -1,25 +1,32 @@
 <?php
-function setAmoDeal($formCode, $name, $phone, $email, $commerc)
+function setAmoDeal($formCode, $name, $phone, $email)
 {
-    $config_path = require_once $_SERVER['DOCUMENT_ROOT'] . '/amo/config.php';
-    if(!$config_path) {
+    $config = require_once $_SERVER['DOCUMENT_ROOT'] . '/amo/config.php';
+    if (!$config) {
         return false;
     }
-    
+
+    $subdomain = $config['subdomain'];
+    $domain = $config['domain'];
+    $pipeline_id = $config['pipeline_id'];
+    $user_amo = $config['user_amo'];
+    $access_token = $config['access_token'];
+
+    logMessage($access_token);
+
     $data = [
         [
             "name" => $name,
-            "responsible_user_id" => (int) $user_amo,
             "pipeline_id" => (int) $pipeline_id,
-            "created_by" => $user_amo,
+            //"status_id" => 64848674,
+            "responsible_user_id" => (int) $user_amo,
             "_embedded" => [
                 "metadata" => [
                     "category" => "forms",
                     "form_id" => 1,
                     "form_name" => $formCode,
-                    "form_page" => "",
-                    "form_sent_at" => strtotime(date("Y-m-d H:i:s")),
-                    "ip" => "",
+                    "form_page" => "https://m2property.ru/test/",
+                    "form_sent_at" => time(),
                     "referer" => $domain
                 ],
                 "contacts" => [
@@ -66,8 +73,6 @@ function setAmoDeal($formCode, $name, $phone, $email, $commerc)
     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($curl, CURLOPT_HEADER, false);
-    curl_setopt($curl, CURLOPT_COOKIEFILE, 'amo/cookie.txt');
-    curl_setopt($curl, CURLOPT_COOKIEJAR, 'amo/cookie.txt');
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
     $out = curl_exec($curl);
@@ -84,8 +89,13 @@ function setAmoDeal($formCode, $name, $phone, $email, $commerc)
         503 => 'Service unavailable.'
     ];
 
-    if ($code < 200 || $code > 204)
-        die("Error $code. " . (isset($errors[$code]) ? $errors[$code] : 'Undefined error'));
+    if ($code < 200 || $code > 204) {
+        $errorMessage = "Error $code. " . (isset($errors[$code]) ? $errors[$code] : 'Undefined error');
+        $fullResponse = $out; // <-- это тело ответа от amoCRM
+
+        logMessage($errorMessage . " Response body: " . $fullResponse);
+        die(false);
+    }
 
 
     $Response = json_decode($out, true);
@@ -94,5 +104,6 @@ function setAmoDeal($formCode, $name, $phone, $email, $commerc)
     foreach ($Response as $v)
         if (is_array($v))
             $output .= $v['id'] . PHP_EOL;
-    return $output;
+    logMessage($output);
+    return true;
 }
