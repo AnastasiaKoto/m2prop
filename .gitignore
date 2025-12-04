@@ -11,6 +11,8 @@
 /include/
 .*
 !.gitignore
+!.default
+!.parameters.php
 /robots.txt
 /sitemap.xml
 *sitemap*

@@ -1,0 +1,286 @@
+<?php
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
+	die();
+
+use Bitrix\Main\Localization\Loc;
+use Bitrix\Catalog\ProductTable;
+
+/**
+ * @global CMain $APPLICATION
+ * @var array $arParams
+ * @var array $arResult
+ * @var CatalogSectionComponent $component
+ * @var CBitrixComponentTemplate $this
+ * @var string $templateName
+ * @var string $componentPath
+ *
+ *  _________________________________________________________________________
+ * |	Attention!
+ * |	The following comments are for system use
+ * |	and are required for the component to work correctly in ajax mode:
+ * |	<!-- items-container -->
+ * |	<!-- pagination-container -->
+ * |	<!-- component-end -->
+ */
+
+$this->setFrameMode(true);
+?>
+<section class="section best">
+	<div class="container">
+		<div class="best-inner">
+			<div class="best-image">
+				<img src="./assets/img/best.png" alt="Лучшие предложения">
+			</div>
+			<div class="best-head">
+				<h2>
+					Лучшие<br>
+					<span>
+						предложения
+					</span>
+				</h2>
+				<svg width="283" height="108" viewBox="0 0 283 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g clip-path="url(#clip0_366_11904)">
+						<rect y="37.8594" width="280.07" height="68.1966" rx="10" transform="rotate(-2.31352 0 37.8594)"
+							fill="#242220" />
+						<rect x="-58.8672" y="-255" width="940" height="520" transform="rotate(-2.31352 -58.8672 -255)"
+							fill="#D9D9D9" />
+						<rect x="28.7734" y="58.9531" width="57.4809" height="21.0928"
+							transform="rotate(-2.31352 28.7734 58.9531)" fill="#FF7400" />
+						<path
+							d="M50.6164 60.0451L60.6514 59.6397L61.3386 76.6481L51.3035 77.0535L50.96 68.5493L46.1814 71.2114L46.0271 67.3906L50.6164 60.0451Z"
+							fill="#242220" />
+						<path
+							d="M40.8602 60.4393L30.8251 60.8447L31.5123 77.8531L41.5473 77.4476L41.2038 68.9435L46.1814 71.2114L46.0271 67.3906L40.8602 60.4393Z"
+							fill="#242220" />
+						<path
+							d="M85.2409 69.3614L70.0725 71.7591L85.3129 71.1434L85.4956 75.6675L62.9411 76.5787L62.5035 65.7485L77.732 64.0781L62.4367 64.0944L62.2539 59.5703L84.8085 58.6591L85.2409 69.3614Z"
+							fill="#242220" />
+						<path
+							d="M231.494 67.5605L241.364 57.039L244.43 56.9151L244.97 70.2838L241.904 70.4077L241.495 60.3015L231.626 70.8229L228.56 70.9468L228.02 57.5781L231.086 57.4542L231.494 67.5605Z"
+							fill="#242220" />
+						<path
+							d="M225.815 57.6632L225.925 60.386L219.277 60.6545L219.707 71.3004L216.641 71.4243L216.211 60.7784L209.465 61.0509L209.355 58.3281L225.815 57.6632Z"
+							fill="#242220" />
+						<path
+							d="M208.649 65.3638C208.664 66.5425 208.431 67.6657 207.95 68.7335C207.468 69.7849 206.75 70.6575 205.795 71.3512C204.856 72.028 203.733 72.3928 202.424 72.4456C199.595 72.5599 197.408 71.9439 195.863 70.5977L196.119 76.9264L193.053 77.0502L192.324 59.0209L194.875 58.9179L195.347 60.8644C196.824 59.2978 198.993 58.4567 201.855 58.3411C203.114 58.2902 204.238 58.556 205.228 59.1384C206.235 59.7202 207.037 60.5395 207.637 61.5963C208.237 62.6532 208.572 63.8518 208.642 65.192L208.645 65.2656L208.649 65.3638ZM200.62 70.3564C201.683 70.3134 202.573 70.0318 203.289 69.5115C204.02 68.9741 204.559 68.3299 204.906 67.5788C205.268 66.8107 205.443 66.0748 205.431 65.3709C205.381 64.5376 205.161 63.7521 204.771 63.0143C204.396 62.2596 203.823 61.6522 203.051 61.192C202.294 60.7147 201.352 60.4989 200.224 60.5445C199.292 60.5822 198.475 60.8527 197.775 61.356C197.074 61.8429 196.534 62.4708 196.156 63.2395C195.793 63.9913 195.628 64.776 195.661 65.5936C195.697 66.4931 195.927 67.311 196.35 68.0474C196.773 68.7837 197.353 69.3663 198.091 69.7952C198.845 70.207 199.688 70.394 200.62 70.3564Z"
+							fill="#242220" />
+						<path
+							d="M190.764 65.9532L176.831 66.5161C176.914 67.3481 177.183 68.1235 177.638 68.8422C178.092 69.5446 178.746 70.1079 179.598 70.532C180.451 70.9562 181.474 71.1442 182.667 71.096C183.698 71.0544 184.598 70.8378 185.368 70.4463C186.155 70.0378 186.749 69.5552 187.153 68.9983C187.572 68.4245 187.771 67.8841 187.751 67.3772L190.817 67.2533C190.851 68.1036 190.559 68.9836 189.941 69.8931C189.322 70.8026 188.395 71.5771 187.16 72.2167C185.924 72.8563 184.44 73.2111 182.707 73.2811C181.153 73.3439 179.702 73.0995 178.353 72.5479C177.003 71.98 175.914 71.1641 175.084 70.1002C174.254 69.0199 173.811 67.7765 173.754 66.3702C173.696 64.9311 174.021 63.6485 174.729 62.5225C175.453 61.3794 176.457 60.4871 177.741 59.8455C179.041 59.1869 180.501 58.825 182.12 58.7595C183.772 58.6928 185.231 58.9287 186.497 59.4672C187.78 60.005 188.787 60.7997 189.517 61.8513C190.264 62.8858 190.674 64.1223 190.748 65.5607L190.764 65.9532ZM182.258 60.9652C180.852 61.0221 179.728 61.3787 178.886 62.0351C178.045 62.6915 177.456 63.5343 177.121 64.5634L187.424 64.1472C187.105 63.1445 186.524 62.349 185.681 61.7606C184.854 61.1716 183.714 60.9064 182.258 60.9652Z"
+							fill="#242220" />
+						<path
+							d="M154.98 60.5234L171.661 59.8496L172.201 73.2182L169.135 73.3421L168.704 62.6962L158.157 63.1224L158.587 73.7682L155.521 73.8921L154.98 60.5234Z"
+							fill="#242220" />
+						<path
+							d="M144.683 60.3806C146.285 60.3158 147.737 60.5684 149.038 61.1383C150.355 61.7075 151.395 62.5336 152.16 63.6165C152.94 64.6825 153.358 65.9023 153.413 67.2759C153.468 68.6332 153.15 69.8828 152.459 71.0245C151.784 72.1492 150.813 73.0484 149.546 73.722C148.296 74.395 146.869 74.7638 145.267 74.8286C143.729 74.8907 142.27 74.6384 140.887 74.0718C139.52 73.4882 138.414 72.6648 137.569 71.6015C136.723 70.5219 136.272 69.3116 136.218 67.9706C136.163 66.6133 136.514 65.3707 137.271 64.2426C138.028 63.0982 139.064 62.1882 140.38 61.5126C141.695 60.8207 143.129 60.4433 144.683 60.3806ZM145.202 72.6199C146.706 72.5591 147.958 72.1073 148.955 71.2643C149.953 70.4051 150.417 69.1169 150.347 67.3998C150.278 65.6827 149.712 64.4362 148.648 63.6601C147.585 62.8841 146.301 62.5265 144.797 62.5873C143.848 62.6256 142.947 62.834 142.095 63.2124C141.242 63.5908 140.553 64.1674 140.027 64.9421C139.518 65.7161 139.286 66.6837 139.333 67.8448C139.38 69.0058 139.689 69.9516 140.259 70.682C140.845 71.3955 141.57 71.9067 142.434 72.2158C143.314 72.5242 144.237 72.6589 145.202 72.6199Z"
+							fill="#242220" />
+						<path
+							d="M134.63 68.3559C134.645 69.5347 134.411 70.6579 133.93 71.7257C133.449 72.7771 132.731 73.6496 131.776 74.3434C130.837 75.0202 129.713 75.385 128.405 75.4378C125.576 75.5521 123.389 74.9361 121.844 73.5899L122.099 79.9185L119.033 80.0424L118.305 62.0131L120.856 61.91L121.328 63.8566C122.804 62.29 124.973 61.4489 127.835 61.3332C129.094 61.2824 130.219 61.5482 131.209 62.1306C132.215 62.7124 133.018 63.5317 133.618 64.5885C134.217 65.6454 134.552 66.8439 134.623 68.1842L134.626 68.2578L134.63 68.3559ZM126.601 73.3486C127.664 73.3056 128.553 73.024 129.269 72.5037C130.001 71.9663 130.54 71.3221 130.886 70.571C131.248 69.8029 131.423 69.067 131.411 68.3631C131.361 67.5298 131.141 66.7442 130.751 66.0065C130.377 65.2518 129.803 64.6443 129.031 64.1841C128.275 63.7069 127.333 63.4911 126.204 63.5367C125.272 63.5744 124.456 63.8448 123.755 64.3482C123.054 64.8351 122.515 65.463 122.136 66.2317C121.773 66.9835 121.609 67.7682 121.642 68.5858C121.678 69.4853 121.908 70.3032 122.33 71.0395C122.753 71.7759 123.334 72.3585 124.072 72.7874C124.826 73.1992 125.668 73.3862 126.601 73.3486Z"
+							fill="#242220" />
+						<path
+							d="M115.545 57.3301L116.278 75.4821L112.967 75.6158L112.347 60.2848L99.1013 60.8199L99.7206 76.151L96.4091 76.2848L95.6758 58.1328L115.545 57.3301Z"
+							fill="#242220" />
+					</g>
+					<defs>
+						<clipPath id="clip0_366_11904">
+							<rect y="37.8594" width="280.07" height="68.1966" rx="10"
+								transform="rotate(-2.31352 0 37.8594)" fill="white" />
+						</clipPath>
+					</defs>
+				</svg>
+				<a href="javascript:void(0)" class="link-to">
+					<span>
+						Смотреть все
+					</span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+							stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+					</svg>
+				</a>
+			</div>
+			
+		<ul class="catalog-items simple-catalog light">
+			<li class="catalog-item">
+				<a href="javascript:void(0)">
+					<div class="catalog-item__image">
+						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
+						<div class="catalog-item__tag">
+							участок 30 соток
+						</div>
+					</div>
+					<div class="catalog-item__body">
+						<div class="catalog-item__prices">
+							<div class="catalog-item__price">
+								957 242 300 ₽
+							</div>
+							<div class="catalog-item__old-price">
+								998 242 300 ₽
+							</div>
+							<div class="catalog-item__sale">
+								-41%
+							</div>
+						</div>
+						<div class="catalog-item__info">
+							<div class="catalog-item__name">
+								Дом в коттеджном поселке «Crystal Istra», 1000 м²
+							</div>
+							<div class="catalog-item__location">
+								14 км от МКАД, Новорижское шоссе
+							</div>
+						</div>
+					</div>
+					<ul class="catalog-item__filters">
+						<li class="catalog-item__filter">
+							участок 30 соток
+						</li>
+						<li class="catalog-item__filter">
+							чистовая отделка
+						</li>
+						<li class="catalog-item__filter">
+							6 спален
+						</li>
+						<li class="catalog-item__filter">
+							2 этажа
+						</li>
+					</ul>
+				</a>
+			</li>
+			<li class="catalog-item">
+				<a href="javascript:void(0)">
+					<div class="catalog-item__image">
+						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
+						<div class="catalog-item__tag">
+							участок 30 соток
+						</div>
+					</div>
+					<div class="catalog-item__body">
+						<div class="catalog-item__prices">
+							<div class="catalog-item__price">
+								957 242 300 ₽
+							</div>
+							<div class="catalog-item__old-price">
+								998 242 300 ₽
+							</div>
+							<div class="catalog-item__sale">
+								-41%
+							</div>
+						</div>
+						<div class="catalog-item__info">
+							<div class="catalog-item__name">
+								Дом в коттеджном поселке «Crystal Istra», 1000 м²
+							</div>
+							<div class="catalog-item__location">
+								14 км от МКАД, Новорижское шоссе
+							</div>
+						</div>
+					</div>
+					<ul class="catalog-item__filters">
+						<li class="catalog-item__filter">
+							участок 30 соток
+						</li>
+						<li class="catalog-item__filter">
+							чистовая отделка
+						</li>
+						<li class="catalog-item__filter">
+							6 спален
+						</li>
+						<li class="catalog-item__filter">
+							2 этажа
+						</li>
+					</ul>
+				</a>
+			</li>
+			<li class="catalog-item">
+				<a href="javascript:void(0)">
+					<div class="catalog-item__image">
+						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
+						<div class="catalog-item__tag">
+							участок 30 соток
+						</div>
+					</div>
+					<div class="catalog-item__body">
+						<div class="catalog-item__prices">
+							<div class="catalog-item__price">
+								957 242 300 ₽
+							</div>
+							<div class="catalog-item__old-price">
+								998 242 300 ₽
+							</div>
+							<div class="catalog-item__sale">
+								-41%
+							</div>
+						</div>
+						<div class="catalog-item__info">
+							<div class="catalog-item__name">
+								Дом в коттеджном поселке «Crystal Istra», 1000 м²
+							</div>
+							<div class="catalog-item__location">
+								14 км от МКАД, Новорижское шоссе
+							</div>
+						</div>
+					</div>
+					<ul class="catalog-item__filters">
+						<li class="catalog-item__filter">
+							участок 30 соток
+						</li>
+						<li class="catalog-item__filter">
+							чистовая отделка
+						</li>
+						<li class="catalog-item__filter">
+							6 спален
+						</li>
+						<li class="catalog-item__filter">
+							2 этажа
+						</li>
+					</ul>
+				</a>
+			</li>
+			<li class="catalog-item">
+				<a href="javascript:void(0)">
+					<div class="catalog-item__image">
+						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
+						<div class="catalog-item__tag">
+							участок 30 соток
+						</div>
+					</div>
+					<div class="catalog-item__body">
+						<div class="catalog-item__prices">
+							<div class="catalog-item__price">
+								957 242 300 ₽
+							</div>
+							<div class="catalog-item__old-price">
+								998 242 300 ₽
+							</div>
+							<div class="catalog-item__sale">
+								-41%
+							</div>
+						</div>
+						<div class="catalog-item__info">
+							<div class="catalog-item__name">
+								Дом в коттеджном поселке «Crystal Istra», 1000 м²
+							</div>
+							<div class="catalog-item__location">
+								14 км от МКАД, Новорижское шоссе
+							</div>
+						</div>
+					</div>
+					<ul class="catalog-item__filters">
+						<li class="catalog-item__filter">
+							участок 30 соток
+						</li>
+						<li class="catalog-item__filter">
+							чистовая отделка
+						</li>
+						<li class="catalog-item__filter">
+							6 спален
+						</li>
+						<li class="catalog-item__filter">
+							2 этажа
+						</li>
+					</ul>
+				</a>
+			</li>
+		</ul>
+		
+		</div>
+	</div>
+</section>

@@ -1,0 +1,84 @@
+.author-collection {
+  & h2 {
+    margin-bottom: 80px;
+
+    & span {}
+  }
+
+  & .author-collection___items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    & .author-collection___item {
+      height: 663px;
+
+      &:first-child {
+        grid-column-end: span 2;
+      }
+
+      & a {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 40px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 20px;
+        border: 1px solid #D3D3D2;
+        overflow: hidden;
+
+        & .author-collection___item-image {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+
+          & img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        & .gradient {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background: linear-gradient(180deg, rgba(36, 34, 32, 0.00) 0%, #242220 100%);
+          height: 0%;
+          z-index: 2;
+          width: 100%;
+          height: 70%;
+        }
+
+        & .author-collection___item-name {
+          color: #fff;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 90%;
+          position: relative;
+          z-index: 3;
+          display: flex;
+          align-items: flex-end;
+          gap: 15px;
+          margin-bottom: 20px;
+        }
+
+        & .author-collection___item-description {
+          max-width: 274px;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 100%;
+          color: #fff;
+          position: relative;
+          z-index: 3;
+        }
+      }
+    }
+  }
+}
