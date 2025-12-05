@@ -977,6 +977,7 @@
        }
 
        & .footer-logo {
+        max-width: 287px;
          @media(max-width: 992px) {
            max-width: 163px;
          }
@@ -1000,6 +1001,8 @@
          }
 
          & li {
+          display: flex;
+          align-items: center;
            & a {
              display: block;
              height: 26px;
