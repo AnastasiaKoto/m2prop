@@ -240,15 +240,15 @@
           </button>
           <div class="filters-inner">
             <div class="filtes-selects">
+
+              <!-- Сделка -->
               <div class="select-wrap">
-                <div class="select-label">
-                  Сделка
-                </div>
+                <div class="select-label">Сделка</div>
                 <div class="select" data-select="gesheft">
                   <div class="select__current" data-select-current>
                     <span class="select__value">Покупка</span>
                     <div class="select__arrow">
-                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
                           fill="#7C8589" />
@@ -257,23 +257,31 @@
                   </div>
                   <ul class="select__list bubbles" data-select-list>
                     <li data-select-item>
-                      Аренда
+                      <label class="custom-radio">
+                        <input type="radio" name="gesheft" value="rent">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Аренда</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      Покупка
+                      <label class="custom-radio">
+                        <input type="radio" name="gesheft" value="buy">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Покупка</span>
+                      </label>
                     </li>
                   </ul>
                 </div>
               </div>
+
+              <!-- Тип недвижимости -->
               <div class="select-wrap">
-                <div class="select-label">
-                  Тип недвижимости
-                </div>
+                <div class="select-label">Тип недвижимости</div>
                 <div class="select" data-select="rent">
                   <div class="select__current" data-select-current>
                     <span class="select__value">Любой</span>
                     <div class="select__arrow">
-                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
                           fill="#7C8589" />
@@ -282,29 +290,52 @@
                   </div>
                   <ul class="select__list bubbles" data-select-list>
                     <li data-select-item>
-                      участок 30 соток
+                      <label class="custom-radio">
+                        <input type="radio" name="type" value="any">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Любой</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      чистовая отделка
+                      <label class="custom-radio">
+                        <input type="radio" name="type" value="30">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">участок 30 соток</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      6 спален
+                      <label class="custom-radio">
+                        <input type="radio" name="type" value="finish">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">чистовая отделка</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      2 этажа
+                      <label class="custom-radio">
+                        <input type="radio" name="type" value="6-bed">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">6 спален</span>
+                      </label>
+                    </li>
+                    <li data-select-item>
+                      <label class="custom-radio">
+                        <input type="radio" name="type" value="2-floor">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">2 этажа</span>
+                      </label>
                     </li>
                   </ul>
                 </div>
               </div>
+
+              <!-- Вид объекта -->
               <div class="select-wrap">
-                <div class="select-label">
-                  Вид объекта
-                </div>
+                <div class="select-label">Вид объекта</div>
                 <div class="select" data-select="object">
                   <div class="select__current" data-select-current>
                     <span class="select__value">Дом</span>
                     <div class="select__arrow">
-                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
                           fill="#7C8589" />
@@ -313,35 +344,59 @@
                   </div>
                   <ul class="select__list" data-select-list>
                     <li data-select-item>
-                      Офисные здания и бизнес-центры
+                      <label class="custom-radio">
+                        <input type="radio" name="object" value="office">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Офисные здания и бизнес-центры</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      Торговые помещения (магазины, ТЦ)
+                      <label class="custom-radio">
+                        <input type="radio" name="object" value="mall">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Торговые помещения (магазины, ТЦ)</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      Складские комплексы
+                      <label class="custom-radio">
+                        <input type="radio" name="object" value="warehouse">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Складские комплексы</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      Производственные помещения
+                      <label class="custom-radio">
+                        <input type="radio" name="object" value="factory">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Производственные помещения</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      Гостиничные объекты
+                      <label class="custom-radio">
+                        <input type="radio" name="object" value="hotel">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Гостиничные объекты</span>
+                      </label>
                     </li>
                     <li data-select-item>
-                      Рестораны и кафе
+                      <label class="custom-radio">
+                        <input type="radio" name="object" value="restaurant">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Рестораны и кафе</span>
+                      </label>
                     </li>
                   </ul>
                 </div>
               </div>
+
+              <!-- Площадь -->
               <div class="select-wrap">
-                <div class="select-label">
-                  Площадь
-                </div>
+                <div class="select-label">Площадь</div>
                 <div class="select" data-select="square">
                   <div class="select__current" data-select-current>
                     <span class="select__value">Любая</span>
                     <div class="select__arrow">
-                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="16" height="9" viewBox="0 0 16 9" fill="none">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
                           fill="#7C8589" />
@@ -350,63 +405,68 @@
                   </div>
                   <ul class="select__list" data-select-list>
                     <li data-select-item>
-                      10 - 20 м2
+                      <label class="custom-radio">
+                        <input type="radio" name="square" value="any">
+                        <span class="custom-radio__mark"></span>
+                        <span class="custom-radio__text">Любая</span>
+                      </label>
                     </li>
-                    <li data-select-item>
-                      20 - 40 м2
-                    </li>
-                    <li data-select-item>
-                      40 - 60 м2
-                    </li>
-                    <li data-select-item>
-                      60 - 80 м2
-                    </li>
-                    <li data-select-item>
-                      80 - 120 м2
-                    </li>
-                    <li data-select-item>
-                      120 - 200 м2
-                    </li>
-                    <li data-select-item>
-                      200 - 500 м2
-                    </li>
-                    <li data-select-item>
-                      500 - 1200 м2
-                    </li>
-                    <li data-select-item>
-                      от 1200 м2
-                    </li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="10-20"><span class="custom-radio__mark"></span><span class="custom-radio__text">10 - 20
+                          м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="20-40"><span class="custom-radio__mark"></span><span class="custom-radio__text">20 - 40
+                          м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="40-60"><span class="custom-radio__mark"></span><span class="custom-radio__text">40 - 60
+                          м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="60-80"><span class="custom-radio__mark"></span><span class="custom-radio__text">60 - 80
+                          м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="80-120"><span class="custom-radio__mark"></span><span class="custom-radio__text">80 -
+                          120 м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="120-200"><span class="custom-radio__mark"></span><span class="custom-radio__text">120 -
+                          200 м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="200-500"><span class="custom-radio__mark"></span><span class="custom-radio__text">200 -
+                          500 м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="500-1200"><span class="custom-radio__mark"></span><span class="custom-radio__text">500
+                          - 1200 м2</span></label></li>
+                    <li data-select-item><label class="custom-radio"><input type="radio" name="square"
+                          value="1200+"><span class="custom-radio__mark"></span><span class="custom-radio__text">от 1200
+                          м2</span></label></li>
                   </ul>
                 </div>
               </div>
+
+              <!-- Стоимость -->
               <div class="price-range">
-                <div class="price-rabge__item-label">
-                  Стоимость
-                </div>
+                <div class="price-rabge__item-label">Стоимость</div>
                 <div class="price-range__items">
                   <div class="price-range__item">
                     <div class="price-range__input-wrap">
-                      <span>
-                        от
-                      </span>
+                      <span>от</span>
                       <div class="price-range__input">
-                        <input type="number" name="from" id="from">
+                        <input type="number" name="price_min" id="from">
                       </div>
                     </div>
                   </div>
                   <div class="price-range__item">
                     <div class="price-range__input-wrap">
-                      <span>
-                        до
-                      </span>
+                      <span>до</span>
                       <div class="price-range__input">
-                        <input type="number" name="to" id="to">
+                        <input type="number" name="price_max" id="to">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
+
             <div class="filters-bottom">
               <div class="filters-sort">
                 <div class="select-wrap">
@@ -414,7 +474,7 @@
                     <div class="select__current" data-select-current>
                       <span class="select__value">По умолчанию</span>
                       <div class="select__arrow">
-                        <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="16" height="9" viewBox="0 0 16 9" fill="none">
                           <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
                             fill="#7C8589" />
@@ -424,31 +484,28 @@
                     <ul class="select__list sort-list" data-select-list>
                       <li data-select-item>
                         <label class="custom-radio">
-                          <input type="radio" name="sort" />
+                          <input type="radio" name="sort" value="expensive">
                           <span class="custom-radio__mark"></span>
                           <span class="custom-radio__text">Сначала дорогие</span>
                         </label>
                       </li>
-
                       <li data-select-item>
                         <label class="custom-radio">
-                          <input type="radio" name="sort" />
+                          <input type="radio" name="sort" value="cheap">
                           <span class="custom-radio__mark"></span>
                           <span class="custom-radio__text">Сначала дешёвые</span>
                         </label>
                       </li>
-
                       <li data-select-item>
                         <label class="custom-radio">
-                          <input type="radio" name="sort" />
+                          <input type="radio" name="sort" value="small">
                           <span class="custom-radio__mark"></span>
                           <span class="custom-radio__text">Сначала маленькие</span>
                         </label>
                       </li>
-
                       <li data-select-item>
                         <label class="custom-radio">
-                          <input type="radio" name="sort" />
+                          <input type="radio" name="sort" value="big">
                           <span class="custom-radio__mark"></span>
                           <span class="custom-radio__text">Сначала большие</span>
                         </label>
@@ -457,16 +514,16 @@
                   </div>
                 </div>
               </div>
+
               <div class="filters-right">
                 <div class="filters-result">
                   Найдено: <span>0 предложений</span>
                 </div>
-                <button class="filters-apply">
-                  Показать
-                </button>
+                <button class="filters-apply">Показать</button>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
