@@ -753,6 +753,10 @@
          top: -1px;
        }
 
+       & .custom-radio__mark {
+        display: none;
+       }
+
        & li {
          padding: 10px;
          border-radius: 6px;
@@ -851,6 +855,9 @@
            border-radius: 30px;
            background-color: #E8E8E6; */
            background-color: transparent;
+           & .custom-radio__mark {
+            display: block;
+           }
 
            &:not(:last-child) {
              &::before {}
