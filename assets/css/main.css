@@ -23,6 +23,14 @@
 
  button {
    cursor: pointer;
+   font-family: "Gilroy";
+ }
+
+ input {
+  font-family: "Gilroy";
+ }
+ textarea {
+  font-family: "Gilroy";
  }
 
  /* img,
@@ -83,6 +91,7 @@
    font-weight: 700;
    line-height: 90%;
    color: rgba(36, 34, 32, 0.40);
+   font-family: 'Ubuntu';
 
    & span {
      color: #242220;
@@ -90,6 +99,7 @@
      font-style: normal;
      font-weight: 700;
      line-height: 90%;
+     font-family: 'Ubuntu';
    }
 
    @media(max-width: 992px) {
@@ -106,13 +116,6 @@
      }
    }
 
-   @media(max-width: 700px) {
-     font-size: 28px;
-
-     & span {
-       font-size: 28px;
-     }
-   }
  }
 
  h2 {
@@ -121,9 +124,11 @@
    font-style: normal;
    font-weight: 700;
    line-height: 90%;
+   font-family: 'Ubuntu';
 
    & span {
      color: #242220;
+     font-family: 'Ubuntu';
    }
 
    @media(max-width: 992px) {
@@ -132,6 +137,10 @@
      font-weight: 700;
      line-height: 90%;
    }
+ }
+
+ a {
+  font-family: 'Gilroy';
  }
 
  h3 {
@@ -241,7 +250,7 @@
      color: #FFF;
      font-size: 25px;
      font-style: normal;
-     font-weight: 400;
+     font-weight: 500;
      line-height: 100%;
      /* 25px */
    }
@@ -503,7 +512,7 @@
 
    @media(max-width: 992px) {
      margin-bottom: 30px;
-     margin-top: 50px;
+     margin-top: 40px;
    }
 
    & nav {
@@ -516,7 +525,7 @@
            color: rgba(36, 34, 32, 0.30);
            font-size: 18px;
            font-style: normal;
-           font-weight: 400;
+           font-weight: 500;
            line-height: 22px;
            position: relative;
            transition: color .3s ease-in;
@@ -708,6 +717,7 @@
          -webkit-box-orient: vertical;
          line-clamp: 1;
          box-orient: vertical;
+         font-family: 'Avenir Next Cyr';
 
          /* 18px */
          & .custom-radio {
@@ -1012,11 +1022,15 @@
           align-items: center;
            & a {
              display: block;
-             height: 26px;
+             height: 44px;
              opacity: .5;
+             @media(max-width: 992px) {
+              height: 24px;
+             }
 
              & svg {
                height: 100%;
+               object-fit: contain;
              }
            }
          }
@@ -1068,14 +1082,13 @@
              color: rgba(36, 34, 32, 0.50);
              font-size: 25px;
              font-style: normal;
-             font-weight: 400;
+             font-weight: 500;
              line-height: 100%;
              transition: color .3s ease-in;
 
              @media(max-width: 992px) {
                font-size: 14px;
                font-style: normal;
-               font-weight: 400;
                line-height: 100%;
              }
 
@@ -1109,7 +1122,7 @@
              color: rgba(36, 34, 32, 0.40);
              font-size: 18px;
              font-style: normal;
-             font-weight: 400;
+             font-weight: 500;
              line-height: 100%;
              /* 18px */
              margin-bottom: 10px;
@@ -1117,7 +1130,7 @@
              @media(max-width: 992px) {
                font-size: 10px;
                font-style: normal;
-               font-weight: 400;
+
                line-height: 100%;
              }
            }
@@ -1126,7 +1139,7 @@
              color: rgba(36, 34, 32, 0.60);
              font-size: 25px;
              font-style: normal;
-             font-weight: 400;
+             font-weight: 500;
              line-height: 100%;
              transition: color .3s ease-in;
              display: block;
@@ -1134,7 +1147,7 @@
              @media(max-width: 992px) {
                font-size: 12px;
                font-style: normal;
-               font-weight: 400;
+
                line-height: 100%;
              }
 
@@ -1147,14 +1160,13 @@
              color: rgba(36, 34, 32, 0.60);
              font-size: 25px;
              font-style: normal;
-             font-weight: 400;
+             font-weight: 500;
              line-height: 100%;
              display: block;
 
              @media(max-width: 992px) {
                font-size: 12px;
                font-style: normal;
-               font-weight: 400;
                line-height: 100%;
              }
            }
@@ -1201,7 +1213,7 @@
 
    & .under-footer {
      padding-top: 20px;
-     padding-bottom: 258px;
+     padding-bottom: 331px;
      position: relative;
      display: grid;
      grid-template-columns: repeat(3, 1fr);
@@ -1310,10 +1322,8 @@
        font-style: normal;
        font-weight: 400;
        line-height: 100%;
-       padding: 10px 20px;
 
        @media(max-width: 992px) {
-         padding-left: 10px;
          font-size: 14px;
          font-style: normal;
          font-weight: 400;
@@ -1330,14 +1340,14 @@
    display: block;
    text-align: center;
    padding: 20px 30px;
-   width: 100%;
+   width: 50%;
    height: 65px;
    margin-top: 70px;
    margin-bottom: 24px;
    color: #FFF;
    font-size: 25px;
    font-style: normal;
-   font-weight: 400;
+   font-weight: 500;
    line-height: 100%;
 
    @media(max-width: 992px) {
@@ -1345,7 +1355,6 @@
      margin-top: 30px;
      font-size: 16px;
      font-style: normal;
-     font-weight: 400;
      line-height: 100%;
      padding: 15px 15px;
      height: 46px;
@@ -1431,6 +1440,24 @@
    font-weight: 500;
    font-style: normal;
  }
+
+ @font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+ @font-face {
+    font-family: 'Avenir Next Cyr';
+    src: url('../fonts/AvenirNextCyr-Regular.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 
  /* @font-face {
    font-family: "SF Pro Display";
