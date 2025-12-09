@@ -1,4 +1,5 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
+	die();
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -15,7 +16,7 @@ use Bitrix\Main\ModuleManager;
 
 $this->setFrameMode(true);
 
-if (!isset($arParams['FILTER_VIEW_MODE']) || (string)$arParams['FILTER_VIEW_MODE'] == '')
+if (!isset($arParams['FILTER_VIEW_MODE']) || (string) $arParams['FILTER_VIEW_MODE'] == '')
 	$arParams['FILTER_VIEW_MODE'] = 'VERTICAL';
 $arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILTER'] == 'Y' ? 'Y' : 'N');
 
@@ -23,8 +24,7 @@ $isVerticalFilter = ('Y' == $arParams['USE_FILTER'] && $arParams["FILTER_VIEW_MO
 $isSidebar = ($arParams["SIDEBAR_SECTION_SHOW"] == "Y" && isset($arParams["SIDEBAR_PATH"]) && !empty($arParams["SIDEBAR_PATH"]));
 $isFilter = ($arParams['USE_FILTER'] == 'Y');
 
-if ($isFilter)
-{
+if ($isFilter) {
 	$arFilter = array(
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
 		"ACTIVE" => "Y",
@@ -36,30 +36,23 @@ if ($isFilter)
 		$arFilter["=CODE"] = $arResult["VARIABLES"]["SECTION_CODE"];
 
 	$obCache = new CPHPCache();
-	if ($obCache->InitCache(36000, serialize($arFilter), "/iblock/catalog"))
-	{
+	if ($obCache->InitCache(36000, serialize($arFilter), "/iblock/catalog")) {
 		$arCurSection = $obCache->GetVars();
-	}
-	elseif ($obCache->StartDataCache())
-	{
+	} elseif ($obCache->StartDataCache()) {
 		$arCurSection = array();
-		if (Loader::includeModule("iblock"))
-		{
+		if (Loader::includeModule("iblock")) {
 			$dbRes = CIBlockSection::GetList(array(), $arFilter, false, array("ID"));
 
-			if(defined("BX_COMP_MANAGED_CACHE"))
-			{
+			if (defined("BX_COMP_MANAGED_CACHE")) {
 				global $CACHE_MANAGER;
 				$CACHE_MANAGER->StartTagCache("/iblock/catalog");
 
 				if ($arCurSection = $dbRes->Fetch())
-					$CACHE_MANAGER->RegisterTag("iblock_id_".$arParams["IBLOCK_ID"]);
+					$CACHE_MANAGER->RegisterTag("iblock_id_" . $arParams["IBLOCK_ID"]);
 
 				$CACHE_MANAGER->EndTagCache();
-			}
-			else
-			{
-				if(!$arCurSection = $dbRes->Fetch())
+			} else {
+				if (!$arCurSection = $dbRes->Fetch())
 					$arCurSection = array();
 			}
 		}
@@ -120,6 +113,16 @@ if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
 			);
 			unset($sectionListParams);
 			?>
+			<button type="button" class="filters-mobile__btn">
+				<span>
+					Все фильтры
+				</span>
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M15 14C16.3059 14 17.4141 14.8353 17.8262 16H20C20.5523 16 21 16.4477 21 17C21 17.5523 20.5523 18 20 18H17.8262C17.4141 19.1647 16.3059 20 15 20C13.6883 20 12.5756 19.1573 12.168 17.9844C12.1133 17.9936 12.0573 18 12 18H4C3.44772 18 3 17.5523 3 17C3 16.4477 3.44772 16 4 16H12C12.0573 16 12.1133 16.0054 12.168 16.0146C12.5759 14.8422 13.6886 14 15 14ZM15 16C14.4477 16 14 16.4477 14 17C14 17.5523 14.4477 18 15 18C15.5523 18 16 17.5523 16 17C16 16.4477 15.5523 16 15 16ZM10 4C11.3059 4 12.4141 4.83532 12.8262 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H12.8262C12.4141 9.16468 11.3059 10 10 10C8.69415 10 7.58594 9.16468 7.17383 8H4C3.44772 8 3 7.55228 3 7C3 6.44772 3.44772 6 4 6H7.17383C7.58594 4.83532 8.69415 4 10 4ZM10 6C9.44772 6 9 6.44772 9 7C9 7.55228 9.44772 8 10 8C10.5523 8 11 7.55228 11 7C11 6.44772 10.5523 6 10 6Z"
+						fill="#242220" fill-opacity="0.5" />
+				</svg>
+			</button>
 			<?
 			$APPLICATION->IncludeComponent(
 				"bitrix:catalog.smart.filter",
@@ -346,7 +349,10 @@ $APPLICATION->IncludeComponent(
 	$component
 );
 ?>
-<?$APPLICATION->IncludeComponent("bitrix:news.list","last_articles",Array(
+<? $APPLICATION->IncludeComponent(
+	"bitrix:news.list",
+	"last_articles",
+	array(
 		"DISPLAY_DATE" => "Y",
 		"DISPLAY_NAME" => "Y",
 		"DISPLAY_PICTURE" => "Y",
@@ -360,8 +366,8 @@ $APPLICATION->IncludeComponent(
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER2" => "ASC",
 		"FILTER_NAME" => "",
-		"FIELD_CODE" => Array("ID"),
-		"PROPERTY_CODE" => Array("DESCRIPTION"),
+		"FIELD_CODE" => array("ID"),
+		"PROPERTY_CODE" => array("DESCRIPTION"),
 		"CHECK_DATES" => "Y",
 		"DETAIL_URL" => "",
 		"PREVIEW_TRUNCATE_LEN" => "",
@@ -400,4 +406,4 @@ $APPLICATION->IncludeComponent(
 		"AJAX_OPTION_HISTORY" => "N",
 		"AJAX_OPTION_ADDITIONAL" => ""
 	)
-);?>
+); ?>
