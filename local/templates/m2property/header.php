@@ -12,7 +12,11 @@
   <? echo $APPLICATION->GetPageProperty('description'); ?>
   <? echo $APPLICATION->GetPageProperty('keywords'); ?>
   <?
+  Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/fancybox.css');
+  Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/splide.min.css');
   Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/main.css');
+  Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/fancybox.umd.js');
+  Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/splide.min.js');
   Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/main.js');
 
   $APPLICATION->ShowHead();

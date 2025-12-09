@@ -66,6 +66,7 @@ $GLOBALS["arrExcludeSectionFilter"] = array(
 	"!ID" => 15,
 	"!SECTION_ID" => 15
 );
+
 $sectionListParams = array(
 	"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 	"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -79,7 +80,7 @@ $sectionListParams = array(
 	"VIEW_MODE" => $arParams["SECTIONS_VIEW_MODE"],
 	"SHOW_PARENT_NAME" => $arParams["SECTIONS_SHOW_PARENT_NAME"],
 	"HIDE_SECTION_NAME" => ($arParams["SECTIONS_HIDE_SECTION_NAME"] ?? "N"),
-	"FILTER_NAME" => "arrExcludeSectionFilter",
+	"FILTER_NAME" => "arrExcludeSectionFilter" ?? "",
 	"ADD_SECTIONS_CHAIN" => ($arParams["ADD_SECTIONS_CHAIN"] ?? '')
 );
 if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
@@ -232,9 +233,10 @@ if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
 				"OFFERS_SORT_ORDER2" => $arParams["OFFERS_SORT_ORDER2"],
 				"OFFERS_LIMIT" => (isset($arParams["LIST_OFFERS_LIMIT"]) ? $arParams["LIST_OFFERS_LIMIT"] : 0),
 
-				"SECTION_ID" => 0,
-				"SECTION_URL" => "",
-				"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
+				"SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
+				"SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
+				"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
+				"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
 				"USE_MAIN_ELEMENT_SECTION" => $arParams["USE_MAIN_ELEMENT_SECTION"],
 				'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
 				'CURRENCY_ID' => $arParams['CURRENCY_ID'],
@@ -305,7 +307,7 @@ if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
 		"SECTION_ID" => 15,
 		"SECTION_CODE" => "avtorskie-podborki",
 		"COUNT_ELEMENTS" => "N",
-		"TOP_DEPTH" => "1",
+		"TOP_DEPTH" => "4",
 		"ADD_SECTIONS_CHAIN" => "N",
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
@@ -342,7 +344,7 @@ $APPLICATION->IncludeComponent(
 		"PARTIAL_PRODUCT_PROPERTIES" => (isset($arParams["PARTIAL_PRODUCT_PROPERTIES"]) ? $arParams["PARTIAL_PRODUCT_PROPERTIES"] : ''),
 		"PRODUCT_PROPERTIES" => (isset($arParams["PRODUCT_PROPERTIES"]) ? $arParams["PRODUCT_PROPERTIES"] : []),
 
-		"SECTION_ID" => 15,
+		"SECTION_ID" => "16",
 		"SECTION_URL" => "",
 		"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
 	),
