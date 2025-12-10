@@ -27,10 +27,11 @@
  }
 
  input {
-  font-family: "Gilroy";
+   font-family: "Gilroy";
  }
+
  textarea {
-  font-family: "Gilroy";
+   font-family: "Gilroy";
  }
 
  /* img,
@@ -140,7 +141,7 @@
  }
 
  a {
-  font-family: 'Gilroy';
+   font-family: 'Gilroy';
  }
 
  h3 {
@@ -276,7 +277,7 @@
        display: flex;
        justify-content: space-between;
        align-items: center;
-       gap: 20px;
+       gap: 5rem;
 
 
        & .logo {
@@ -350,7 +351,7 @@
            gap: 72px;
 
            @media(max-width: 1500px) {
-             gap: 45px;
+             gap: 35px;
            }
 
            @media(max-width: 1150px) {
@@ -518,7 +519,8 @@
    & nav {
      & ul {
        display: flex;
-       gap: 32px;
+       gap: 15px 32px;
+       flex-wrap: wrap;
 
        & li {
          & a {
@@ -764,7 +766,7 @@
        }
 
        & .custom-radio__mark {
-        display: none;
+         display: none;
        }
 
        & li {
@@ -865,8 +867,9 @@
            border-radius: 30px;
            background-color: #E8E8E6; */
            background-color: transparent;
+
            & .custom-radio__mark {
-            display: block;
+             display: block;
            }
 
            &:not(:last-child) {
@@ -994,7 +997,8 @@
        }
 
        & .footer-logo {
-        max-width: 287px;
+         max-width: 287px;
+
          @media(max-width: 992px) {
            max-width: 163px;
          }
@@ -1018,14 +1022,16 @@
          }
 
          & li {
-          display: flex;
-          align-items: center;
+           display: flex;
+           align-items: center;
+
            & a {
              display: block;
              height: 44px;
              opacity: .5;
+
              @media(max-width: 992px) {
-              height: 24px;
+               height: 24px;
              }
 
              & svg {
@@ -1340,7 +1346,8 @@
    display: block;
    text-align: center;
    padding: 20px 30px;
-   width: 50%;
+   width: 100%;
+   max-width: 60%;
    height: 65px;
    margin-top: 70px;
    margin-bottom: 24px;
@@ -1351,7 +1358,7 @@
    line-height: 100%;
 
    @media(max-width: 992px) {
-     max-width: 50%;
+     max-width: 60%;
      margin-top: 30px;
      font-size: 16px;
      font-style: normal;
@@ -1395,6 +1402,22 @@
 
  }
 
+ .breadcrumbs nav ul li:last-child span {
+   display: inline-block;
+
+   max-width: 188px;
+ 
+   white-space: nowrap;
+
+   overflow: hidden;
+ 
+   text-overflow: ellipsis;
+
+   vertical-align: middle;
+
+ }
+
+
  .overlay {
    background: rgba(36, 34, 32, 0.70);
    backdrop-filter: blur(15px);
@@ -1425,6 +1448,23 @@
  }
 
 
+ .catalog-images__slider {
+   height: 100%;
+   height: 100%;
+
+   & .splide__track {
+     width: 100%;
+     height: 100%;
+     & height: 100%;
+     height: 100%;
+
+     & .splide__slide {
+       width: 100%;
+       height: 100%;
+     }
+   }
+ }
+
 
 
  @font-face {
@@ -1442,20 +1482,20 @@
  }
 
  @font-face {
-    font-family: 'Ubuntu';
-    src: url('../fonts/Ubuntu-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
+   font-family: 'Ubuntu';
+   src: url('../fonts/Ubuntu-Bold.woff2') format('woff2');
+   font-weight: bold;
+   font-style: normal;
+   font-display: swap;
+ }
 
  @font-face {
-    font-family: 'Avenir Next Cyr';
-    src: url('../fonts/AvenirNextCyr-Regular.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
+   font-family: 'Avenir Next Cyr';
+   src: url('../fonts/AvenirNextCyr-Regular.woff2') format('woff2');
+   font-weight: bold;
+   font-style: normal;
+   font-display: swap;
+ }
 
 
 

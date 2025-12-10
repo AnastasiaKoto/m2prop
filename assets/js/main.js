@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 class CatalogSlider {
   constructor(selector = ".catalog-images__slider") {
     this.selector = selector;
-    this.instances = new Map(); 
+    this.instances = new Map();
     this.init();
   }
 
@@ -152,8 +152,8 @@ class CatalogSlider {
         pagination: true,
         arrows: false,
         easing: 'ease',
-        speed:600,
-        drag:true,
+        speed: 600,
+        drag: true,
       });
 
       splide.mount();
@@ -195,9 +195,9 @@ function getVisiblePages(total, current) {
   const width = window.innerWidth;
   let visibleCount;
 
-  if (width <= 600) visibleCount = 3;      // Мобилка: 1 2 3 ... 50
-  else if (width <= 768) visibleCount = 5; // Планшет
-  else visibleCount = 7;                  // Десктоп
+  if (width <= 600) visibleCount = 3;      
+  else if (width <= 768) visibleCount = 5; 
+  else visibleCount = 7;                  
 
   const pages = [];
   pages.push(1);
@@ -221,6 +221,7 @@ function getVisiblePages(total, current) {
 
 function renderPagination() {
   const pagination = document.querySelector(".pagination");
+  if (!pagination) return;
   pagination.innerHTML = "";
 
   const pages = getVisiblePages(totalPages, currentPage);
@@ -248,3 +249,277 @@ function renderPagination() {
 
 renderPagination();
 window.addEventListener("resize", () => renderPagination());
+
+
+
+
+class ProductGallery {
+  constructor(options) {
+    this.mainSelector = options.mainSelector;       
+    this.thumbsSelector = options.thumbsSelector;   
+    this.prevButton = options.prevButton;           
+    this.nextButton = options.nextButton;          
+    this.showGalleryBtn = options.showGalleryBtn;   
+    this.mainSplide = null;
+    this.thumbsSplide = null;
+    this.init();
+  }
+
+  init() {
+    const mainEl = document.querySelector(this.mainSelector);
+    const thumbsEl = document.querySelector(this.thumbsSelector);
+
+    if (!mainEl || !thumbsEl) return;
+
+ 
+    this.mainSplide = new Splide(mainEl, {
+      type: 'slide',
+      perPage: 1,
+      pagination: true,
+      arrows: false,
+      rewind: true,
+      gap: 10,
+      easing: 'ease',
+      speed: 600
+    });
+
+ 
+    this.thumbsSplide = new Splide(thumbsEl, {
+      type: 'slide',
+      direction: 'ttb',
+      height: '694px',
+      perPage: 3,
+      gap: 10,
+      pagination: false,
+      arrows: false,
+      focus: 'center',
+      updateOnMove: true,
+      drag: false,
+      isNavigation: false,
+      breakpoints: {
+        1280: {
+          destroy: true
+        }
+      }
+    });
+
+
+    this.mainSplide.sync(this.thumbsSplide);
+    this.mainSplide.mount();
+    this.thumbsSplide.mount();
+
+  
+    if (this.prevButton) this.prevButton.addEventListener('click', () => this.mainSplide.go('<'));
+    if (this.nextButton) this.nextButton.addEventListener('click', () => this.mainSplide.go('>'));
+
+
+    mainEl.querySelectorAll('.splide__slide a').forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openGallery(index);
+      });
+    });
+
+ 
+    thumbsEl.querySelectorAll('.splide__slide').forEach((thumb, index) => {
+      thumb.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openGallery(index);
+      });
+    });
+
+
+    if (this.showGalleryBtn) {
+      this.showGalleryBtn.addEventListener('click', () => this.openGallery(0));
+    }
+  }
+
+  openGallery(startIndex = 0) {
+    const items = [...document.querySelectorAll(`${this.mainSelector} a[data-fancybox="product"]`)]
+      .map(a => ({ src: a.href, type: 'image' }));
+
+    Fancybox.show(items, { startIndex });
+  }
+}
+
+// Пример инициализации для Насти
+document.addEventListener('DOMContentLoaded', () => {
+  const gallery = new ProductGallery({
+    mainSelector: '#main-slider',
+    thumbsSelector: '#thumbs-slider',
+    prevButton: document.querySelector('.custom-detail__prev'),
+    nextButton: document.querySelector('.custom-detail__next'),
+    showGalleryBtn: document.querySelector('.show-gallery')
+  });
+});
+
+
+
+class CustomSplide {
+  constructor(options) {
+    this.slider = options.slider;
+    if (!this.slider) return; // Проверка
+
+    this.perPage = options.perPage || 4;
+    this.breakpoints = options.breakpoints || {};
+    this.gap = options.gap || '20px';
+    this.padding = options.padding || { right: 0 };
+    this.autoplay = options.autoplay || false;
+    this.splide = null;
+
+    this.init();
+  }
+
+  init() {
+    if (!this.slider || typeof Splide === 'undefined') return; // Проверка наличия через библиотеку
+
+    this.splide = new Splide(this.slider, {
+      type: 'slide',
+      perPage: this.perPage,
+      perMove: 1,
+      gap: this.gap,
+      pagination: false,
+      arrows: false,
+      padding: this.padding,
+      breakpoints: this.breakpoints,
+      autoplay: this.autoplay
+    });
+
+    this.splide.mount();
+  }
+
+  refresh() {
+    if (this.splide?.refresh) this.splide.refresh();
+  }
+
+  goPrev() {
+    if (this.splide?.go) this.splide.go('<');
+  }
+
+  goNext() {
+    if (this.splide?.go) this.splide.go('>');
+  }
+
+  updateArrows(prevButton, nextButton) {
+    if (!this.splide || !prevButton || !nextButton) return;
+    prevButton.disabled = this.splide.index === 0;
+    nextButton.disabled = this.splide.index >= this.splide.length - this.splide.options.perPage;
+  }
+}
+
+class Tabs {
+  constructor(options) {
+    this.tabSelector = options.tabSelector;
+    this.contentSelector = options.contentSelector;
+    this.activeClass = options.activeClass || 'active';
+    this.sliderOptions = options.sliderOptions || {};
+
+
+    this.prevButton = document.querySelector(this.sliderOptions.prevSelector ?? null);
+    this.nextButton = document.querySelector(this.sliderOptions.nextSelector ?? null);
+
+    this.sliders = {};
+    this.activeSlider = null;
+
+    this.init();
+  }
+
+  init() {
+    this.tabs = document.querySelectorAll(this.tabSelector);
+    this.contents = document.querySelectorAll(this.contentSelector);
+
+    if (!this.tabs.length || !this.contents.length) return; 
+
+    this.tabs.forEach(tab => {
+      tab.addEventListener('click', () => this.onTabClick(tab));
+    });
+
+
+    if (this.prevButton) {
+      this.prevButton.addEventListener('click', () => {
+        this.activeSlider?.goPrev();
+        this.updateArrowState();
+      });
+    }
+
+    if (this.nextButton) {
+      this.nextButton.addEventListener('click', () => {
+        this.activeSlider?.goNext();
+        this.updateArrowState();
+      });
+    }
+
+    const activeTab =
+      Array.from(this.tabs).find(t => t.classList.contains(this.activeClass)) ||
+      this.tabs[0];
+
+    if (activeTab) this.onTabClick(activeTab);
+  }
+
+  onTabClick(tab) {
+    const target = tab.dataset.tab;
+    if (!target) return; 
+
+    this.tabs.forEach(t => t.classList.remove(this.activeClass));
+    tab.classList.add(this.activeClass);
+
+    this.contents.forEach(c => {
+      const isTarget = c.dataset.tab === target;
+
+      c.style.display = isTarget ? '' : 'none';
+
+      if (isTarget) {
+        const sliderElement = c.querySelector(this.sliderOptions.sliderSelector);
+        if (sliderElement && !this.sliders[target]) {
+          this.sliders[target] = new CustomSplide({
+            slider: sliderElement,
+            perPage: this.sliderOptions.perPage,
+            breakpoints: this.sliderOptions.breakpoints,
+            gap: this.sliderOptions.gap,
+            padding: this.sliderOptions.padding,
+            autoplay: this.sliderOptions.autoplay
+          });
+        } else if (this.sliders[target]) {
+          this.sliders[target].refresh();
+        }
+
+        this.activeSlider = this.sliders[target];
+        this.updateArrowState();
+      }
+    });
+  }
+
+  updateArrowState() {
+    if (this.activeSlider && this.prevButton && this.nextButton) {
+      this.activeSlider.updateArrows(this.prevButton, this.nextButton);
+    }
+  }
+}
+
+
+// Инициализация для Насти
+document.addEventListener('DOMContentLoaded', () => {
+  const tabsExist = document.querySelector('.tab-content__similar-link');
+
+  if (!tabsExist) return; 
+
+  new Tabs({
+    tabSelector: '.tab-content__similar-link',
+    contentSelector: '.tab-content__similar-content',
+    activeClass: 'active',
+    sliderOptions: {
+      sliderSelector: '.similar-slider',
+      prevSelector: '.similar-arrow__prev',
+      nextSelector: '.similar-arrow__next',
+      perPage: 4,
+      breakpoints: {
+        1024: { perPage: 2 },
+        700: { destroy: true }
+      },
+      gap: '20px',
+      padding: { right: 25 },
+      autoplay: false
+    }
+  });
+});
+
