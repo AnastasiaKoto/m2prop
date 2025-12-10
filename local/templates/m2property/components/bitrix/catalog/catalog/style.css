@@ -22,14 +22,13 @@
       color: rgba(36, 34, 32, 0.40);
       font-size: 30px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 100%;
       max-width: 900px;
 
       @media(max-width: 1150px) {
         font-size: 18px;
         font-style: normal;
-        font-weight: 400;
         line-height: 100%;
       }
     }
@@ -84,7 +83,7 @@
           & .filters-cats__name {
             font-size: 25px;
             font-style: normal;
-            font-weight: 400;
+            font-weight: 500;
             line-height: 100%;
             color: #504E4D;
             transition: all .3s ease-in;
@@ -94,7 +93,7 @@
             color: #78747A;
             font-size: 13px;
             font-style: normal;
-            font-weight: 400;
+            font-weight: 500;
             line-height: 16px;
             transition: all .3s ease-in;
           }
@@ -223,14 +222,13 @@
         & .filters-result {
           font-size: 18px;
           font-style: normal;
-          font-weight: 400;
+          font-weight: 500;
           line-height: 22px;
           color: #7C8589;
 
           @media(max-width: 992px) {
             font-size: 14px;
             font-style: normal;
-            font-weight: 400;
             line-height: 22px;
           }
 
@@ -238,13 +236,12 @@
             color: #242220;
             font-size: 18px;
             font-style: normal;
-            font-weight: 400;
+            font-weight: 500;
             line-height: 22px;
 
             @media(max-width: 992px) {
               font-size: 14px;
               font-style: normal;
-              font-weight: 400;
               line-height: 22px;
             }
           }
@@ -254,7 +251,7 @@
           color: #FFF;
           font-size: 16px;
           font-style: normal;
-          font-weight: 400;
+          font-weight: 500;
           line-height: 100%;
           border-radius: 110px;
           background: #FF7400;
@@ -264,7 +261,6 @@
           @media(max-width: 992px) {
             font-size: 16px;
             font-style: normal;
-            font-weight: 400;
             line-height: 100%;
             padding: 15px 30px;
             height: 46px;
