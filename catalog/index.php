@@ -79,7 +79,7 @@ $APPLICATION->IncludeComponent(
 		"SECTION_TOP_DEPTH" => "6",
 		"SECTIONS_VIEW_MODE" => "TILE",
 		"SECTIONS_SHOW_PARENT_NAME" => "Y",
-		"PAGE_ELEMENT_COUNT" => "9",
+		"PAGE_ELEMENT_COUNT" => "10",
 		"LINE_ELEMENT_COUNT" => "3",
 		"ELEMENT_SORT_FIELD" => $_REQUEST["sort_field"]??"SORT",
 		"ELEMENT_SORT_ORDER" => $_REQUEST["sort_order"]??"ASC",
