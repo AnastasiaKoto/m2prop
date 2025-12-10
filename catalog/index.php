@@ -83,8 +83,8 @@ $APPLICATION->IncludeComponent(
 		"LINE_ELEMENT_COUNT" => "3",
 		"ELEMENT_SORT_FIELD" => $_REQUEST["sort_field"]??"PROPERTY_NEW_PRICE",
 		"ELEMENT_SORT_ORDER" => $_REQUEST["sort_order"]??"DESC",
-		"ELEMENT_SORT_FIELD2" => "id",
-		"ELEMENT_SORT_ORDER2" => "desc",
+		"ELEMENT_SORT_FIELD2" => "SORT",
+		"ELEMENT_SORT_ORDER2" => "ASC",
 		"LIST_PROPERTY_CODE" => array(
 			0 => "",
 			1 => "",
