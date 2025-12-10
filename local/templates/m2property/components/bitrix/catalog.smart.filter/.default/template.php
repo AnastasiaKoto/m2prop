@@ -375,7 +375,7 @@ if(!empty($arResult["ITEMS"])):
 				Сбросить фильтры
 			</button>
 			<div id="modef" class="filters-result">
-				Найдено: <?echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">'.(int)($arResult["ELEMENT_COUNT"] ?? 0).'</span>'));?>
+				Найдено: <span><?echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">'.(int)($arResult["ELEMENT_COUNT"] ?? 0).'</span>'));?></span>
 				<a style="display: none;" href="<?echo $arResult["FILTER_URL"]?>" target=""><?echo GetMessage("CT_BCSF_FILTER_SHOW")?></a>
 			</div>
 			<button class="filters-apply" type="submit" id="set_filter" name="set_filter">Показать</button>
