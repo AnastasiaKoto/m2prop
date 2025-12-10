@@ -12,12 +12,12 @@ $data = json_decode($payload, true);
 
 // Обрабатываем только пуши в master и мердж-реквесты
 if ($_SERVER['HTTP_X_GITHUB_EVENT'] === 'pull_request') {
-    $action = $data['action'];
-    $merged = $data['pull_request']['merged'];
+    $action = $data['action'] ?? null;
+    $merged = $data['pull_request']['merged'] ?? false;
     $base_branch = $data['pull_request']['base']['ref'];
     
     if ($action === 'closed' && $merged && $base_branch === 'master') {
-        shell_exec('/var/www/u3265633/data/opt/scripts/deploy.sh > /dev/null 2>&1 &');
+        shell_exec('/var/www/u3338955/data/opt/scripts/deploy.sh > /dev/null 2>&1 &');
         echo "Deploy started after merge to master";
     }
 }
