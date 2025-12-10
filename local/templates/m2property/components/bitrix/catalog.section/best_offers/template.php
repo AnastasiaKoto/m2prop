@@ -24,12 +24,13 @@ use Bitrix\Catalog\ProductTable;
  */
 
 $this->setFrameMode(true);
+if(!empty($arResult['ITEMS'])):
 ?>
 <section class="section best">
 	<div class="container">
 		<div class="best-inner">
 			<div class="best-image">
-				<img src="./assets/img/best.png" alt="Лучшие предложения">
+				<img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/best.png" alt="Лучшие предложения">
 			</div>
 			<div class="best-head">
 				<h2>
@@ -87,7 +88,7 @@ $this->setFrameMode(true);
 						</clipPath>
 					</defs>
 				</svg>
-				<a href="javascript:void(0)" class="link-to">
+				<a href="/catalog/avtorskie-podborki/luchshie-predlozheniya/" class="link-to">
 					<span>
 						Смотреть все
 					</span>
@@ -99,188 +100,70 @@ $this->setFrameMode(true);
 			</div>
 			
 		<ul class="catalog-items simple-catalog light">
+			<? foreach($arResult['ITEMS'] as $arItem): ?>
 			<li class="catalog-item">
-				<a href="javascript:void(0)">
+				<a href="<?= $arItem['DETAIL_PAGE_URL']; ?>">
 					<div class="catalog-item__image">
-						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-						<div class="catalog-item__tag">
-							участок 30 соток
+						<? if (!empty($arItem['PROPERTIES']['GALLERY']['VALUE'])): ?>
+						<div class="splide catalog-images__slider">
+							<div class="splide__track">
+								<ul class="splide__list">
+									<? foreach($arItem['PROPERTIES']['GALLERY']['VALUE'] as $img): ?>
+									<li class="splide__slide">
+										<img src="<?= CFile::GetPath($img); ?>" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
+									</li>
+									<? endforeach; ?>
+								</ul>
+							</div>
 						</div>
+						<? endif; ?>
+						<? if (!empty($arItem['PROPERTIES']['TAGS']['VALUE'])): ?>
+							<div class="catalog-item__tag">
+								<?= $arItem['PROPERTIES']['TAGS']['VALUE'][0]; ?>
+							</div>
+						<? endif; ?>
 					</div>
 					<div class="catalog-item__body">
 						<div class="catalog-item__prices">
 							<div class="catalog-item__price">
-								957 242 300 ₽
+								<?= $arItem['PROPERTIES']['NEW_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['NEW_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
 							</div>
 							<div class="catalog-item__old-price">
-								998 242 300 ₽
+								<?= $arItem['PROPERTIES']['OLD_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
 							</div>
-							<div class="catalog-item__sale">
-								-41%
-							</div>
+							<?
+							$discount = discountPrecent($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], $arItem['PROPERTIES']['NEW_PRICE']['VALUE']);
+							if ($discount > 0):
+								?>
+								<div class="catalog-item__sale">
+									-<?= $discount; ?>%
+								</div>
+							<? endif; ?>
 						</div>
 						<div class="catalog-item__info">
 							<div class="catalog-item__name">
-								Дом в коттеджном поселке «Crystal Istra», 1000 м²
+								<?= $arItem['NAME']; ?>
 							</div>
 							<div class="catalog-item__location">
-								14 км от МКАД, Новорижское шоссе
+								<?= $arItem['PROPERTIES']['OBJECT_ADDRESS']['VALUE'] ? $arItem['PROPERTIES']['OBJECT_ADDRESS']['VALUE'] . ', ' . $arItem['PROPERTIES']['TIME_TO_WAY']['VALUE'] : ''; ?>
 							</div>
 						</div>
 					</div>
-					<ul class="catalog-item__filters">
-						<li class="catalog-item__filter">
-							участок 30 соток
-						</li>
-						<li class="catalog-item__filter">
-							чистовая отделка
-						</li>
-						<li class="catalog-item__filter">
-							6 спален
-						</li>
-						<li class="catalog-item__filter">
-							2 этажа
-						</li>
-					</ul>
+					<? if (!empty($arItem['PROPERTIES']['TAGS']['VALUE'])): ?>
+						<ul class="catalog-item__filters">
+							<? foreach ($arItem['PROPERTIES']['TAGS']['VALUE'] as $tag): ?>
+								<li class="catalog-item__filter">
+									<?= $tag; ?>
+								</li>
+							<? endforeach; ?>
+						</ul>
+					<? endif; ?>
 				</a>
 			</li>
-			<li class="catalog-item">
-				<a href="javascript:void(0)">
-					<div class="catalog-item__image">
-						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-						<div class="catalog-item__tag">
-							участок 30 соток
-						</div>
-					</div>
-					<div class="catalog-item__body">
-						<div class="catalog-item__prices">
-							<div class="catalog-item__price">
-								957 242 300 ₽
-							</div>
-							<div class="catalog-item__old-price">
-								998 242 300 ₽
-							</div>
-							<div class="catalog-item__sale">
-								-41%
-							</div>
-						</div>
-						<div class="catalog-item__info">
-							<div class="catalog-item__name">
-								Дом в коттеджном поселке «Crystal Istra», 1000 м²
-							</div>
-							<div class="catalog-item__location">
-								14 км от МКАД, Новорижское шоссе
-							</div>
-						</div>
-					</div>
-					<ul class="catalog-item__filters">
-						<li class="catalog-item__filter">
-							участок 30 соток
-						</li>
-						<li class="catalog-item__filter">
-							чистовая отделка
-						</li>
-						<li class="catalog-item__filter">
-							6 спален
-						</li>
-						<li class="catalog-item__filter">
-							2 этажа
-						</li>
-					</ul>
-				</a>
-			</li>
-			<li class="catalog-item">
-				<a href="javascript:void(0)">
-					<div class="catalog-item__image">
-						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-						<div class="catalog-item__tag">
-							участок 30 соток
-						</div>
-					</div>
-					<div class="catalog-item__body">
-						<div class="catalog-item__prices">
-							<div class="catalog-item__price">
-								957 242 300 ₽
-							</div>
-							<div class="catalog-item__old-price">
-								998 242 300 ₽
-							</div>
-							<div class="catalog-item__sale">
-								-41%
-							</div>
-						</div>
-						<div class="catalog-item__info">
-							<div class="catalog-item__name">
-								Дом в коттеджном поселке «Crystal Istra», 1000 м²
-							</div>
-							<div class="catalog-item__location">
-								14 км от МКАД, Новорижское шоссе
-							</div>
-						</div>
-					</div>
-					<ul class="catalog-item__filters">
-						<li class="catalog-item__filter">
-							участок 30 соток
-						</li>
-						<li class="catalog-item__filter">
-							чистовая отделка
-						</li>
-						<li class="catalog-item__filter">
-							6 спален
-						</li>
-						<li class="catalog-item__filter">
-							2 этажа
-						</li>
-					</ul>
-				</a>
-			</li>
-			<li class="catalog-item">
-				<a href="javascript:void(0)">
-					<div class="catalog-item__image">
-						<img src="./assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-						<div class="catalog-item__tag">
-							участок 30 соток
-						</div>
-					</div>
-					<div class="catalog-item__body">
-						<div class="catalog-item__prices">
-							<div class="catalog-item__price">
-								957 242 300 ₽
-							</div>
-							<div class="catalog-item__old-price">
-								998 242 300 ₽
-							</div>
-							<div class="catalog-item__sale">
-								-41%
-							</div>
-						</div>
-						<div class="catalog-item__info">
-							<div class="catalog-item__name">
-								Дом в коттеджном поселке «Crystal Istra», 1000 м²
-							</div>
-							<div class="catalog-item__location">
-								14 км от МКАД, Новорижское шоссе
-							</div>
-						</div>
-					</div>
-					<ul class="catalog-item__filters">
-						<li class="catalog-item__filter">
-							участок 30 соток
-						</li>
-						<li class="catalog-item__filter">
-							чистовая отделка
-						</li>
-						<li class="catalog-item__filter">
-							6 спален
-						</li>
-						<li class="catalog-item__filter">
-							2 этажа
-						</li>
-					</ul>
-				</a>
-			</li>
+			<? endforeach; ?>
 		</ul>
 		
 		</div>
 	</div>
 </section>
+<? endif; ?>

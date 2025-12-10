@@ -152,7 +152,7 @@
     </div>
     <div class="under-footer">
       <div class="inder-footer__decor">
-        <img src="./assets/img//graphic.png" alt="img">
+        <img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img//graphic.png" alt="img">
       </div>
       <div class="footer-copy">
         Copyright © 2025 М2-Проперти

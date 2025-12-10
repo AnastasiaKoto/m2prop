@@ -22,9 +22,21 @@
 		}
 
 		this.bigData = params.bigData || {enabled: false};
-		this.container = document.querySelector('[data-entity="' + params.container + '"]');
+		//модифицировано
+		this.container = document.querySelector('[data-entity="items-row"]');
+		this.more_container = document.querySelector('.show-more-container');
 		this.showMoreButton = null;
 		this.showMoreButtonMessage = null;
+
+		//инициализация слайдера
+		/*
+		BX.ready(BX.delegate(function() {
+			console.log(window);
+			if (this.container) {
+				window.catalogSliders.refresh();
+			}
+		}, this));
+		*/
 
 		if (this.bigData.enabled && BX.util.object_keys(this.bigData.rows).length > 0)
 		{
@@ -51,11 +63,12 @@
 			this.showMoreButtonMessage = this.showMoreButton.innerHTML;
 			BX.bind(this.showMoreButton, 'click', BX.proxy(this.showMore, this));
 		}
-
+		/*
 		if (params.loadOnScroll)
 		{
 			BX.bind(window, 'scroll', BX.proxy(this.loadOnScroll, this));
 		}
+		*/
 	};
 
 	window.JCCatalogSectionComponent.prototype =
@@ -64,13 +77,12 @@
 		{
 			if (this.showMoreButton)
 			{
-				if (this.navParams.NavPageNomer == this.navParams.NavPageCount)
-				{
+				//модифицировано
+				if (this.navParams.NavPageNomer == this.navParams.NavPageCount) {
 					BX.remove(this.showMoreButton);
 				}
-				else
-				{
-					this.container.appendChild(this.showMoreButton);
+				else {
+					this.more_container.appendChild(this.showMoreButton);
 				}
 			}
 		},
@@ -92,7 +104,7 @@
 				this.showMoreButton.innerHTML = BX.message('BTN_MESSAGE_LAZY_LOAD_WAITER');
 			}
 		},
-
+		/*
 		loadOnScroll: function()
 		{
 			var scrollTop = BX.GetWindowScrollPos().scrollTop,
@@ -103,7 +115,7 @@
 				this.showMore();
 			}
 		},
-
+		*/
 		showMore: function()
 		{
 			if (this.navParams.NavPageNomer < this.navParams.NavPageCount)
@@ -186,6 +198,7 @@
 
 			if (result)
 			{
+				console.log(result);
 				this.navParams.NavPageNomer++;
 				this.processItems(result.items);
 				this.processPagination(result.pagination);
@@ -215,12 +228,13 @@
 			var items, k, origRows;
 
 			temporaryNode.innerHTML = processed.HTML;
-			items = temporaryNode.querySelectorAll('[data-entity="items-row"]');
+			items = temporaryNode.querySelectorAll('[data-entity="item"]');
 
 			if (items.length)
 			{
 				this.showHeader(true);
 
+				/*
 				for (k in items)
 				{
 					if (items.hasOwnProperty(k))
@@ -236,6 +250,15 @@
 						{
 							this.container.appendChild(items[k]);
 						}
+					}
+				}
+				*/
+				for (var k = 0; k < items.length; k++) {
+					if (items[k] && this.container) {
+						
+						items[k].style.opacity = 0;
+
+						this.container.appendChild(items[k]);
 					}
 				}
 

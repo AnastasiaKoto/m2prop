@@ -96,43 +96,58 @@ $arParams['MESS_BTN_LAZY_LOAD'] = $arParams['MESS_BTN_LAZY_LOAD'] ?: Loc::getMes
 
 $obName = 'ob' . preg_replace('/[^a-zA-Z0-9_]/', 'x', $this->GetEditAreaId($navParams['NavNum']));
 $containerName = 'container-' . $navParams['NavNum'];
-//p($arResult);
-if(!empty($arResult['ITEMS'])):
-?>
-
-<ul class="catalog-items" data-entity="<?= $containerName ?>">
-	<?
-	if (!empty($arResult['ITEMS'])) {
-		?>
-		<!-- items-container -->
+//p($arResult);?>
+<!-- items-container -->
+<?
+if (!empty($arResult['ITEMS'])): ?>
+	<ul class="catalog-items" data-entity="items-row" id="<?= $containerName ?>">
 		<?
 		foreach ($arResult['ITEMS'] as $arItem) {
+			$isLarge = $arItem['PROPERTIES']['OBJECT_TYPE']['VALUE_ENUM'] == 'Набор объектов' ? true : false;
 			?>
-			<li class="catalog-item">
+			<li class="catalog-item <?= $isLarge ? 'large' : ''; ?>" data-entity="item">
 				<a href="<?= $arItem['DETAIL_PAGE_URL'] ?>">
+					<?= $isLarge ? '<div class="blur"></div>' : ''; ?>
 					<div class="catalog-item__image">
-						<img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/ct.jpg" alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-						<? if(!empty($arItem['PROPERTIES']['TAGS']['VALUE'])): ?>
-						<div class="catalog-item__tag">
-							<?= $arItem['PROPERTIES']['TAGS']['VALUE'][0]; ?>
-						</div>
+						<? if ($isLarge): ?>
+							<img src="<?= CFile::GetPath($arItem['PROPERTIES']['GALLERY']['VALUE'][0]); ?>"
+								alt="<?= $arItem['NAME']; ?>">
+						<? else: ?>
+							<? if (!empty($arItem['PROPERTIES']['GALLERY']['VALUE'])): ?>
+								<div class="splide catalog-images__slider">
+									<div class="splide__track">
+										<ul class="splide__list">
+											<? foreach ($arItem['PROPERTIES']['GALLERY']['VALUE'] as $img): ?>
+												<li class="splide__slide">
+													<img src="<?= CFile::GetPath($img); ?>" alt="<?= $arItem['NAME']; ?>">
+												</li>
+											<? endforeach; ?>
+										</ul>
+									</div>
+								</div>
+							<? endif; ?>
+						<? endif; ?>
+						<? if (!empty($arItem['PROPERTIES']['TAGS']['VALUE'])): ?>
+							<div class="catalog-item__tag">
+								<?= $arItem['PROPERTIES']['TAGS']['VALUE'][0]; ?>
+							</div>
 						<? endif; ?>
 					</div>
 					<div class="catalog-item__body">
 						<div class="catalog-item__prices">
 							<div class="catalog-item__price">
-								<?= $arItem['PROPERTIES']['NEW_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['NEW_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?> 
+								<?= $arItem['PROPERTIES']['NEW_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['NEW_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
 							</div>
 							<div class="catalog-item__old-price">
-								<?= $arItem['PROPERTIES']['OLD_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?> 
+								<?= $arItem['PROPERTIES']['OLD_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
 							</div>
-							<? 
+							<?
 							$discount = discountPrecent($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], $arItem['PROPERTIES']['NEW_PRICE']['VALUE']);
-							if($discount > 0):
-							?>
-							<div class="catalog-item__sale">
-								-<?= $discount; ?>%
-							</div>
+							if ($discount > 0):
+								?>
+								<div class="catalog-item__sale">
+									-<?= $discount; ?>%
+								</div>
 							<? endif; ?>
 						</div>
 						<div class="catalog-item__info">
@@ -144,50 +159,42 @@ if(!empty($arResult['ITEMS'])):
 							</div>
 						</div>
 					</div>
-					<? if(!empty($arItem['PROPERTIES']['TAGS']['VALUE'])): ?>
-					<ul class="catalog-item__filters">
-						<? foreach($arItem['PROPERTIES']['TAGS']['VALUE'] as $tag): ?>
-						<li class="catalog-item__filter">
-							<?= $tag; ?>
-						</li>
-						<? endforeach; ?>
-					</ul>
+					<? if (!empty($arItem['PROPERTIES']['TAGS']['VALUE'])): ?>
+						<ul class="catalog-item__filters">
+							<? foreach ($arItem['PROPERTIES']['TAGS']['VALUE'] as $tag): ?>
+								<li class="catalog-item__filter">
+									<?= $tag; ?>
+								</li>
+							<? endforeach; ?>
+						</ul>
 					<? endif; ?>
 				</a>
 			</li>
 			<?
 		}
 		?>
-		<!-- items-container -->
-		<?
-	} else { ?>
-		<p>Ничего не найдено</p>
-	<? }
-	?>
-</ul>
+	</ul>
+<? else: ?>
+	<p>Ничего не найдено</p>
+<? endif; ?>
+<!-- items-container -->
+	<div class="catalog-navigation">
+		<? if ($showBottomPager) { ?>
+		<nav data-pagination-num="<?= $navParams['NavNum'] ?>">
+			<!-- pagination-container -->
+			 <?= $arResult['NAV_STRING'] ?>
+			<!-- pagination-container -->
+		</nav>
+		<? } ?>
+		<? if ($showLazyLoad) { ?>
+			<div class="show-more-container">
+				<button type="button" class="more-items" data-use="show-more-<?= $navParams['NavNum'] ?>">
+					<?= $arParams['MESS_BTN_LAZY_LOAD'] ?>
+				</button>
+			</div>
+		<? } ?>
+	</div>
 <?
-endif;
-if ($showLazyLoad) {
-	?>
-	<div class="row bx-<?= $arParams['TEMPLATE_THEME'] ?>">
-		<div class="btn btn-default btn-lg center-block" style="margin: 15px;"
-			data-use="show-more-<?= $navParams['NavNum'] ?>">
-			<?= $arParams['MESS_BTN_LAZY_LOAD'] ?>
-		</div>
-	</div>
-	<?
-}
-
-if ($showBottomPager) {
-	?>
-	<div data-pagination-num="<?= $navParams['NavNum'] ?>">
-		<!-- pagination-container -->
-		<?= $arResult['NAV_STRING'] ?>
-		<!-- pagination-container -->
-	</div>
-	<?
-}
-
 $signer = new \Bitrix\Main\Security\Sign\Signer;
 $signedTemplate = $signer->sign($templateName, 'catalog.section');
 $signedParams = $signer->sign(base64_encode(serialize($arResult['ORIGINAL_PARAMETERS'])), 'catalog.section');
