@@ -33,8 +33,10 @@ function parseCurrencyFile($chars) {
     $rates = [];
 
     if(!empty($chars)) {
+        logMessage("CharCodes: " . print_r($chars, true));
         foreach ($xml->Valute as $valute) {
             $charCode = (string)$valute->CharCode;
+            logMessage("CharCode: " . $charCode);
             if(in_array($charCode, $chars)) {
                 $rates[$charCode] = (float)str_replace(',', '.', $valute->Value);
             }
@@ -69,9 +71,10 @@ function getCharCodes($entityClass) {
 }
 
 function updateCurrencyRates() {
+    logMessage("Приступаю");
     $entityClass = getHlEntityClass();
     if (!$entityClass) return;
-
+    
     $chars = getCharCodes($entityClass);
     if (empty($chars)) {
         logMessage("Нет валют для обновления\n");
@@ -79,7 +82,10 @@ function updateCurrencyRates() {
     }
 
     $rates = parseCurrencyFile($chars);
-    if (!$rates) return;
+    if (!$rates) {
+        logMessage("Валюты не найдены");
+        return;
+    }
 
     $result = $entityClass::getList([
         'select' => ['ID', 'UF_CHAR'],
