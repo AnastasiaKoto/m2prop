@@ -297,7 +297,7 @@ class ProductGallery {
       drag: false,
       isNavigation: false,
       breakpoints: {
-        1280: {
+        1600: {
           destroy: true
         }
       }
