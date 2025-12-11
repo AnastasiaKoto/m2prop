@@ -1,5 +1,6 @@
 </main>
 <footer>
+  <div class="overlay"></div>
   <div class="container">
     <div class="footer-inner">
       <div class="footer-top">
