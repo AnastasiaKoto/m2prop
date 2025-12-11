@@ -33,10 +33,8 @@ function parseCurrencyFile($chars) {
     $rates = [];
 
     if(!empty($chars)) {
-        logMessage("CharCodes: " . print_r($chars, true));
         foreach ($xml->Valute as $valute) {
             $charCode = (string)$valute->CharCode;
-            logMessage("CharCode: " . $charCode);
             if(in_array($charCode, $chars)) {
                 $rates[$charCode] = (float)str_replace(',', '.', $valute->Value);
             }
@@ -71,7 +69,6 @@ function getCharCodes($entityClass) {
 }
 
 function updateCurrencyRates() {
-    logMessage("Приступаю");
     $entityClass = getHlEntityClass();
     if (!$entityClass) return;
     
