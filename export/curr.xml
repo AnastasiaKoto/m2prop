@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hiblock>
+	<hiblock>
+		<id>9</id>
+		<name>Currencies</name>
+		<table_name>currencies</table_name>
+	</hiblock>
+	<langs>
+		<lang>
+			<id>9</id>
+			<lid>ru</lid>
+			<name>Курсы валют</name>
+		</lang>
+		<lang>
+			<id>9</id>
+			<lid>en</lid>
+			<name>Курсы валют</name>
+		</lang>
+	</langs>
+	<fields>
+		<field>
+			<id>49</id>
+			<entity_id>HLBLOCK_9</entity_id>
+			<field_name>UF_NAME</field_name>
+			<user_type_id>string</user_type_id>
+			<xml_id />
+			<sort>100</sort>
+			<multiple>N</multiple>
+			<mandatory>N</mandatory>
+			<show_filter>N</show_filter>
+			<show_in_list>Y</show_in_list>
+			<edit_in_list>Y</edit_in_list>
+			<is_searchable>N</is_searchable>
+			<settings>
+				<size>40</size>
+				<rows>1</rows>
+				<regexp />
+				<min_length>0</min_length>
+				<max_length>0</max_length>
+				<default_value />
+			</settings>
+			<edit_form_label>
+				<en />
+				<ru>Символ</ru>
+			</edit_form_label>
+			<list_column_label>
+				<en />
+				<ru>Символ</ru>
+			</list_column_label>
+			<list_filter_label>
+				<en />
+				<ru>Символ</ru>
+			</list_filter_label>
+			<error_message>
+				<en />
+				<ru />
+			</error_message>
+			<help_message>
+				<en />
+				<ru />
+			</help_message>
+			<base_type>string</base_type>
+		</field>
+		<field>
+			<id>50</id>
+			<entity_id>HLBLOCK_9</entity_id>
+			<field_name>UF_CUR</field_name>
+			<user_type_id>double</user_type_id>
+			<xml_id />
+			<sort>100</sort>
+			<multiple>N</multiple>
+			<mandatory>N</mandatory>
+			<show_filter>N</show_filter>
+			<show_in_list>Y</show_in_list>
+			<edit_in_list>N</edit_in_list>
+			<is_searchable>N</is_searchable>
+			<settings>
+				<precision>4</precision>
+				<size>20</size>
+				<min_value>0</min_value>
+				<max_value>0</max_value>
+				<default_value />
+			</settings>
+			<edit_form_label>
+				<en />
+				<ru>Курс</ru>
+			</edit_form_label>
+			<list_column_label>
+				<en />
+				<ru>Курс</ru>
+			</list_column_label>
+			<list_filter_label>
+				<en />
+				<ru>Курс</ru>
+			</list_filter_label>
+			<error_message>
+				<en />
+				<ru />
+			</error_message>
+			<help_message>
+				<en />
+				<ru />
+			</help_message>
+			<base_type>double</base_type>
+		</field>
+		<field>
+			<id>51</id>
+			<entity_id>HLBLOCK_9</entity_id>
+			<field_name>UF_CHAR</field_name>
+			<user_type_id>string</user_type_id>
+			<xml_id />
+			<sort>100</sort>
+			<multiple>N</multiple>
+			<mandatory>N</mandatory>
+			<show_filter>N</show_filter>
+			<show_in_list>Y</show_in_list>
+			<edit_in_list>Y</edit_in_list>
+			<is_searchable>N</is_searchable>
+			<settings>
+				<size>40</size>
+				<rows>1</rows>
+				<regexp />
+				<min_length>0</min_length>
+				<max_length>0</max_length>
+				<default_value />
+			</settings>
+			<edit_form_label>
+				<en />
+				<ru>CharCode</ru>
+			</edit_form_label>
+			<list_column_label>
+				<en />
+				<ru>CharCode</ru>
+			</list_column_label>
+			<list_filter_label>
+				<en />
+				<ru>CharCode</ru>
+			</list_filter_label>
+			<error_message>
+				<en />
+				<ru />
+			</error_message>
+			<help_message>
+				<en />
+				<ru />
+			</help_message>
+			<base_type>string</base_type>
+		</field>
+	</fields>
+	<items>
+		<item>
+			<id>1</id>
+			<uf_name>₽</uf_name>
+			<uf_cur>1</uf_cur>
+			<uf_char>RUB</uf_char>
+		</item>
+		<item>
+			<id>2</id>
+			<uf_name>$</uf_name>
+			<uf_cur />
+			<uf_char>USD</uf_char>
+		</item>
+		<item>
+			<id>3</id>
+			<uf_name>€</uf_name>
+			<uf_cur />
+			<uf_char>EUR</uf_char>
+		</item>
+	</items>
+</hiblock>
