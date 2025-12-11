@@ -1,6 +1,6 @@
 <?php
-if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
-	die();
+$_SERVER["DOCUMENT_ROOT"] = 'www/m2property.ru/';
+require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 use Bitrix\Highloadblock\HighloadBlockTable;
 use Bitrix\Main\Entity\DataManager;
 use Bitrix\Main\Loader;
