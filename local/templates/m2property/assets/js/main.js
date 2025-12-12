@@ -514,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
       perPage: 4,
       breakpoints: {
         1024: { perPage: 2 },
-        700: { destroy: true }
+        700: { gap: '4px', right: 10 }
       },
       gap: '20px',
       padding: { right: 25 },
@@ -522,3 +522,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/*
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".detail-product_sm-price__currency");
+  const curPrice = document.querySelector(".detail-product_sm-price__num-cur");
+  const oldPrice = document.querySelector(".detail-product_sm-price__num-old");
+
+  if (!buttons.length || !curPrice || !oldPrice) return;
+
+  const formatNumber = (num) =>
+    num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  const symbols = {
+    rub: "₽",
+    usd: "$",
+    eur: "€",
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const currency = btn.dataset.currency;
+
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const cur = curPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
+      const old = oldPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
+
+      curPrice.innerHTML = `${formatNumber(cur)} ${symbols[currency]}`;
+      oldPrice.innerHTML = `${formatNumber(old)} ${symbols[currency]}/м²`;
+    });
+  });
+});
+*/
