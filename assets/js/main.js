@@ -195,9 +195,9 @@ function getVisiblePages(total, current) {
   const width = window.innerWidth;
   let visibleCount;
 
-  if (width <= 600) visibleCount = 3;      
-  else if (width <= 768) visibleCount = 5; 
-  else visibleCount = 7;                  
+  if (width <= 600) visibleCount = 3;
+  else if (width <= 768) visibleCount = 5;
+  else visibleCount = 7;
 
   const pages = [];
   pages.push(1);
@@ -255,11 +255,11 @@ window.addEventListener("resize", () => renderPagination());
 
 class ProductGallery {
   constructor(options) {
-    this.mainSelector = options.mainSelector;       
-    this.thumbsSelector = options.thumbsSelector;   
-    this.prevButton = options.prevButton;           
-    this.nextButton = options.nextButton;          
-    this.showGalleryBtn = options.showGalleryBtn;   
+    this.mainSelector = options.mainSelector;
+    this.thumbsSelector = options.thumbsSelector;
+    this.prevButton = options.prevButton;
+    this.nextButton = options.nextButton;
+    this.showGalleryBtn = options.showGalleryBtn;
     this.mainSplide = null;
     this.thumbsSplide = null;
     this.init();
@@ -271,7 +271,7 @@ class ProductGallery {
 
     if (!mainEl || !thumbsEl) return;
 
- 
+
     this.mainSplide = new Splide(mainEl, {
       type: 'slide',
       perPage: 1,
@@ -283,7 +283,7 @@ class ProductGallery {
       speed: 600
     });
 
- 
+
     this.thumbsSplide = new Splide(thumbsEl, {
       type: 'slide',
       direction: 'ttb',
@@ -308,7 +308,7 @@ class ProductGallery {
     this.mainSplide.mount();
     this.thumbsSplide.mount();
 
-  
+
     if (this.prevButton) this.prevButton.addEventListener('click', () => this.mainSplide.go('<'));
     if (this.nextButton) this.nextButton.addEventListener('click', () => this.mainSplide.go('>'));
 
@@ -320,7 +320,7 @@ class ProductGallery {
       });
     });
 
- 
+
     thumbsEl.querySelectorAll('.splide__slide').forEach((thumb, index) => {
       thumb.addEventListener('click', (e) => {
         e.preventDefault();
@@ -428,7 +428,7 @@ class Tabs {
     this.tabs = document.querySelectorAll(this.tabSelector);
     this.contents = document.querySelectorAll(this.contentSelector);
 
-    if (!this.tabs.length || !this.contents.length) return; 
+    if (!this.tabs.length || !this.contents.length) return;
 
     this.tabs.forEach(tab => {
       tab.addEventListener('click', () => this.onTabClick(tab));
@@ -458,7 +458,7 @@ class Tabs {
 
   onTabClick(tab) {
     const target = tab.dataset.tab;
-    if (!target) return; 
+    if (!target) return;
 
     this.tabs.forEach(t => t.classList.remove(this.activeClass));
     tab.classList.add(this.activeClass);
@@ -501,7 +501,7 @@ class Tabs {
 document.addEventListener('DOMContentLoaded', () => {
   const tabsExist = document.querySelector('.tab-content__similar-link');
 
-  if (!tabsExist) return; 
+  if (!tabsExist) return;
 
   new Tabs({
     tabSelector: '.tab-content__similar-link',
@@ -523,36 +523,277 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// document.addEventListener("DOMContentLoaded", () => {
+//   const buttons = document.querySelectorAll(".detail-product_sm-price__currency");
+//   const curPrice = document.querySelector(".detail-product_sm-price__num-cur");
+//   const oldPrice = document.querySelector(".detail-product_sm-price__num-old");
+
+//   if (!buttons.length || !curPrice || !oldPrice) return;
+
+//   const formatNumber = (num) =>
+//     num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+//   const symbols = {
+//     rub: "₽",
+//     usd: "$",
+//     eur: "€",
+//   };
+
+//   buttons.forEach(btn => {
+//     btn.addEventListener("click", () => {
+//       const currency = btn.dataset.currency;
+
+//       buttons.forEach(b => b.classList.remove("active"));
+//       btn.classList.add("active");
+
+//       const cur = curPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
+//       const old = oldPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
+
+//       curPrice.innerHTML = `${formatNumber(cur)} ${symbols[currency]}`;
+//       oldPrice.innerHTML = `${formatNumber(old)} ${symbols[currency]}/м²`;
+//     });
+//   });
+// });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const curBtns = document.querySelectorAll('.detail-product_sm-price__currency');
+  const mainPrice = document.querySelector('.detail-product_sm-price__num-cur');
+  const pricePerMetr = document.querySelector('.detail-product_sm-price__num-old');
+  if (curBtns) {
+    curBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        curBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        if (this.dataset.convertedPrice && this.dataset.symbol) {
+          mainPrice.innerHTML = this.dataset.convertedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ' + this.dataset.symbol;
+          if (pricePerMetr.dataset.metr) {
+            pricePerMetr.innerHTML = Math.round(this.dataset.convertedPrice / pricePerMetr.dataset.metr).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ' + this.dataset.symbol + '/м²';
+          }
+        }
+      })
+    });
+  }
+})
+
 document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".detail-product_sm-price__currency");
-  const curPrice = document.querySelector(".detail-product_sm-price__num-cur");
-  const oldPrice = document.querySelector(".detail-product_sm-price__num-old");
+  const buttons = document.querySelectorAll(".plans-tabs__button");
+  const contents = document.querySelectorAll(".plans-tabs__content");
 
-  if (!buttons.length || !curPrice || !oldPrice) return;
+  if (!buttons.length || !contents.length) return;
 
-  const formatNumber = (num) =>
-    num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const tabId = button.dataset.tab;
 
-  const symbols = {
-    rub: "₽",
-    usd: "$",
-    eur: "€",
-  };
+      // кнопки
+      buttons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
 
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const currency = btn.dataset.currency;
-
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const cur = curPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
-      const old = oldPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
-
-      curPrice.innerHTML = `${formatNumber(cur)} ${symbols[currency]}`;
-      oldPrice.innerHTML = `${formatNumber(old)} ${symbols[currency]}/м²`;
+      // контент
+      contents.forEach(content => {
+        content.classList.toggle("active", content.dataset.tab === tabId);
+      });
     });
   });
 });
 
 
+// document.querySelectorAll('[data-tabs]').forEach(tabs => {
+//   const btns = tabs.querySelectorAll('[data-tab]');
+//   const contents = tabs.querySelectorAll('[data-tab-content]');
+
+//   btns.forEach(btn => {
+//     btn.addEventListener('click', () => {
+//       const id = btn.dataset.tab;
+
+//       // убрать active у всех кнопок
+//       btns.forEach(b => b.classList.remove('active'));
+
+//       // активировать выбранную кнопку
+//       btn.classList.add('active');
+
+//       // скрыть весь контент
+//       contents.forEach(c => c.classList.remove('active'));
+
+//       // показать нужный таб, если элемент найден
+//       const content = tabs.querySelector(`[data-tab-content="${id}"]`);
+//       if (content) {
+//         content.classList.add('active');
+//       }
+//     });
+//   });
+// });
+document.addEventListener('DOMContentLoaded', function () {
+  const wrappers = document.querySelectorAll('.slider-wrapper');
+
+  wrappers.forEach(wrapper => {
+    const secondary = wrapper.querySelector('.secondary-slider__tabs');
+    const main = wrapper.querySelector('.main-slider__tabs');
+
+    const secondarySplide = new Splide(secondary, {
+      direction: 'ttb',
+      height: '100%',
+      fixedWidth: '100%',
+      fixedHeight: 'fit-content',
+      isNavigation: true,
+      gap: 10,
+      focus: 'center',
+      cover: true,
+      pagination: false,
+      arrows: false,
+      drag: true,
+      wheel: true,
+    }).mount();
+
+    const mainSplide = new Splide(main, {
+      direction: 'ttb',
+      height: '100%',
+      perPage: 1,
+      perMove: 1,
+      gap: 10,
+      cover: true,
+      pagination: false,
+      arrows: false,
+      wheel: false,
+    });
+
+    mainSplide.sync(secondarySplide).mount();
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.point__tab-content').forEach(function (tabContent) {
+    const sliderEl = tabContent.querySelector('.fade-slider');
+    const prev = tabContent.querySelector('.fade-slider__arrow-prev');
+    const next = tabContent.querySelector('.fade-slider__arrow-next');
+
+    // Если нет слайдера — выходим
+    if (!sliderEl) return;
+
+    const splideInstance = new Splide(sliderEl, {
+      type: 'fade',
+      rewind: true,
+      arrows: false,
+      pagination: false,
+    }).mount();
+
+    // Проверяем стрелки — тоже могут отсутствовать
+    if (prev) prev.addEventListener('click', () => splideInstance.go('<'));
+    if (next) next.addEventListener('click', () => splideInstance.go('>'));
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.sync-gallery').forEach(gallery => {
+
+    const smallEl = gallery.querySelector('.sync-gallery__small');
+    const mainEl = gallery.querySelector('.sync-gallery__main');
+    const prev = gallery.querySelector('.sync-prev');
+    const next = gallery.querySelector('.sync-next');
+
+    if (!smallEl || !mainEl) return;
+
+
+    const small = new Splide(smallEl, {
+      type: 'slide',
+      perPage: 1,
+      pagination: false,
+      arrows: false,
+      drag: false,
+      isNavigation: false,
+      rewind: true,
+    }).mount();
+
+    // Большой — текущий
+    const main = new Splide(mainEl, {
+      type: 'fade',
+      pagination: false,
+      arrows: false,
+      rewind: true,
+    }).mount();
+
+
+    main.on('move', (index) => {
+      const nextIndex = (index + 1) % main.length;
+      small.go(nextIndex);
+    });
+
+
+    prev.addEventListener('click', () => main.go('<'));
+    next.addEventListener('click', () => main.go('>'));
+
+    small.go(1);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const faqItems = document.querySelectorAll('.faq-acc__item');
+
+  faqItems.forEach(item => {
+    const head = item.querySelector('.faq-acc__item-head');
+
+    head.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      faqItems.forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq-acc__item-content').style.maxHeight = null;
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        const content = item.querySelector('.faq-acc__item-content');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const splide = new Splide('#months-slider', {
+    type: 'slide',
+    perPage: 6,
+    focus: 'center',
+    gap: '0.5rem',
+    pagination: false,
+    arrows: false,
+    breakpoints: {
+      768: { perPage: 3 },
+      480: { perPage: 2 },
+    },
+  });
+
+  splide.mount();
+
+  const tabs = document.querySelectorAll('.tab-month');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const month = tab.getAttribute('data-month');
+
+      // Находим объект слайда Splide по DOM-элементу
+      const slides = splide.Components.Slides.get();
+      const index = slides.findIndex(slide => slide.slide === tab);
+
+      if (index !== -1) {
+        splide.go(index); // 👉 центрирует кликнутый слайд
+      }
+
+      // Снимаем активные классы
+      tabs.forEach(t => t.classList.remove('is-active'));
+      panels.forEach(p => p.classList.remove('active'));
+
+      // Активируем текущий таб
+      tab.classList.add('is-active');
+      const panel = document.querySelector(`.tab-panel[data-month="${month}"]`);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  // Активируем первый месяц по умолчанию
+  if (tabs[0]) tabs[0].click();
+});
