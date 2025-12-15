@@ -183,11 +183,10 @@ if (isset($arParams['USER_CONSENT_IS_LOADED'])) {
 	$componentElementParams['USER_CONSENT_IS_LOADED'] = $arParams['USER_CONSENT_IS_LOADED'];
 }
 
-$template = $arResult['PROPERTIES']['OBJECT_TYPE']['VALUE_ENUM'] == 'Набор объектов' ? '' : 'simple_project';
 
 $elementId = $APPLICATION->IncludeComponent(
 	'bitrix:catalog.element',
-	$template,
+	'',
 	$componentElementParams,
 	$component
 );
