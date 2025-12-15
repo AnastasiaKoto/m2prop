@@ -379,12 +379,26 @@
        }
 
        & .nav-wrapper.darken {
+
          & nav {
            position: relative;
-           border-radius: 999px;
-           background: rgba(234, 234, 232, 0.50);
-           backdrop-filter: blur(12px);
-           padding: 20px 64px;
+
+           @media(min-width:1151px) {
+             border-radius: 999px;
+             background: rgba(234, 234, 232, 0.50);
+             backdrop-filter: blur(12px);
+             padding: 20px 64px;
+           }
+
+           @media(max-width: 1650px) {
+             padding-left: 20px;
+             padding-right: 20px;
+           }
+
+           @media(max-width: 1200px) {
+             padding-left: 10px;
+             padding-right: 10px;
+           }
 
            @media(max-width: 1150px) {
              margin-top: 53px;
@@ -396,6 +410,9 @@
 
              @media(max-width: 1500px) {
                gap: 35px;
+             }
+              @media(max-width: 1200px) {
+               gap: 20px;
              }
 
              @media(max-width: 1150px) {
@@ -409,8 +426,12 @@
                  font-style: normal;
                  font-weight: 500;
                  line-height: 100%;
-                 color: #fff;
+
                  transition: color .3 ease-in;
+
+                 @media(min-width:1151px) {
+                   color: #fff;
+                 }
 
                  &:hover {
                    color: var(--accent-color);
@@ -419,12 +440,22 @@
              }
            }
          }
+
+
+       }
+
+       & .nav-wrapper+.burger {
+         & svg {
+           & rect {
+             fill: #fff;
+           }
+         }
        }
 
        & .consult {
          font-size: 20px;
          font-style: normal;
-         font-weight: 400;
+         font-weight: 500;
          line-height: 100%;
          color: #242220;
          border-radius: 110px;
@@ -434,10 +465,10 @@
          transition: all .3s ease-in;
          margin-left: auto;
 
-         @media(max-width: 1300px) {
+         @media(max-width: 1500px) {
            font-size: 16px;
            font-style: normal;
-           font-weight: 400;
+           font-weight: 500;
            line-height: 100%;
          }
 
