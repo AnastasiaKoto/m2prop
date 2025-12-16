@@ -1757,6 +1757,17 @@
         gap: 30px;
         max-height: 182px;
         flex-grow: 1;
+        transition: all .3s ease-in;
+
+        &:hover {
+          background-color: #fff;
+          transition: all .3s ease-in;
+        }
+
+        &.active {
+          background-color: #fff;
+          transition: all .3s ease-in;
+        }
 
         @media(max-width: 992px) {
           padding: 10px 12px;
@@ -2414,6 +2425,7 @@
         bottom: 0;
         z-index: 2;
         width: 100%;
+
         @media(max-width: 992px) {
           display: none;
         }
@@ -2424,6 +2436,7 @@
         bottom: 40px;
         left: 40px;
         z-index: 3;
+
         @media(max-width: 992px) {
           left: 15px;
           bottom: 15px;
