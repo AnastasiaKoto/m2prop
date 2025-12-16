@@ -70,7 +70,7 @@ if(!empty($arResult['PROPERTIES']['APARTMENTS_TABS']['VALUE'])) {
 if(!empty($arResult['PROPERTIES']['PLACES']['VALUE'])) {
     $entityPlacesClass = getHlData(3);
     $placesResult = $entityPlacesClass::getList([
-        'select' => ['ID', 'UF_FILE', 'UF_FULL_DESCRIPTION', 'UF_DESCRIPTION', 'UF_SORT', 'UF_NAME'],
+        'select' => ['ID', 'UF_FILE', 'UF_FULL_DESCRIPTION', 'UF_DESCRIPTION', 'UF_SORT', 'UF_NAME', 'UF_SHOWED_NAME'],
         'filter' => [
             'UF_XML_ID' => $arResult['PROPERTIES']['PLACES']['VALUE']
         ],

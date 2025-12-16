@@ -503,6 +503,7 @@ if(!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
     </div>
 </section>
 <? endif; ?>
+<? if(!empty($arResult['PROPERTIES']['PLACES']['VALUE_ELEM'])): ?>
 <section class="places">
     <div class="container">
         <div class="places-inner">
@@ -518,16 +519,9 @@ if(!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                 <div class="secondary-slider__tabs splide">
                     <div class="splide__track">
                         <ul class="splide__list point__tab-btns">
-                            <li class="splide__slide point__tab-btn">Парк «Покровское-Стрешнево»</li>
-                            <li class="splide__slide point__tab-btn">ТРЦ «Авиапарк»</li>
-                            <li class="splide__slide point__tab-btn">«ВТБ Арена»</li>
-                            <li class="splide__slide point__tab-btn">«Петровский парк»</li>
-                            <li class="splide__slide point__tab-btn">Белорусский вокзал</li>
-                            <li class="splide__slide point__tab-btn">«Серебряный бор»</li>
-                            <li class="splide__slide point__tab-btn">Парк «Ходынское Поле»</li>
-                            <li class="splide__slide point__tab-btn">ТРЦ «Афимолл Сити»</li>
-                            <li class="splide__slide point__tab-btn">ДЦ «Москва-Сити»</li>
-                            <li class="splide__slide point__tab-btn">Кремль</li>
+                            <? foreach($arResult['PROPERTIES']['PLACES']['VALUE_ELEM'] as $place): ?>
+                            <li class="splide__slide point__tab-btn"><?= $place['UF_SHOWED_NAME']; ?></li>
+                            <? endforeach; ?>
                         </ul>
                     </div>
                 </div>
@@ -571,6 +565,7 @@ if(!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
         </div>
     </div>
 </section>
+<? endif; ?>
 <section class="steps">
     <div class="container">
         <div class="steps-inner">
