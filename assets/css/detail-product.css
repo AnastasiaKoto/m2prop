@@ -3066,6 +3066,9 @@
 
       @media(max-width: 1600px) {
         max-width: 100%;
+        
+      }
+      @media(max-width: 992px) {
         gap: 0;
       }
 
