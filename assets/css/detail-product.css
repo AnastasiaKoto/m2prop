@@ -2397,11 +2397,129 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      position: relative;
 
       @media(max-width: 992px) {
         flex-direction: column-reverse;
         align-items: flex-start;
         gap: 37px;
+      }
+
+      & .point__tab-content__blur {
+        background: linear-gradient(180deg, rgba(36, 34, 32, 0.00) 0%, rgba(36, 34, 32, 0.90) 100%);
+        backdrop-filter: blur(3px);
+        height: 23%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
+        width: 100%;
+        @media(max-width: 992px) {
+          display: none;
+        }
+      }
+
+      & .point__tab-content__info {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        z-index: 3;
+        @media(max-width: 992px) {
+          left: 15px;
+          bottom: 15px;
+        }
+
+        & .point__tab-content__name {
+          color: #FFF;
+          font-family: Ubuntu;
+          font-size: 40px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 90%;
+          margin-bottom: 19px;
+
+          @media(max-width: 992px) {
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 90%;
+          }
+        }
+
+        & .point__tab-content__move {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        & .point__tab-content__road {
+          padding: 10px 20px;
+          border-radius: 110px;
+          background: #FFF;
+          box-shadow: 10px 14px 54px 0 rgba(0, 0, 0, 0.13);
+          display: flex;
+          align-items: center;
+          gap: 2px;
+
+          @media(max-width: 992px) {
+            padding: 5px 11px;
+          }
+
+          & span {
+            color: #000;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+
+            @media(max-width: 992px) {
+              font-size: 12px;
+              font-style: normal;
+              line-height: 100%;
+            }
+          }
+
+          & svg {
+            @media(max-wdth: 992px) {
+              width: 90%;
+              height: 90%;
+            }
+          }
+        }
+
+        & .point__tab-content__auto {
+          padding: 10px 20px;
+          border-radius: 110px;
+          background: #FFF;
+          box-shadow: 10px 14px 54px 0 rgba(0, 0, 0, 0.13);
+          align-items: center;
+          gap: 2px;
+
+          @media(max-width: 992px) {
+            padding: 5px 11px;
+          }
+
+          & span {
+            color: #000;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+
+            @media(max-width: 992px) {
+              font-size: 12px;
+              font-style: normal;
+              line-height: 100%;
+            }
+          }
+
+          & svg {
+            @media(max-wdth: 992px) {
+              width: 90%;
+              height: 90%;
+            }
+          }
+        }
       }
 
       & .main-slider__tabs-text-wrapper {
