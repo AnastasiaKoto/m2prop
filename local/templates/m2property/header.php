@@ -95,17 +95,12 @@
   </header>
   <main>
     <? 
-    $arVariables = [];
+    $currentPage = $APPLICATION->GetCurPage();
+    $page = '';
 
-    $page = CComponentEngine::ParseComponentPath(
-      '/catalog/',
-      [
-        'list' => '',
-        'section' => '#SECTION_CODE_PATH#/',
-        'detail' => '#SECTION_CODE_PATH#/#ELEMENT_CODE#/',
-      ],
-      $arVariables
-    );
+    if (preg_match('#/catalog/.+/.+/#', $currentPage)) {
+      $page = 'detail';
+    }
 
     if ($page === 'detail') {
       Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/detail-product.css');
