@@ -706,7 +706,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!smallEl || !mainEl) return;
 
-
     const small = new Splide(smallEl, {
       type: 'slide',
       perPage: 1,
@@ -717,32 +716,31 @@ document.addEventListener('DOMContentLoaded', function () {
       rewind: true,
     }).mount();
 
-    // Большой — текущий
     const main = new Splide(mainEl, {
       type: 'fade',
       pagination: false,
       arrows: false,
       rewind: true,
-      // breakpoints: {
-      //   1200: {
-      //     destroy: true
-      //   }
-      // }
     }).mount();
 
 
     main.on('move', (index) => {
-      const nextIndex = (index + 1) % main.length;
-      small.go(nextIndex);
+      small.go(index);
     });
 
+  
+    small.on('click', (slide) => {
+      main.go(slide.index);
+    });
 
+    // Внешние стрелки
     prev.addEventListener('click', () => main.go('<'));
     next.addEventListener('click', () => main.go('>'));
 
-    small.go(1);
+  
   });
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const faqItems = document.querySelectorAll('.faq-acc__item');
@@ -1016,7 +1014,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const small = new Splide('.project-small__slide', {
+  const smallEl = document.querySelector('.project-small__slide');
+  const largeEl = document.querySelector('.project-large__slide');
+  const prev = document.querySelector('.project-large__arrow-prev');
+  const next = document.querySelector('.project-large__arrow-next');
+  const paginationContainer = document.querySelector('.projects-navigation .splide__pagination');
+
+ 
+  if (!smallEl || !largeEl) return;
+
+  const small = new Splide(smallEl, {
     gap: 16,
     arrows: false,
     pagination: false,
@@ -1025,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fixedWidth: '100%',
   });
 
-  const large = new Splide('.project-large__slide', {
+  const large = new Splide(largeEl, {
     type: 'loop',
     perPage: 1,
     arrows: false,
@@ -1035,47 +1042,45 @@ document.addEventListener('DOMContentLoaded', function () {
   small.mount();
   large.mount();
 
-  // 🔗 Синхронизация
+ 
   large.on('move', () => small.go(large.index));
   small.on('click', (slide) => large.go(slide.index));
 
-  // 🔹 Внешние стрелки
-  document.querySelector('.project-large__arrow-prev')
-    .addEventListener('click', () => large.go('<'));
 
-  document.querySelector('.project-large__arrow-next')
-    .addEventListener('click', () => large.go('>'));
+  if (prev) prev.addEventListener('click', () => large.go('<'));
+  if (next) next.addEventListener('click', () => large.go('>'));
 
-  // 🔹 Внешняя пагинация
-  large.on('mounted', () => {
-    const pagination = document.querySelector('.projects-navigation .splide__pagination');
-    pagination.innerHTML = '';
 
-    const slidesCount = large.Components.Controller.getEnd() + 1;
+  if (paginationContainer) {
+    large.on('mounted', () => {
+      paginationContainer.innerHTML = '';
 
-    for (let i = 0; i < slidesCount; i++) {
-      const li = document.createElement('li');
-      const btn = document.createElement('button');
+      const slidesCount = large.Components.Controller.getEnd() + 1;
 
-      btn.type = 'button';
-      btn.className = 'splide__pagination__page';
-      btn.addEventListener('click', () => large.go(i));
+      for (let i = 0; i < slidesCount; i++) {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
 
-      li.appendChild(btn);
-      pagination.appendChild(li);
+        btn.type = 'button';
+        btn.className = 'splide__pagination__page';
+        btn.addEventListener('click', () => large.go(i));
+
+        li.appendChild(btn);
+        paginationContainer.appendChild(li);
+      }
+
+      updatePagination();
+    });
+
+    large.on('move', updatePagination);
+
+    function updatePagination() {
+      const activeIndex = large.index;
+
+      paginationContainer.querySelectorAll('.splide__pagination__page')
+        .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
     }
-
-    updatePagination();
-  });
-
-  large.on('move', updatePagination);
-
-  function updatePagination() {
-    const pagination = document.querySelector('.projects-navigation .splide__pagination');
-    const activeIndex = large.index;
-
-    pagination.querySelectorAll('.splide__pagination__page')
-      .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
   }
 
 });
+
