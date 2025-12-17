@@ -1,4 +1,3 @@
-<? //p($arResult); ?>
 <?
 $section_name = $arResult['PROPERTIES']['SECTIONS_NAME']['VALUE'] ?? $arResult['NAME'];
 $address = $arResult['PROPERTIES']['OBJECT_ADDRESS']['VALUE'] ?? false;
@@ -667,6 +666,14 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('.breadcrumbs').classList.add('light');
+        let crumbs = document.querySelector('.breadcrumbs');
+        let menu = document.querySelector('.header-navigation .nav-wrapper');
+
+        if(crumbs) {
+            BX.addClass(crumbs, 'light');
+        }
+        if(menu) {
+            BX.addClass(menu, 'darken');
+        }
     })
 </script>
