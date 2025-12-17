@@ -1,27 +1,12 @@
-<?php
-if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
-	die();
-
-use Bitrix\Main\Localization\Loc;
-use Bitrix\Catalog\ProductTable;
-
-/**
- * @global CMain $APPLICATION
- * @var array $arParams
- * @var array $arResult
- * @var CatalogSectionComponent $component
- * @var CBitrixComponentTemplate $this
- * @var string $templateName
- * @var string $componentPath
- * @var string $templateFolder
- */
-
-$this->setFrameMode(true);
+<?
 $price = (int) $arResult['PROPERTIES']['NEW_PRICE']['VALUE'];
 $square = (int) $arResult['PROPERTIES']['SQUARE']['VALUE'];
 $pricePerMetr = round($price / $square);
 //p($arResult);
 ?>
+<div class="detail-decor">
+	<img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/detail-decor.svg" alt="img">
+</div>
 <section class="section detail-product_sm-mainscreen">
 	<div class="container">
 		<div class="detail-product_sm-inner">

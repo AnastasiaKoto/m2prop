@@ -265,6 +265,8 @@
    }
  }
 
+
+
  header {
 
 
@@ -376,10 +378,84 @@
          }
        }
 
+       & .nav-wrapper.darken {
+
+         & nav {
+           position: relative;
+
+           @media(min-width:1151px) {
+             border-radius: 999px;
+             background: rgba(234, 234, 232, 0.50);
+             backdrop-filter: blur(12px);
+             padding: 20px 64px;
+           }
+
+           @media(max-width: 1650px) {
+             padding-left: 20px;
+             padding-right: 20px;
+           }
+
+           @media(max-width: 1200px) {
+             padding-left: 10px;
+             padding-right: 10px;
+           }
+
+           @media(max-width: 1150px) {
+             margin-top: 53px;
+           }
+
+           & .nav-menu {
+             display: flex;
+             gap: 72px;
+
+             @media(max-width: 1500px) {
+               gap: 35px;
+             }
+              @media(max-width: 1200px) {
+               gap: 20px;
+             }
+
+             @media(max-width: 1150px) {
+               flex-direction: column;
+               gap: 20px;
+             }
+
+             & li {
+               & a {
+                 font-size: 18px;
+                 font-style: normal;
+                 font-weight: 500;
+                 line-height: 100%;
+
+                 transition: color .3 ease-in;
+
+                 @media(min-width:1151px) {
+                   color: #fff;
+                 }
+
+                 &:hover {
+                   color: var(--accent-color);
+                 }
+               }
+             }
+           }
+         }
+
+
+       }
+
+       & .nav-wrapper+.burger {
+         & svg {
+           & rect {
+             fill: #fff;
+           }
+         }
+       }
+
        & .consult {
          font-size: 20px;
          font-style: normal;
-         font-weight: 400;
+         font-weight: 500;
          line-height: 100%;
          color: #242220;
          border-radius: 110px;
@@ -389,10 +465,10 @@
          transition: all .3s ease-in;
          margin-left: auto;
 
-         @media(max-width: 1300px) {
+         @media(max-width: 1500px) {
            font-size: 16px;
            font-style: normal;
-           font-weight: 400;
+           font-weight: 500;
            line-height: 100%;
          }
 
@@ -504,7 +580,7 @@
  }
 
  .breadcrumbs {
-   margin-top: 112px;
+   margin-top: 80px;
    margin-bottom: 96px;
 
    @media(max-width: 1150px) {
@@ -556,6 +632,27 @@
            font-weight: 400;
            line-height: 22px;
            /* 122.222% */
+         }
+       }
+     }
+   }
+
+   &.light {
+     & nav {
+       & ul {
+         & li {
+           & a {
+             color: rgba(255, 255, 255, 0.30);
+
+
+             &:hover {}
+
+             &::after {}
+           }
+
+           & span {
+             color: #fff;
+           }
          }
        }
      }
@@ -1406,11 +1503,11 @@
    display: inline-block;
 
    max-width: 188px;
- 
+
    white-space: nowrap;
 
    overflow: hidden;
- 
+
    text-overflow: ellipsis;
 
    vertical-align: middle;

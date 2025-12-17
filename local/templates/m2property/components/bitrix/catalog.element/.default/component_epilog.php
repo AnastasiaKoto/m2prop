@@ -22,10 +22,10 @@ $hasDistrictBlock = false;
 
 $priceValue = $arResult["NEW_PRICE_VALUE"] ?? null;
 
-if ((float)$priceValue > 0) {
+if ((float) $priceValue > 0) {
     $precent = $priceValue * 0.15;
-    $minPrice = (float)$priceValue - $precent;
-    $maxPrice = (float)$priceValue + $precent;
+    $minPrice = (float) $priceValue - $precent;
+    $maxPrice = (float) $priceValue + $precent;
 
     $GLOBALS["SimilarPriceFilter"] = [
         "!ID" => $arResult["ID"],
@@ -58,7 +58,7 @@ $commonParams = [
     "INCLUDE_SUBSECTIONS" => $arParams['INCLUDE_SUBSECTIONS'],
     "PAGE_ELEMENT_COUNT" => 40,
     "PROPERTY_CODE" => array_merge(
-        (array)($arParams["LIST_PROPERTY_CODE"] ?? []),
+        (array) ($arParams["LIST_PROPERTY_CODE"] ?? []),
         ["NEW_PRICE", "OBJECT_AREA"] // ← КРИТИЧЕСКИ ВАЖНО!
     ),
     "PROPERTY_CODE_MOBILE" => $arParams["LIST_PROPERTY_CODE_MOBILE"] ?? [],
@@ -94,8 +94,61 @@ $commonParams = [
 ];
 
 ob_start();
+if (!empty($arResult['FAQ'])) {
+    $APPLICATION->IncludeComponent(
+        "bitrix:news.list",
+        "faq",
+        array(
+            "DISPLAY_DATE" => "N",
+            "DISPLAY_NAME" => "Y",
+            "DISPLAY_PICTURE" => "N",
+            "DISPLAY_PREVIEW_TEXT" => "Y",
+            "AJAX_MODE" => "N",
+            "IBLOCK_TYPE" => "suportive",
+            "IBLOCK_ID" => "9",
+            "NEWS_COUNT" => "20",
+            "SORT_BY1" => "SORT",
+            "SORT_ORDER1" => "ASC",
+            "SORT_BY2" => "ID",
+            "SORT_ORDER2" => "ASC",
+            "FILTER_NAME" => "",
+            "CHECK_DATES" => "N",
+            "DETAIL_URL" => "",
+            "PREVIEW_TRUNCATE_LEN" => "",
+            "ACTIVE_DATE_FORMAT" => "d.m.Y",
+            "SET_TITLE" => "N",
+            "SET_BROWSER_TITLE" => "N",
+            "SET_META_KEYWORDS" => "N",
+            "SET_META_DESCRIPTION" => "N",
+            "SET_LAST_MODIFIED" => "N",
+            "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+            "ADD_SECTIONS_CHAIN" => "N",
+            "HIDE_LINK_WHEN_NO_DETAIL" => "Y",
+            "PARENT_SECTION" => $arResult['FAQ'],
+            "PARENT_SECTION_CODE" => "",
+            "INCLUDE_SUBSECTIONS" => "Y",
+            "CACHE_TYPE" => "A",
+            "CACHE_TIME" => "3600",
+            "CACHE_FILTER" => "Y",
+            "CACHE_GROUPS" => "Y",
+            "DISPLAY_TOP_PAGER" => "N",
+            "DISPLAY_BOTTOM_PAGER" => "N",
+            "PAGER_TITLE" => "",
+            "PAGER_SHOW_ALWAYS" => "N",
+            "PAGER_TEMPLATE" => "",
+            "PAGER_DESC_NUMBERING" => "N",
+            "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+            "PAGER_SHOW_ALL" => "N",
+            "PAGER_BASE_LINK_ENABLE" => "N",
+            "SET_STATUS_404" => "N",
+            "SHOW_404" => "N",
+            "MESSAGE_404" => "",
+            "PAGER_BASE_LINK" => "",
+            "PAGER_PARAMS_NAME" => "arrPager",
+        )
+    );
+}
 ?>
-
 <section class="section similar">
     <div class="container">
         <div class="similar-head">
@@ -114,7 +167,9 @@ ob_start();
                     <? endif; ?>
                     <? if ($hasDistrictBlock): ?>
                         <li>
-                            <a href="javascript:void(0)" class="tab-content__similar-link <?= !$hasPriceBlock ? ' active' : '' ?>" data-tab="district">
+                            <a href="javascript:void(0)"
+                                class="tab-content__similar-link <?= !$hasPriceBlock ? ' active' : '' ?>"
+                                data-tab="district">
                                 По району
                             </a>
                         </li>
@@ -128,7 +183,7 @@ ob_start();
         </div>
 
         <? if ($hasPriceBlock): ?>
-            <div class="tab-content__similar-content" data-tab="price"<?= $hasDistrictBlock ? '' : ' style="display:block;"' ?>>
+            <div class="tab-content__similar-content" data-tab="price" <?= $hasDistrictBlock ? '' : ' style="display:block;"' ?>>
                 <?
                 $priceParams = $commonParams;
                 $priceParams["FILTER_NAME"] = "SimilarPriceFilter";
@@ -138,7 +193,7 @@ ob_start();
         <? endif; ?>
 
         <? if ($hasDistrictBlock): ?>
-            <div class="tab-content__similar-content" data-tab="district"<?= $hasPriceBlock ? ' style="display:none;"' : '' ?>>
+            <div class="tab-content__similar-content" data-tab="district" <?= $hasPriceBlock ? ' style="display:none;"' : '' ?>>
                 <?
                 $districtParams = $commonParams;
                 $districtParams["FILTER_NAME"] = "SimilarAreaFilter";
