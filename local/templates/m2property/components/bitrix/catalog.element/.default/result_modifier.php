@@ -1,4 +1,5 @@
-<? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
+<? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
+    die();
 
 /**
  * @var CBitrixComponentTemplate $this
@@ -16,7 +17,8 @@ $arResult['CURRENCIES'] = [];
 $arResult['PROPERTIES']['FEATURES']['VALUE_ELEM'] = [];
 $arResult['PROPERTIES']['PLACES']['VALUE_ELEM'] = [];
 
-function getHlData($hlId) {
+function getHlData($hlId)
+{
     $hlBlock = HighloadBlockTable::getById($hlId)->fetch();
     if ($hlBlock) {
         $entity = HighloadBlockTable::compileEntity($hlBlock);
@@ -35,7 +37,7 @@ while ($item = $curResult->fetch()) {
 }
 
 //особенности
-if(!empty($arResult['PROPERTIES']['FEATURES']['VALUE'])) {
+if (!empty($arResult['PROPERTIES']['FEATURES']['VALUE'])) {
     $entityFeaturesClass = getHlData(1);
     $featuresResult = $entityFeaturesClass::getList([
         'select' => ['ID', 'UF_FILE', 'UF_FULL_DESCRIPTION', 'UF_DESCRIPTION', 'UF_NAME', 'UF_SORT'],
@@ -51,7 +53,7 @@ if(!empty($arResult['PROPERTIES']['FEATURES']['VALUE'])) {
 }
 
 //планировки квартир
-if(!empty($arResult['PROPERTIES']['APARTMENTS_TABS']['VALUE'])) {
+if (!empty($arResult['PROPERTIES']['APARTMENTS_TABS']['VALUE'])) {
     $entityApartmentsClass = getHlData(2);
     $apartmentsResult = $entityApartmentsClass::getList([
         'select' => ['ID', 'UF_TYPE', 'UF_VARIANTS', 'UF_SQUARE', 'UF_PRICE', 'UF_ROOMS', 'UF_FILE', 'UF_DEF', 'UF_DESCRIPTION', 'UF_SORT', 'UF_NAME'],
@@ -67,7 +69,7 @@ if(!empty($arResult['PROPERTIES']['APARTMENTS_TABS']['VALUE'])) {
 }
 
 //места поблизости
-if(!empty($arResult['PROPERTIES']['PLACES']['VALUE'])) {
+if (!empty($arResult['PROPERTIES']['PLACES']['VALUE'])) {
     $entityPlacesClass = getHlData(3);
     $placesResult = $entityPlacesClass::getList([
         'select' => ['ID', 'UF_FILE', 'UF_FULL_DESCRIPTION', 'UF_DESCRIPTION', 'UF_SORT', 'UF_NAME', 'UF_SHOWED_NAME'],
@@ -85,7 +87,7 @@ if(!empty($arResult['PROPERTIES']['PLACES']['VALUE'])) {
 //о комплексе
 if (!empty($arResult['PROPERTIES']['COMPLEX']['VALUE'])):
     $arResult['PROPERTIES']['COMPLEX']['VALUE_ELEMENTS'] = [];
-    
+
     $dbItems = CIBlockElement::GetList(
         ["SORT" => "ASC", "NAME" => "ASC"],
         [
@@ -98,29 +100,113 @@ if (!empty($arResult['PROPERTIES']['COMPLEX']['VALUE'])):
         false,
         [
             "ID",
-            "NAME", 
-            "PREVIEW_TEXT",
-            "PROPERTY_GALLERY"
+            "NAME",
+            "PREVIEW_TEXT"
         ]
     );
-    
+
     while ($element = $dbItems->GetNext()) {
-        
-        if (!empty($element['PROPERTY_GALLERY_VALUE'])) {
-            $element['GALLERY'] = [];
-            $galleryIds = is_array($element['PROPERTY_GALLERY_VALUE']) 
-                ? $element['PROPERTY_GALLERY_VALUE'] 
-                : [$element['PROPERTY_GALLERY_VALUE']];
-            
-            foreach ($galleryIds as $fileId) {
-                if ($fileId > 0) {
-                    $element['GALLERY'][] = CFile::GetPath($fileId);
-                }
+
+        $element['GALLERY'] = [];
+
+        $dbProps = CIBlockElement::GetProperty(
+            6,
+            $element['ID'],
+            "sort",
+            "asc",
+            ["CODE" => "GALLERY"]
+        );
+
+        while ($prop = $dbProps->Fetch()) {
+            if ($prop['VALUE'] > 0) {
+                $element['GALLERY'][] = CFile::GetPath($prop['VALUE']);
             }
         }
-        
+
         $arResult['PROPERTIES']['COMPLEX']['VALUE_ELEMENTS'][] = $element;
     }
+endif;
+
+//ход строительства
+if (!empty($arResult['PROPERTIES']['PROGRESS']['VALUE'])):
+    $iblockId = 7;
+    $arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'] = [];
+
+    // Функция для получения дочерних разделов
+    function getChildSections($parentIds, $iblockId) {
+        if (empty($parentIds)) return [];
+        
+        $sections = [];
+        $dbSections = CIBlockSection::GetList(
+            ["SORT" => "ASC", "NAME" => "ASC"],
+            [
+                "IBLOCK_ID" => $iblockId,
+                "SECTION_ID" => $parentIds,
+                "ACTIVE" => "Y",
+            ],
+            false,
+            ["ID", "NAME", "IBLOCK_SECTION_ID"]
+        );
+        
+        while ($section = $dbSections->Fetch()) {
+            $sections[$section['ID']] = $section;
+        }
+        
+        return $sections;
+    }
+
+    $level1Sections = getChildSections([$arResult['PROPERTIES']['PROGRESS']['VALUE']], $iblockId);
+    if (!empty($level1Sections)) {
+        $elementsBySection = [];
+
+        $dbElements = CIBlockElement::GetList(
+            ["SORT" => "ASC", "NAME" => "ASC"],
+            [
+                "IBLOCK_ID" => $iblockId,
+                "SECTION_ID" => array_keys($level1Sections),
+                "ACTIVE" => "Y",
+                "INCLUDE_SUBSECTIONS" => "N",
+            ],
+            false,
+            false,
+            ["ID", "NAME", "IBLOCK_SECTION_ID"]
+        );
+
+        while ($element = $dbElements->GetNext()) {
+            $element['GALLERY'] = [];
+            $sectionId = $element['IBLOCK_SECTION_ID'];
+
+            $dbProps = CIBlockElement::GetProperty(
+                $iblockId,
+                $element['ID'],
+                "sort",
+                "asc",
+                ["CODE" => "GALLERY"]
+            );
+
+            while ($prop = $dbProps->Fetch()) {
+                if ($prop['VALUE'] > 0) {
+                    $element['GALLERY'][] = CFile::GetPath($prop['VALUE']);
+                }
+            }
+
+            $elementsBySection[$sectionId][$element['ID']] = $element;
+        }
+
+        //p($elementsBySection);
+    }
+
+    if(!empty($elementsBySection) && !empty($level1Sections)) {
+        foreach ($level1Sections as $levelId => $level1Section) {
+            $arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'][$levelId] = [
+                'NAME' => $level1Section['NAME'],
+                'ID' => $level1Section['ID'],
+                'ITEMS' => isset($elementsBySection[$level1Section['ID']]) ? $elementsBySection[$level1Section['ID']] : []
+            ];
+        }
+    }
+
+    p($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS']);
 endif;
 
 // for component_epilog

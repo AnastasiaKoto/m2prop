@@ -655,6 +655,11 @@ document.addEventListener('DOMContentLoaded', function () {
       pagination: false,
       arrows: false,
       wheel: false,
+      breakpoints: {
+        992: {
+          direction: 'ltr'
+        }
+      }
     });
 
     mainSplide.sync(secondarySplide).mount();
@@ -668,7 +673,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const prev = tabContent.querySelector('.fade-slider__arrow-prev');
     const next = tabContent.querySelector('.fade-slider__arrow-next');
 
-    // Если нет слайдера — выходим
+
     if (!sliderEl) return;
 
     const splideInstance = new Splide(sliderEl, {
@@ -676,6 +681,11 @@ document.addEventListener('DOMContentLoaded', function () {
       rewind: true,
       arrows: false,
       pagination: false,
+      breakpoints: {
+        992: {
+          pagination: true,
+        }
+      }
     }).mount();
 
     // Проверяем стрелки — тоже могут отсутствовать
@@ -712,6 +722,11 @@ document.addEventListener('DOMContentLoaded', function () {
       pagination: false,
       arrows: false,
       rewind: true,
+      // breakpoints: {
+      //   1200: {
+      //     destroy: true
+      //   }
+      // }
     }).mount();
 
 
@@ -775,15 +790,15 @@ document.addEventListener('DOMContentLoaded', function () {
     tab.addEventListener('click', () => {
       const month = tab.getAttribute('data-month');
 
-      // Находим объект слайда Splide по DOM-элементу
+  
       const slides = splide.Components.Slides.get();
       const index = slides.findIndex(slide => slide.slide === tab);
 
       if (index !== -1) {
-        splide.go(index); // 👉 центрирует кликнутый слайд
+        splide.go(index);
       }
 
-      // Снимаем активные классы
+
       tabs.forEach(t => t.classList.remove('is-active'));
       panels.forEach(p => p.classList.remove('active'));
 
@@ -794,6 +809,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Активируем первый месяц по умолчанию
+
   if (tabs[0]) tabs[0].click();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth > 992) return;
+
+  const textBlocks = document.querySelectorAll('.main-slider__tabs-text');
+
+  textBlocks.forEach(text => {
+    const btn = document.createElement('button');
+    btn.className = 'tabs-more-btn';
+    btn.textContent = 'Подробнее';
+
+    text.after(btn);
+
+    btn.addEventListener('click', () => {
+      text.classList.toggle('is-open');
+
+      btn.textContent = text.classList.contains('is-open')
+        ? 'Скрыть'
+        : 'Подробнее...';
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  Fancybox.bind('[data-fancybox="page-gallery"]');
+
+  document.querySelectorAll('.show-gallery').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      Fancybox.show(
+        Array.from(document.querySelectorAll('[data-fancybox="page-gallery"]'))
+          .map(link => ({
+            src: link.getAttribute('href'),
+            type: 'image'
+          }))
+      );
+    });
+  });
 });
