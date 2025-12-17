@@ -326,11 +326,11 @@
       grid-column-end: span 2;
       padding: 30px;
 
-      @media(Max-width: 1500px) {
+      @media(max-width: 1500px) {
         padding: 15px;
       }
 
-      @media(Max-width: 1300px) {
+      @media(max-width: 1300px) {
         grid-column-end: span 1;
 
         & a {
@@ -606,6 +606,10 @@
             position: absolute;
             bottom: -33px;
 
+            @media(max-width: 1700px) {
+              bottom: 0;
+            }
+
             @media(max-width:1300px) {
               position: relative;
               bottom: 0;
@@ -630,6 +634,9 @@
 
               @media(max-width: 1700px) {
                 font-size: 30px;
+                margin-bottom: 10px;
+              }
+              @media(max-width: 1300px) {
                 margin-bottom: 0;
               }
 
@@ -648,6 +655,12 @@
             & .catalog-item__old-price {
               margin-bottom: 20px;
               order: 1;
+              text-align: right;
+              max-width: fit-content;
+              @media(max-width:1300px) {
+                max-width: 100%;
+                text-align: left;
+              }
 
               @media(max-width: 700px) {
                 margin-bottom: 6px;
@@ -1585,6 +1598,10 @@
           gap: 15px;
           margin-bottom: 20px;
 
+          & svg {
+            max-width: 43%;
+          }
+
           @media(max-width: 992px) {
             font-size: 20px;
             font-style: normal;
@@ -1598,7 +1615,7 @@
         }
 
         & .author-collection___item-description {
-          max-width: 274px;
+          max-width: 408px;
           font-size: 18px;
           font-style: normal;
           font-weight: 400;
@@ -1762,6 +1779,7 @@
         font-weight: 500;
         line-height: 100%;
       }
+
       & svg {
         width: 15px;
         height: 15px;

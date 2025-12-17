@@ -1,16 +1,17 @@
 <? //p($arResult); ?>
 <?
-$project_name = $arResult['NAME'];
+$section_name = $arResult['PROPERTIES']['SECTIONS_NAME']['VALUE'] ?? $arResult['NAME'];
 $address = $arResult['PROPERTIES']['OBJECT_ADDRESS']['VALUE'] ?? false;
 $station = $arResult['PROPERTIES']['TIME_TO_STATION']['VALUE'] ?? false;
 $way = $arResult['PROPERTIES']['TIME_TO_WAY']['VALUE'] ?? false;
+$gallery = $arResult['PROPERTIES']['GALLERY']['VALUE'];
 if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
     $presentation = CFile::GetPath($arResult['PROPERTIES']['PRESENTATION']['VALUE']);
 }
 ?>
-<? if (!empty($arResult['PROPERTIES']['GALLERY']['VALUE'])): ?>
+<? if (!empty($gallery)): ?>
     <div class="detail-product-image">
-        <img src="<?= $arResult['PROPERTIES']['GALLERY']['VALUE'][0]; ?>" alt="<?= $project_name; ?>">
+        <img src="<?= CFile::GetPath($gallery[0]); ?>" alt="<?= $project_name; ?>">
         <div class="layer"></div>
     </div>
 <? endif; ?>
@@ -39,7 +40,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                 <? endif; ?>
             </div>
             <h1>
-                <?= $project_name; ?>
+                <?= $arResult['NAME']; ?>
             </h1>
             <p>
                 <?= $arResult['PREVIEW_TEXT']; ?>
@@ -80,7 +81,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                             </svg>
                         </a>
                     <? endif; ?>
-                    <? if (!empty($arResult['PROPERTIES']['GALLERY']['VALUE'])): ?>
+                    <? if (!empty($gallery)): ?>
                         <a href="javascript:void(0)" class="show-gallery">
                             <span>
                                 Открыть галерею
@@ -96,7 +97,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                                         stroke-width="1.5" />
                                 </svg>
                                 <span>
-                                    <?= count($arResult['PROPERTIES']['GALLERY']['VALUE']); ?> фото
+                                    <?= count($gallery); ?> фото
                                 </span>
                             </span>
                         </a>
@@ -184,7 +185,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                                 <div class="product-feed__image-grid__info-label">
                                     <?= $feature['UF_DESCRIPTION']; ?>
                                 </div>
-                                <div class="product-feed__image-grid__info-value">
+                                <div class="product-feed__image-grid__info-value <?= $feature['UF_DEF'] ? 'small' : ''; ?>">
                                     <?= $feature['UF_FULL_DESCRIPTION']; ?>
                                 </div>
                             </div>
@@ -202,7 +203,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                 <h2>
                     Планировка<br>
                     <span>
-                        в комплексе <?= $project_name; ?>
+                        в комплексе <?= $section_name; ?>
                     </span>
                 </h2>
                 <div class="plans-tabs">
@@ -302,7 +303,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                     <h2>
                         О комплексе<br>
                         <span>
-                            <?= $project_name; ?>
+                            <?= $section_name; ?>
                         </span>
                     </h2>
                     <div class="buttons-wrap">
@@ -318,7 +319,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                                 </svg>
                             </a>
                         <? endif; ?>
-                        <? if (!empty($arResult['PROPERTIES']['GALLERY']['VALUE'])): ?>
+                        <? if (!empty($gallery)): ?>
                             <a href="javascript:void(0)" class="show-gallery">
                                 <span>
                                     Открыть галерею
@@ -336,7 +337,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                                         </circle>
                                     </svg>
                                     <span>
-                                        <?= count($arResult['PROPERTIES']['GALLERY']['VALUE']); ?> фото
+                                        <?= count($gallery); ?> фото
                                     </span>
                                 </span>
                             </a>
@@ -425,14 +426,14 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                         Скачайте
                     </span>
                     презентацию
-                    комплекса <?= $project_name; ?>
+                    комплекса <?= $section_name; ?>
                 </h2>
                 <p>
                     В презентации — расположение, архитектура, инфраструктура, информация о квартирах и техническом
                     оснащении
                     комплекса
                 </p>
-                <a href="<?= $presentation; ?>" class="donwload-link">
+                <a href="<?= $presentation; ?>" class="donwload-link" download="download">
                     <span>
                         Скачать презентацию
                     </span>
@@ -453,7 +454,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                 <div class="map-section__head">
                     <h2>
                         <span>
-                            <?= $project_name; ?>
+                            <?= $section_name; ?>
                         </span>
                         на карте
                     </h2>
@@ -508,45 +509,45 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                         <div class="splide__track">
                             <ul class="splide__list">
                                 <? foreach ($arResult['PROPERTIES']['PLACES']['VALUE_ELEM'] as $place): ?>
-                                <li class="splide__slide point__tab-content">
-                                    <div class="point__tab-content__blur"></div>
-                                    <div class="point__tab-content__info">
-                                        <div class="point__tab-content__name">
-                                            <?= $place['UF_SHOWED_NAME']; ?>
-                                        </div>
-                                        <div class="point__tab-content__move">
-                                            <div class="point__tab-content__road">
-                                                <span>
-                                                    <?= $place['UF_DESCRIPTION']; ?>
-                                                </span>
-                                                <svg width="12" height="20" viewBox="0 0 12 20" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M7.35929 0.0599253C6.40756 0.315725 5.81697 1.30507 6.05772 2.23799C6.30976 3.201 7.29534 3.79912 8.23954 3.5546C9.20255 3.30256 9.80067 2.31698 9.55616 1.3803C9.30412 0.406008 8.30349 -0.195875 7.35929 0.0599253Z"
-                                                        fill="#FF7400" />
-                                                    <path
-                                                        d="M5.5296 4.84431C4.82615 4.92707 4.1528 5.11892 3.44183 5.43491C2.80609 5.7208 2.40358 5.99917 1.91455 6.4882C1.31267 7.09008 0.989156 7.62425 0.710786 8.44808C0.594171 8.80168 0.575362 8.89573 0.590409 9.10639C0.635551 9.69698 1.09072 10.1634 1.68508 10.2236C2.06502 10.2612 2.53524 10.0506 2.74214 9.74965C2.79856 9.67065 2.90389 9.44871 2.97161 9.26062C3.23117 8.56845 3.50201 8.19228 3.96095 7.89134C4.21675 7.72582 4.67568 7.50764 4.70578 7.53773C4.7133 7.54525 4.57412 8.102 4.39731 8.77159C4.22051 9.44118 4.05876 10.0995 4.03995 10.2349C3.96847 10.7089 4.10766 11.3258 4.38227 11.7735C4.44998 11.8826 5.13838 12.6613 5.90954 13.5039L7.30892 15.0312L7.734 16.724C7.96347 17.6531 8.18917 18.492 8.23431 18.586C8.33588 18.8042 8.56535 19.0337 8.80234 19.1503C9.07695 19.2857 9.50955 19.282 9.80297 19.1465C10.0701 19.0224 10.2732 18.8193 10.3898 18.5597C10.5741 18.1572 10.5704 18.1271 10.0475 16.0356C9.72021 14.7265 9.53964 14.0757 9.46441 13.9252C9.34403 13.6882 9.34403 13.6882 8.15531 12.3904C7.71519 11.9127 7.35406 11.4913 7.35406 11.4575C7.35406 11.3898 8.02365 9.10262 8.04999 9.07253C8.06127 9.06501 8.09513 9.12143 8.12898 9.20419C8.64811 10.4606 8.71958 10.5396 9.74278 11.0399C10.4989 11.4086 10.6418 11.4537 10.9353 11.4236C11.3528 11.3823 11.7215 11.1227 11.9096 10.7428C11.9848 10.5885 11.9998 10.4982 11.9998 10.2349C11.9998 9.64808 11.7854 9.37347 11.0255 8.98601L10.544 8.7415L10.2092 7.944C9.82554 7.02237 9.69388 6.76657 9.38917 6.39039C8.57287 5.36343 7.38415 4.80669 6.05625 4.8255C5.83055 4.8255 5.59355 4.83679 5.5296 4.84431Z"
-                                                        fill="#FF7400" />
-                                                    <path
-                                                        d="M3.04703 13.7801L2.59939 14.9199L1.36929 16.1613C-0.0150403 17.5644 6.8117e-06 17.5419 6.8117e-06 18.0798C6.8117e-06 18.4372 0.0940509 18.6629 0.334804 18.9074C0.58308 19.1519 0.808786 19.2422 1.18496 19.2422C1.70032 19.2422 1.71913 19.2271 3.17117 17.7826C3.85958 17.098 4.48027 16.451 4.55174 16.3494C4.65707 16.1952 5.28528 14.7281 5.28528 14.634C5.28528 14.619 4.98434 14.2767 4.61945 13.8779C4.2508 13.4754 3.84829 13.0353 3.72415 12.8961L3.49845 12.6441L3.04703 13.7801Z"
-                                                        fill="#FF7400" />
-                                                </svg>
+                                    <li class="splide__slide point__tab-content">
+                                        <div class="point__tab-content__blur"></div>
+                                        <div class="point__tab-content__info">
+                                            <div class="point__tab-content__name">
+                                                <?= $place['UF_SHOWED_NAME']; ?>
                                             </div>
-                                            <div class="point__tab-content__auto">
-                                                <span>
-                                                    <?= $place['UF_FULL_DESCRIPTION']; ?>
-                                                </span>
-                                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M12.8889 9.31818C12.8889 9.0168 13.006 8.72776 13.2143 8.51465C13.4227 8.30154 13.7053 8.18182 14 8.18182C14.2947 8.18182 14.5773 8.30154 14.7857 8.51465C14.994 8.72776 15.1111 9.0168 15.1111 9.31818C15.1111 9.61956 14.994 9.9086 14.7857 10.1217C14.5773 10.3348 14.2947 10.4545 14 10.4545C13.7053 10.4545 13.4227 10.3348 13.2143 10.1217C13.006 9.9086 12.8889 9.61956 12.8889 9.31818ZM5.77778 12.0455H10.2222V10.9091H5.77778V12.0455ZM2 10.2273C1.70531 10.2273 1.4227 10.1075 1.21433 9.89444C1.00595 9.68133 0.888889 9.39229 0.888889 9.09091C0.888889 8.78953 1.00595 8.50049 1.21433 8.28738C1.4227 8.07427 1.70531 7.95455 2 7.95455C2.29469 7.95455 2.5773 8.07427 2.78567 8.28738C2.99405 8.50049 3.11111 8.78953 3.11111 9.09091C3.11111 9.39229 2.99405 9.68133 2.78567 9.89444C2.5773 10.1075 2.29469 10.2273 2 10.2273ZM4.17778 2.13182C4.24 1.94545 4.40889 1.81818 4.59556 1.81818H11.4C11.5911 1.81818 11.76 1.94545 11.8356 2.17273L13.2133 5.90909H2.78667L4.17778 2.13182ZM16 5.58955V5.22727C16 5.04644 15.9298 4.87302 15.8047 4.74515C15.6797 4.61729 15.5101 4.54545 15.3333 4.54545H14.6089L13.5111 1.56818C13.3661 1.11326 13.0844 0.716765 12.7061 0.435185C12.3278 0.153606 11.8723 0.00131 11.4044 0H4.59111C3.63111 0.00454545 2.78667 0.636364 2.50222 1.53182L1.39111 4.54545H0.666667C0.489856 4.54545 0.320286 4.61729 0.195262 4.74515C0.0702378 4.87302 0 5.04644 0 5.22727V5.58955C3.72617e-05 5.74468 0.0518015 5.89516 0.146746 6.01615C0.241691 6.13713 0.374139 6.22139 0.522222 6.255L0.72 6.3L0.377778 7.09546C0.132781 7.66093 0.0056361 8.2724 0.00444455 8.89091L0 14.2636C0 14.6682 0.324444 15 0.72 15H1.94667C2.34222 15 2.66667 14.6682 2.66667 14.2636V13.4091H2V12.7273H14V13.4091H13.3333V14.2636C13.3333 14.6682 13.6578 15 14.0533 15H15.28C15.6756 15 16 14.6682 16 14.2636V8.9C16 8.27727 15.8711 7.65909 15.6222 7.09091L15.28 6.3L15.4778 6.255C15.6259 6.22139 15.7583 6.13713 15.8533 6.01615C15.9482 5.89516 16 5.74468 16 5.58955Z"
-                                                        fill="#FF7400" />
-                                                </svg>
+                                            <div class="point__tab-content__move">
+                                                <div class="point__tab-content__road">
+                                                    <span>
+                                                        <?= $place['UF_DESCRIPTION']; ?>
+                                                    </span>
+                                                    <svg width="12" height="20" viewBox="0 0 12 20" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M7.35929 0.0599253C6.40756 0.315725 5.81697 1.30507 6.05772 2.23799C6.30976 3.201 7.29534 3.79912 8.23954 3.5546C9.20255 3.30256 9.80067 2.31698 9.55616 1.3803C9.30412 0.406008 8.30349 -0.195875 7.35929 0.0599253Z"
+                                                            fill="#FF7400" />
+                                                        <path
+                                                            d="M5.5296 4.84431C4.82615 4.92707 4.1528 5.11892 3.44183 5.43491C2.80609 5.7208 2.40358 5.99917 1.91455 6.4882C1.31267 7.09008 0.989156 7.62425 0.710786 8.44808C0.594171 8.80168 0.575362 8.89573 0.590409 9.10639C0.635551 9.69698 1.09072 10.1634 1.68508 10.2236C2.06502 10.2612 2.53524 10.0506 2.74214 9.74965C2.79856 9.67065 2.90389 9.44871 2.97161 9.26062C3.23117 8.56845 3.50201 8.19228 3.96095 7.89134C4.21675 7.72582 4.67568 7.50764 4.70578 7.53773C4.7133 7.54525 4.57412 8.102 4.39731 8.77159C4.22051 9.44118 4.05876 10.0995 4.03995 10.2349C3.96847 10.7089 4.10766 11.3258 4.38227 11.7735C4.44998 11.8826 5.13838 12.6613 5.90954 13.5039L7.30892 15.0312L7.734 16.724C7.96347 17.6531 8.18917 18.492 8.23431 18.586C8.33588 18.8042 8.56535 19.0337 8.80234 19.1503C9.07695 19.2857 9.50955 19.282 9.80297 19.1465C10.0701 19.0224 10.2732 18.8193 10.3898 18.5597C10.5741 18.1572 10.5704 18.1271 10.0475 16.0356C9.72021 14.7265 9.53964 14.0757 9.46441 13.9252C9.34403 13.6882 9.34403 13.6882 8.15531 12.3904C7.71519 11.9127 7.35406 11.4913 7.35406 11.4575C7.35406 11.3898 8.02365 9.10262 8.04999 9.07253C8.06127 9.06501 8.09513 9.12143 8.12898 9.20419C8.64811 10.4606 8.71958 10.5396 9.74278 11.0399C10.4989 11.4086 10.6418 11.4537 10.9353 11.4236C11.3528 11.3823 11.7215 11.1227 11.9096 10.7428C11.9848 10.5885 11.9998 10.4982 11.9998 10.2349C11.9998 9.64808 11.7854 9.37347 11.0255 8.98601L10.544 8.7415L10.2092 7.944C9.82554 7.02237 9.69388 6.76657 9.38917 6.39039C8.57287 5.36343 7.38415 4.80669 6.05625 4.8255C5.83055 4.8255 5.59355 4.83679 5.5296 4.84431Z"
+                                                            fill="#FF7400" />
+                                                        <path
+                                                            d="M3.04703 13.7801L2.59939 14.9199L1.36929 16.1613C-0.0150403 17.5644 6.8117e-06 17.5419 6.8117e-06 18.0798C6.8117e-06 18.4372 0.0940509 18.6629 0.334804 18.9074C0.58308 19.1519 0.808786 19.2422 1.18496 19.2422C1.70032 19.2422 1.71913 19.2271 3.17117 17.7826C3.85958 17.098 4.48027 16.451 4.55174 16.3494C4.65707 16.1952 5.28528 14.7281 5.28528 14.634C5.28528 14.619 4.98434 14.2767 4.61945 13.8779C4.2508 13.4754 3.84829 13.0353 3.72415 12.8961L3.49845 12.6441L3.04703 13.7801Z"
+                                                            fill="#FF7400" />
+                                                    </svg>
+                                                </div>
+                                                <div class="point__tab-content__auto">
+                                                    <span>
+                                                        <?= $place['UF_FULL_DESCRIPTION']; ?>
+                                                    </span>
+                                                    <svg width="16" height="15" viewBox="0 0 16 15" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M12.8889 9.31818C12.8889 9.0168 13.006 8.72776 13.2143 8.51465C13.4227 8.30154 13.7053 8.18182 14 8.18182C14.2947 8.18182 14.5773 8.30154 14.7857 8.51465C14.994 8.72776 15.1111 9.0168 15.1111 9.31818C15.1111 9.61956 14.994 9.9086 14.7857 10.1217C14.5773 10.3348 14.2947 10.4545 14 10.4545C13.7053 10.4545 13.4227 10.3348 13.2143 10.1217C13.006 9.9086 12.8889 9.61956 12.8889 9.31818ZM5.77778 12.0455H10.2222V10.9091H5.77778V12.0455ZM2 10.2273C1.70531 10.2273 1.4227 10.1075 1.21433 9.89444C1.00595 9.68133 0.888889 9.39229 0.888889 9.09091C0.888889 8.78953 1.00595 8.50049 1.21433 8.28738C1.4227 8.07427 1.70531 7.95455 2 7.95455C2.29469 7.95455 2.5773 8.07427 2.78567 8.28738C2.99405 8.50049 3.11111 8.78953 3.11111 9.09091C3.11111 9.39229 2.99405 9.68133 2.78567 9.89444C2.5773 10.1075 2.29469 10.2273 2 10.2273ZM4.17778 2.13182C4.24 1.94545 4.40889 1.81818 4.59556 1.81818H11.4C11.5911 1.81818 11.76 1.94545 11.8356 2.17273L13.2133 5.90909H2.78667L4.17778 2.13182ZM16 5.58955V5.22727C16 5.04644 15.9298 4.87302 15.8047 4.74515C15.6797 4.61729 15.5101 4.54545 15.3333 4.54545H14.6089L13.5111 1.56818C13.3661 1.11326 13.0844 0.716765 12.7061 0.435185C12.3278 0.153606 11.8723 0.00131 11.4044 0H4.59111C3.63111 0.00454545 2.78667 0.636364 2.50222 1.53182L1.39111 4.54545H0.666667C0.489856 4.54545 0.320286 4.61729 0.195262 4.74515C0.0702378 4.87302 0 5.04644 0 5.22727V5.58955C3.72617e-05 5.74468 0.0518015 5.89516 0.146746 6.01615C0.241691 6.13713 0.374139 6.22139 0.522222 6.255L0.72 6.3L0.377778 7.09546C0.132781 7.66093 0.0056361 8.2724 0.00444455 8.89091L0 14.2636C0 14.6682 0.324444 15 0.72 15H1.94667C2.34222 15 2.66667 14.6682 2.66667 14.2636V13.4091H2V12.7273H14V13.4091H13.3333V14.2636C13.3333 14.6682 13.6578 15 14.0533 15H15.28C15.6756 15 16 14.6682 16 14.2636V8.9C16 8.27727 15.8711 7.65909 15.6222 7.09091L15.28 6.3L15.4778 6.255C15.6259 6.22139 15.7583 6.13713 15.8533 6.01615C15.9482 5.89516 16 5.74468 16 5.58955Z"
+                                                            fill="#FF7400" />
+                                                    </svg>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <img src="<?= $place['UF_FILE']; ?>" alt="img">
-                                </li>
+                                        <img src="<?= $place['UF_FILE']; ?>" alt="img">
+                                    </li>
                                 <? endforeach; ?>
                             </ul>
                         </div>
@@ -556,1537 +557,116 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
         </div>
     </section>
 <? endif; ?>
-<? if(!empty($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'])): ?>
-<section class="steps">
-    <div class="container">
-        <div class="steps-inner">
-            <div class="steps-inner_row">
-                <div class="steps-info">
-                    <h2>
-                        Ход <br>
-                        <span>
-                            строительства
-                        </span>
-                    </h2>
-                    <img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/st-decor.svg" alt="img">
-                </div>
-                <div class="sync-wrapper">
-                    <!-- Контент -->
-                    <div class="tab-content">
-                        <? foreach($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'] as $section): 
-                        if(!empty($section['ITEMS'])):
-                            foreach($section['ITEMS'] as $key => $item):
-                        ?>
-                        <div class="tab-panel" data-month="<?= $key; ?>">
-                            <? if(!empty($item['GALLERY'])): ?>
-                            <div class="sync-gallery">
-                                <div class="sync-gallery__small splide">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <? foreach($item['GALLERY'] as $img): ?>
-                                            <li class="splide__slide"><img src="<?= $img; ?>"></li>
-                                            <? endforeach; ?>
-                                        </ul>
-                                    </div>
-                                    <div class="sync-gallery__arrows">
-                                        <button class="sync-gallery__arrow sync-prev">
-                                            <svg width="17" height="10" viewBox="0 0 17 10" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
-                                                    stroke="#242220" stroke-width="1.5" stroke-miterlimit="16"
-                                                    stroke-linecap="square" />
-                                            </svg>
-                                        </button>
-                                        <button class="sync-gallery__arrow sync-next">
-                                            <svg width="17" height="10" viewBox="0 0 17 10" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
-                                                    stroke="#242220" stroke-width="1.5" stroke-miterlimit="16"
-                                                    stroke-linecap="square" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
+<? if (!empty($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'])): ?>
+    <section class="steps">
+        <div class="container">
+            <div class="steps-inner">
+                <div class="steps-inner_row">
+                    <div class="steps-info">
+                        <h2>
+                            Ход <br>
+                            <span>
+                                строительства
+                            </span>
+                        </h2>
+                        <img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/st-decor.svg" alt="img">
+                    </div>
+                    <div class="sync-wrapper">
+                        <!-- Контент -->
+                        <div class="tab-content">
+                            <? foreach ($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'] as $section):
+                                if (!empty($section['ITEMS'])):
+                                    foreach ($section['ITEMS'] as $key => $item):
+                                        ?>
+                                        <div class="tab-panel" data-month="<?= $key; ?>">
+                                            <? if (!empty($item['GALLERY'])): ?>
+                                                <div class="sync-gallery">
+                                                    <div class="sync-gallery__small splide">
+                                                        <div class="splide__track">
+                                                            <ul class="splide__list">
+                                                                <? foreach ($item['GALLERY'] as $img): ?>
+                                                                    <li class="splide__slide"><img src="<?= $img; ?>"></li>
+                                                                <? endforeach; ?>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="sync-gallery__arrows">
+                                                            <button class="sync-gallery__arrow sync-prev">
+                                                                <svg width="17" height="10" viewBox="0 0 17 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                                                                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16"
+                                                                        stroke-linecap="square" />
+                                                                </svg>
+                                                            </button>
+                                                            <button class="sync-gallery__arrow sync-next">
+                                                                <svg width="17" height="10" viewBox="0 0 17 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                                                                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16"
+                                                                        stroke-linecap="square" />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
 
-                                <div class="sync-gallery__main splide">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <? foreach($item['GALLERY'] as $img): ?>
-                                            <li class="splide__slide"><img src="<?= $img; ?>"></li>
-                                            <? endforeach; ?>
-                                        </ul>
-                                    </div>
-                                </div>
+                                                    <div class="sync-gallery__main splide">
+                                                        <div class="splide__track">
+                                                            <ul class="splide__list">
+                                                                <? foreach ($item['GALLERY'] as $img): ?>
+                                                                    <li class="splide__slide"><img src="<?= $img; ?>"></li>
+                                                                <? endforeach; ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
 
-                            </div>
-                            <? endif; ?>
+                                                </div>
+                                            <? endif; ?>
+                                        </div>
+                                    <? endforeach;
+                                endif;
+                            endforeach; ?>
                         </div>
-                        <? endforeach;
-                        endif; 
-                    endforeach; ?>
                     </div>
                 </div>
-            </div>
-            <div class="steps-tabs">
-                <div class="splide splide-tabs" id="months-slider">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <? foreach($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'] as $section): ?>
-                                <li class="splide__slide tab-year"><?= $section['NAME']; ?></li>
-                                <? if(!empty($section['ITEMS'])): ?>
-                                    <? foreach($section['ITEMS'] as $key => $item): ?>
-                                        <li class="splide__slide tab-month" data-month="<?= $key; ?>"><span><?= $item['NAME']; ?></span>
-                                            <div class="icon"></div>
-                                        </li>
-                                    <? endforeach; ?>
-                                <? endif; ?>
-                            <? endforeach; ?>
-                        </ul>
+                <div class="steps-tabs">
+                    <div class="splide splide-tabs" id="months-slider">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <? foreach ($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS'] as $section): ?>
+                                    <li class="splide__slide tab-year"><?= $section['NAME']; ?></li>
+                                    <? if (!empty($section['ITEMS'])): ?>
+                                        <? foreach ($section['ITEMS'] as $key => $item): ?>
+                                            <li class="splide__slide tab-month" data-month="<?= $key; ?>">
+                                                <span><?= $item['NAME']; ?></span>
+                                                <div class="icon"></div>
+                                            </li>
+                                        <? endforeach; ?>
+                                    <? endif; ?>
+                                <? endforeach; ?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <? if(!empty($gallery)): ?>
+    <div class="page-gallery" style="display:none;">
+        <? foreach($gallery as $img): 
+        $img_path = CFile::GetPath($img);
+        ?>
+        <a href="<?= $img_path; ?>" data-fancybox="page-gallery">
+            <img src="<?= $img_path; ?>" alt="img">
+        </a>
+        <? endforeach; ?>
     </div>
-</section>
+    <? endif; ?>
 <? endif; ?>
-<section class="faq">
-    <div class="container">
-        <div class="faq-inner">
-            <div class="faq-left">
-                <h2>
-                    <span>
-                        Частые
-                    </span>
-                    вопросы
-                </h2>
-                <img src="./assets/img/faq.png" alt="img">
-            </div>
-            <div class="faq-acc">
-                <ul class="faq-acc__items">
-                    <li class="faq-acc__item ">
-                        <div class="faq-acc__item-head">
-                            <div class="faq-acc__item-head-title">
-                                О проекте Primavera
-                            </div>
-                            <div class="faq-acc__item-head__arrow">
-                                <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
-                                        fill="#7C8589" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="faq-acc__item-content">
-                            Планировки жилого комплекса максимально разнообразны. Вы можете выбрать квартиру с 1-3
-                            спальнями,
-                            пентхаус с отдельным входом или двухуровневый лот. В некоторых вариантах также доступны
-                            приватная
-                            терраса и патио. Квартиры представлены с обзором до 270 градусов и панорамными окнами
-                        </div>
-                    </li>
-                    <li class="faq-acc__item active">
-                        <div class="faq-acc__item-head">
-                            <div class="faq-acc__item-head-title">
-                                Варианты планировок
-                            </div>
-                            <div class="faq-acc__item-head__arrow">
-                                <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
-                                        fill="#7C8589" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="faq-acc__item-content">
-                            Планировки жилого комплекса максимально разнообразны. Вы можете выбрать квартиру с 1-3
-                            спальнями,
-                            пентхаус с отдельным входом или двухуровневый лот. В некоторых вариантах также доступны
-                            приватная
-                            терраса и патио. Квартиры представлены с обзором до 270 градусов и панорамными окнами
-                        </div>
-                    </li>
-                    <li class="faq-acc__item">
-                        <div class="faq-acc__item-head">
-                            <div class="faq-acc__item-head-title">
-                                Стоимость квартир
-                            </div>
-                            <div class="faq-acc__item-head__arrow">
-                                <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
-                                        fill="#7C8589" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="faq-acc__item-content">
-                            Планировки жилого комплекса максимально разнообразны. Вы можете выбрать квартиру с 1-3
-                            спальнями,
-                            пентхаус с отдельным входом или двухуровневый лот. В некоторых вариантах также доступны
-                            приватная
-                            терраса и патио. Квартиры представлены с обзором до 270 градусов и панорамными окнами
-                        </div>
-                    </li>
-                    <li class="faq-acc__item">
-                        <div class="faq-acc__item-head">
-                            <div class="faq-acc__item-head-title">
-                                Сдача проекта
-                            </div>
-                            <div class="faq-acc__item-head__arrow">
-                                <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
-                                        fill="#7C8589" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="faq-acc__item-content">
-                            Планировки жилого комплекса максимально разнообразны. Вы можете выбрать квартиру с 1-3
-                            спальнями,
-                            пентхаус с отдельным входом или двухуровневый лот. В некоторых вариантах также доступны
-                            приватная
-                            терраса и патио. Квартиры представлены с обзором до 270 градусов и панорамными окнами
-                        </div>
-                    </li>
-                    <li class="faq-acc__item">
-                        <div class="faq-acc__item-head">
-                            <div class="faq-acc__item-head-title">
-                                Какие условия ипотеки предлагаются для покупки квартиры в ЖК?
-                            </div>
-                            <div class="faq-acc__item-head__arrow">
-                                <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
-                                        fill="#7C8589" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="faq-acc__item-content">
-                            Планировки жилого комплекса максимально разнообразны. Вы можете выбрать квартиру с 1-3
-                            спальнями,
-                            пентхаус с отдельным входом или двухуровневый лот. В некоторых вариантах также доступны
-                            приватная
-                            терраса и патио. Квартиры представлены с обзором до 270 градусов и панорамными окнами
-                        </div>
-                    </li>
-                    <li class="faq-acc__item">
-                        <div class="faq-acc__item-head">
-                            <div class="faq-acc__item-head-title">
-                                Как можно купить квартиру в ЖК Primavera?
-                            </div>
-                            <div class="faq-acc__item-head__arrow">
-                                <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.0607 1.06066L7.53033 8.59099L0 1.06066L1.06066 0L7.53033 6.46967L14 5.65597e-07L15.0607 1.06066Z"
-                                        fill="#7C8589" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="faq-acc__item-content">
-                            Планировки жилого комплекса максимально разнообразны. Вы можете выбрать квартиру с 1-3
-                            спальнями,
-                            пентхаус с отдельным входом или двухуровневый лот. В некоторых вариантах также доступны
-                            приватная
-                            терраса и патио. Квартиры представлены с обзором до 270 градусов и панорамными окнами
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="section similar">
-    <div class="container">
-        <div class="similar-head">
-            <div class="similar-head__left">
-                <h2>
-                    Похожие<br>
-                    <span>
-                        запросы
-                    </span>
-                </h2>
-                <ul class="tab-content__similar-links">
-                    <li>
-                        <a href="javascript:void(0)" class="tab-content__similar-link" data-tab="price">
-                            По цене
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" class="tab-content__similar-link active" data-tab="district">
-                            По району
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="similar-arrows">
-                <button class="slider-arrow similar-arrow similar-arrow__prev">
-                    <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4.94712 1.06069L1.05855 4.94995L4.94764 8.83904M1.62934 4.94966L15.6293 4.94965"
-                            stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
-                    </svg>
-                </button>
-                <button class="slider-arrow similar-arrow similar-arrow__next">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="10" viewBox="0 0 17 10" fill="none">
-                        <path d="M11.4357 1.06069L15.3243 4.94995L11.4352 8.83904M14.7535 4.94966L0.753469 4.94965"
-                            stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="tab-content__similar-content" data-tab="price">
-        <div class="splide similar-slider">
-            <div class="splide__track">
-                <ul class="splide__list similar-items">
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="tab-content__similar-content" data-tab="district" style="display: none;">
-        <div class="splide similar-slider">
-            <div class="splide__track">
-                <ul class="splide__list similar-items">
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                    <li class="splide__slide catalog-item">
-                        <a href="javascript:void(0)">
-                            <div class="catalog-item__image">
-                                <div class="splide catalog-images__slider">
-                                    <div class="splide__track">
-                                        <ul class="splide__list">
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                            <li class="splide__slide">
-                                                <img src="./assets/img/ct.jpg"
-                                                    alt="Дом в коттеджном поселке «Crystal Istra», 1000 м²">
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="catalog-item__tag">
-                                    участок 30 соток
-                                </div>
-                            </div>
-                            <div class="catalog-item__body">
-                                <div class="catalog-item__prices">
-                                    <div class="catalog-item__price">
-                                        957 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__old-price">
-                                        998 242 300 ₽
-                                    </div>
-                                    <div class="catalog-item__sale">
-                                        -41%
-                                    </div>
-                                </div>
-                                <div class="catalog-item__info">
-                                    <div class="catalog-item__name">
-                                        Дом в коттеджном поселке «Crystal Istra», 1000 м²
-                                    </div>
-                                    <div class="catalog-item__location">
-                                        14 км от МКАД, Новорижское шоссе
-                                    </div>
-                                </div>
-                                <div class="fake-product-btn">
-                                    <span>
-                                        Подробнее
-                                    </span>
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.63644 0.5L9.13535 0.500399V4.99951M8.80502 0.830389L0.707031 8.92838"
-                                            stroke="white" stroke-miterlimit="16" stroke-linecap="square" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="catalog-item__filters">
-                                <li class="catalog-item__filter">
-                                    участок 30 соток
-                                </li>
-                                <li class="catalog-item__filter">
-                                    чистовая отделка
-                                </li>
-                                <li class="catalog-item__filter">
-                                    6 спален
-                                </li>
-                                <li class="catalog-item__filter">
-                                    2 этажа
-                                </li>
-                            </ul>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('.breadcrumbs').classList.add('light');
+    })
+</script>

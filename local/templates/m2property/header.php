@@ -109,11 +109,6 @@
 
     if ($page === 'detail') {
       Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/detail-product.css');
-      echo '
-      <div class="detail-decor">
-        <img src="' . SITE_TEMPLATE_PATH . '/assets/img/detail-decor.svg" alt="img">
-      </div>
-      ';
     }
     ?>
     <div class="container">

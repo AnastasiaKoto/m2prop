@@ -40,7 +40,7 @@ while ($item = $curResult->fetch()) {
 if (!empty($arResult['PROPERTIES']['FEATURES']['VALUE'])) {
     $entityFeaturesClass = getHlData(1);
     $featuresResult = $entityFeaturesClass::getList([
-        'select' => ['ID', 'UF_FILE', 'UF_FULL_DESCRIPTION', 'UF_DESCRIPTION', 'UF_NAME', 'UF_SORT'],
+        'select' => ['ID', 'UF_FILE', 'UF_FULL_DESCRIPTION', 'UF_DESCRIPTION', 'UF_NAME', 'UF_SORT', 'UF_DEF'],
         'filter' => [
             'UF_XML_ID' => $arResult['PROPERTIES']['FEATURES']['VALUE']
         ],
@@ -192,8 +192,6 @@ if (!empty($arResult['PROPERTIES']['PROGRESS']['VALUE'])):
 
             $elementsBySection[$sectionId][$element['ID']] = $element;
         }
-
-        //p($elementsBySection);
     }
 
     if(!empty($elementsBySection) && !empty($level1Sections)) {
@@ -205,8 +203,6 @@ if (!empty($arResult['PROPERTIES']['PROGRESS']['VALUE'])):
             ];
         }
     }
-
-    p($arResult['PROPERTIES']['PROGRESS']['VALUE_ELEMENTS']);
 endif;
 
 // for component_epilog
@@ -215,8 +211,14 @@ $cp = $this->__component;
 if (is_object($cp)) {
     $cp->arResult['NEW_PRICE_VALUE'] = $arResult['PROPERTIES']['NEW_PRICE']['VALUE'];
     $cp->arResult['OBJECT_AREA_VALUE'] = $arResult['PROPERTIES']['OBJECT_AREA']['VALUE'];
+    if($arResult['PROPERTIES']['OBJECT_TYPE']['VALUE_ENUM'] == 'Набор объектов') {
+        $cp->arResult['FAQ'] = $arResult['PROPERTIES']['FAQ']['VALUE'];
+    } else {
+        $cp->arResult['FAQ'] = [];
+    }
     $cp->SetResultCacheKeys([
         'NEW_PRICE_VALUE',
-        'OBJECT_AREA_VALUE'
+        'OBJECT_AREA_VALUE',
+        'FAQ'
     ]);
 }

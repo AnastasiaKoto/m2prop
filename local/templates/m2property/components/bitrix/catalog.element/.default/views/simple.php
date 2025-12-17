@@ -4,6 +4,9 @@ $square = (int) $arResult['PROPERTIES']['SQUARE']['VALUE'];
 $pricePerMetr = round($price / $square);
 //p($arResult);
 ?>
+<div class="detail-decor">
+	<img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/detail-decor.svg" alt="img">
+</div>
 <section class="section detail-product_sm-mainscreen">
 	<div class="container">
 		<div class="detail-product_sm-inner">
