@@ -3073,6 +3073,7 @@
       }
 
       & .sync-gallery__small {
+        max-width: 440px;
         & .splide__slide {
           max-width: 440px;
           width: 100%;

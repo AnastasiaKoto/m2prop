@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalog</title>
+  <title>Главная</title>
+  <link rel="stylesheet" href="./assets/css/splide.min.css">
+  <link rel="stylesheet" href="./assets/css/fancybox.css">
+  <link rel="stylesheet" href="./assets/css/homepage.css">
   <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
@@ -16,44 +19,1383 @@
           <a href="javascript:void(0)" class="logo">
             <img src="./assets/img/logo.svg" alt="img">
           </a>
-          <nav>
-            <ul class="nav-menu">
-              <li>
-                <a href="javascript:void(0)">
-                  Главная
+          <div class="nav-wrapper">
+            <div class="nav-content">
+              <div class="nav-content__head">
+                <a href="javascript:void(0)" class="logo">
+                  <img src="./assets/img/logo.svg" alt="img">
                 </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)">
-                  О компании
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)">
-                  Наши услуги
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)">
-                  Проекты
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)">
-                  Контакты
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <button type="button" class="consult">
-            Заказать консультацию
+                <button type="button" class="close-menu">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="14.1406" width="20" height="1.5" rx="0.75" transform="rotate(-45 0 14.1406)"
+                      fill="#73716F" />
+                    <rect x="1.06055" y="0.148438" width="20" height="1.5" rx="0.75"
+                      transform="rotate(45 1.06055 0.148438)" fill="#73716F" />
+                  </svg>
+                </button>
+              </div>
+              <nav>
+                <ul class="nav-menu">
+                  <li>
+                    <a href="javascript:void(0)">
+                      Главная
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      О компании
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      Наши услуги
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      Проекты
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      Контакты
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <button type="button" class="consult">
+                Заказать консультацию
+              </button>
+              <ul class="header-social">
+                <li>
+                  <a href="javascript:void(0)" target="_blank">
+                    <svg width="50" height="26" viewBox="0 0 50 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M48.8234 1.80427C49.194 0.786526 48.8234 0.0462983 47.1818 0.0462983H41.7275C40.3508 0.0462983 39.7153 0.693929 39.3447 1.38799C39.3447 1.38799 36.538 7.30968 32.6195 11.1494C31.3486 12.2598 30.7661 12.6299 30.0778 12.6299C29.707 12.6299 29.2305 12.2598 29.2305 11.242V1.75797C29.2305 0.55517 28.8069 0 27.6418 0H19.0634C18.2161 0 17.6866 0.55517 17.6866 1.11034C17.6866 2.26698 19.6458 2.5445 19.8577 5.78292V12.8149C19.8577 14.3417 19.54 14.6192 18.8516 14.6192C16.9982 14.6192 12.4971 8.65123 9.79649 1.85057C9.26687 0.508872 8.7374 0 7.36065 0H1.85336C0.264782 0 0 0.647767 0 1.3417C0 2.5908 1.85336 8.88259 8.63141 17.21C13.1326 22.9003 19.54 25.9537 25.312 25.9537C28.8069 25.9537 29.2305 25.2598 29.2305 24.1033V19.8008C29.2305 18.4128 29.5482 18.1816 30.6603 18.1816C31.4545 18.1816 32.8843 18.5516 36.1144 21.2811C39.8212 24.5195 40.4566 26 42.5218 26H47.9761C49.5647 26 50.3061 25.3061 49.8825 23.9644C49.4059 22.6228 47.6055 20.6798 45.2755 18.3665C44.0045 17.0713 42.0982 15.6371 41.5157 14.943C40.7214 14.0179 40.9333 13.6478 41.5157 12.8149C41.4629 12.8149 48.1349 4.58012 48.8234 1.80427Z"
+                        fill="#242220" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" target="_blank">
+                    <svg width="39" height="33" viewBox="0 0 39 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M0.589035 15.3501C4.57883 13.1048 9.03254 11.2308 13.1939 9.34721C20.353 6.26208 27.5405 3.23041 34.8006 0.407959C36.2131 -0.0729589 38.7511 -0.54327 39 1.59543C38.8638 4.62274 38.3032 7.63233 37.9186 10.6419C36.9427 17.2603 35.8147 23.856 34.7147 30.4525C34.3357 32.6498 31.6415 33.7873 29.9177 32.3811C25.7748 29.5221 21.6001 26.6909 17.5102 23.7656C16.1704 22.3747 17.4128 20.3774 18.6093 19.3841C22.0215 15.9486 25.6402 13.0296 28.874 9.41652C29.7463 7.2643 27.1689 9.07813 26.3188 9.63387C21.6475 12.9227 17.0905 16.4123 12.1655 19.3028C9.64987 20.7176 6.7178 19.5085 4.20325 18.719C1.94864 17.7653 -1.35496 16.8043 0.589035 15.3501Z"
+                        fill="#242220" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" target="_blank">
+                    <svg width="41" height="29" viewBox="0 0 41 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_346_22037)">
+                        <path
+                          d="M40.487 23.224C40.0983 26.285 38.325 28.2049 35.1774 28.4885C31.5735 28.8131 23.7718 29 20.1531 29C12.7512 29 9.44345 28.8197 5.94313 28.4585C2.60742 28.1148 1.14718 26.6367 0.573221 23.5853C0.171231 21.447 0 19.4442 0 14.711C0 10.4593 0.201362 7.78531 0.512959 5.5356C0.941405 2.4461 3.0682 0.710087 6.18491 0.451408C9.8109 0.150225 17.0746 0 20.6661 0C24.1363 0 31.946 0.180271 35.4184 0.571589C38.5263 0.921869 40.0042 2.57727 40.487 5.62574C40.487 5.62574 41 8.96513 41 14.7411C41 18.0299 40.7589 21.0886 40.487 23.224ZM16.1406 8.75408V20.5068L27.3632 14.6905L16.1406 8.75408Z"
+                          fill="#242220" />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_346_22037">
+                          <rect width="41" height="29" fill="white" transform="matrix(1 0 0 -1 0 29)" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" target="_blank">
+                    <svg width="38" height="36" viewBox="0 0 38 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M18.5832 21.8992H5.53408V15.856H18.5832C19.3455 15.856 19.8755 16.0115 20.1414 16.283C20.4074 16.5546 20.5722 17.0582 20.5722 17.7938V19.9637C20.5722 20.7389 20.4074 21.2425 20.1414 21.514C19.8755 21.7855 19.3455 21.9015 18.5832 21.9015V21.8992ZM19.4785 10.1586H0V36.0024H5.53408V27.5943H15.7328L20.5722 36.0024H26.7692L21.4336 27.5549C23.4007 27.2137 24.2841 26.5082 25.0125 25.3455C25.741 24.1828 26.1063 22.3239 26.1063 19.8431V17.9052C26.1063 16.4339 25.9733 15.2712 25.741 14.38C25.5088 13.4888 25.1118 12.7137 24.548 12.0175C23.9526 11.3584 23.2896 10.8942 22.4936 10.5833C21.6977 10.3117 20.7032 10.1562 19.4785 10.1562V10.1586Z"
+                        fill="#242220" />
+                      <path
+                        d="M32.308 10.1538C35.3669 10.1538 37.8465 7.88081 37.8465 5.07692C37.8465 2.27302 35.3669 0 32.308 0C29.2492 0 26.7695 2.27302 26.7695 5.07692C26.7695 7.88081 29.2492 10.1538 32.308 10.1538Z"
+                        fill="#242220" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button type="button" class="burger">
+            <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="20" height="1.5" rx="0.75" fill="#73716F" />
+              <rect y="5" width="20" height="1.5" rx="0.75" fill="#73716F" />
+              <rect y="10" width="20" height="1.5" rx="0.75" fill="#73716F" />
+            </svg>
           </button>
         </div>
       </div>
     </div>
   </header>
   <main>
+    <div class="detail-decor">
+      <img src="./assets/img/detail-decor.svg" alt="img">
+    </div>
+    <section class="mainscreen-hp">
+      <div class="container">
+        <div class="mainscreen-hp__inner">
+          <div class="mainscreen-hp__info">
+            <h1>
+              Ваш надёжный партнёр в<br>
+              <span>
+                реализации недвижимости
+              </span>
+            </h1>
+            <div class="mainscreen-hp__description">
+              Комплексное сопровождение девелоперских проектов от концепции до успешной реализации
+            </div>
+            <div class="mainscreen-hp__bubbles">
+              <div class="mainscreen-hp__bubble">
+                Проектирование
+              </div>
+              <div class="mainscreen-hp__bubble">
+                Маркетинговое продвижение
+              </div>
+              <div class="mainscreen-hp__bubble">
+                Дальнейшая эксплуатация
+              </div>
+            </div>
+          </div>
+          <div class="mainscreen-hp__slider">
+            <div id="slider-wrapper__hp" class="slider-wrapper__hp">
+              <!-- Большой слайдер -->
+              <div id="main-slider__hp" class="splide main-slider__hp">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide">
+                      <img src="./assets/img/card.png" alt="img">
+                      <div class="bg-layer"></div>
+                      <div class="main-slider__hp-tag">
+                        Премиум, бизнес
+                      </div>
+                      <div class="main-slider__hp-info">
+                        <div class="main-slider__hp-name">
+                          Кристалл Истра
+                        </div>
+                        <div class="main-slider__hp-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское
+                          </span>
+                        </div>
+                        <div class="main-slider__hp-price">
+                          <span>
+                            от
+                          </span>
+                          ₽ 65.593.000
+                        </div>
+                      </div>
+                      <a href="javascript:void(0)" class="main-slider__hp-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                            stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="splide__slide">
+                      <img src="./assets/img/sl2.png" alt="img">
+                      <div class="bg-layer"></div>
+                      <div class="main-slider__hp-tag">
+                        Премиум, бизнес
+                      </div>
+                      <div class="main-slider__hp-info">
+                        <div class="main-slider__hp-name">
+                          Кристалл Истра
+                        </div>
+                        <div class="main-slider__hp-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское
+                          </span>
+                        </div>
+                        <div class="main-slider__hp-price">
+                          <span>
+                            от
+                          </span>
+                          ₽ 65.593.000
+                        </div>
+                      </div>
+                      <a href="javascript:void(0)" class="main-slider__hp-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                            stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="splide__slide">
+                      <img src="./assets/img/slide2.png" alt="img">
+                      <div class="bg-layer"></div>
+                      <div class="main-slider__hp-tag">
+                        Премиум, бизнес
+                      </div>
+                      <div class="main-slider__hp-info">
+                        <div class="main-slider__hp-name">
+                          Кристалл Истра
+                        </div>
+                        <div class="main-slider__hp-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское
+                          </span>
+                        </div>
+                        <div class="main-slider__hp-price">
+                          <span>
+                            от
+                          </span>
+                          ₽ 65.593.000
+                        </div>
+                      </div>
+                      <a href="javascript:void(0)" class="main-slider__hp-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                            stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
+              <!-- Маленький слайд следующего изображения -->
+              <div class="next-thumb__wrap">
+                <a href="javascript:void(0)" class="all-projects">
+                  <span>
+                    Все объекты
+                  </span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                      stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                  </svg>
+                </a>
+                <div id="next-thumb__hp" class="splide next-thumb">
+                  <div class="splide__track">
+                    <ul class="splide__list">
+                      <li class="splide__slide">
+                        <img src="./assets/img/card.png" alt="img">
+                        <div class="next-thumb__layer"></div>
+                        <a href="javascript:void(0)" class="next-thumb__arrow">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                              stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                          </svg>
+                        </a>
+                        <div class="next-thumb__name">
+                          Кристалл Истра
+                        </div>
+                      </li>
+                      <li class="splide__slide">
+                        <img src="./assets/img/sl2.png" alt="img">
+                        <div class="next-thumb__layer"></div>
+                        <a href="javascript:void(0)" class="next-thumb__arrow">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                              stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                          </svg>
+                        </a>
+                        <div class="next-thumb__name">
+                          Кристалл Истра
+                        </div>
+                      </li>
+                      <li class="splide__slide">
+                        <img src="./assets/img/slide2.png" alt="img">
+                        <div class="next-thumb__layer"></div>
+                        <a href="javascript:void(0)" class="next-thumb__arrow">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                              stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                          </svg>
+                        </a>
+                        <div class="next-thumb__name">
+                          Кристалл Истра
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="mainscreen-hp__navigation">
+              <button class="mainscreen-hp__arrow mainscreen-hp__arrow-prev">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4.33593 8.75L1.04304 5.45711C0.652517 5.06658 0.652517 4.43342 1.04304 4.04289L4.33593 0.75M1.33594 4.75L15.3359 4.75"
+                    stroke="#242220" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </button>
+              <ul class="splide__pagination"></ul>
+              <button class="mainscreen-hp__arrow mainscreen-hp__arrow-next">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11.75 8.75L15.0429 5.45711C15.4334 5.06658 15.4334 4.43342 15.0429 4.04289L11.75 0.75M14.75 4.75L0.75 4.75"
+                    stroke="#242220" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="about-hp">
+      <div class="container">
+        <div class="about-hp__inner">
+          <div class="about-hp__head">
+            <div class="about-hp__head-left">
+              <h2>
+                <span>
+                  О компании
+                </span>
+              </h2>
+              <img src="./assets/img/badgehp.svg" alt="img">
+            </div>
+            <div class="about-hp__head-right">
+              <div class="about-hp__head-title">
+                Наша команда обеспечивает полное сопровождение от разработки концепции до успешной реализации объекта
+              </div>
+              <div class="about-hp__head-description">
+                На главной переименовать блок “Услуги” в блок “О компании”. Сделать так, чтобы в блоке помимо текущего
+                текста “Наша команда обеспечивает полное сопровождение от разработки концепции до успешной реализации
+                объекта”
+                поместился еще один абзац с обычным параграфом. Текущий текст будет подзаголовок, а нужен еще один абзац
+                с
+                информацией о компании
+              </div>
+            </div>
+          </div>
+          <ul class="about-hp__services-items">
+            <li>
+              <a href="javascript:void(0)">
+                <div class="icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                      stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                  </svg>
+                </div>
+                <div class="about-hp__services-item__title">
+                  Консалтинг
+                  и разработка
+                </div>
+                <p>
+                  Стратегическое планирование проектов
+                  Маркетинговый анализ рынка
+                  Разработка концепции объекта
+                </p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <div class="icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                      stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                  </svg>
+                </div>
+                <div class="about-hp__services-item__title">
+                  Брокерские услуги
+                </div>
+                <p>
+                  Построение отделов продаж
+                  Реализация объектов недвижимости
+                  Маркетинговое продвижение
+                </p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <div class="icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                      stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                  </svg>
+                </div>
+                <div class="about-hp__services-item__title">
+                  Управление проектами
+                </div>
+                <p>
+                  Контроль строительства
+                  Эксплуатационное сопровождение
+                  Оптимизация бизнес-процессов
+                </p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <div class="icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                      stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                  </svg>
+                </div>
+                <div class="about-hp__services-item__title">
+                  Маркетинговое сопровождение
+                </div>
+                <p>
+                  Создание продающих материалов
+                  Digital-продвижение
+                  Организация мероприятий
+                </p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="projects-hp">
+      <div class="container">
+        <div class="projects-hp__inner">
+          <div class="projects-navigation">
+            <button class="project-large__arrow project-large__arrow-prev">
+              <div class="icon">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                    stroke="white" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                </svg>
+              </div>
+            </button>
+            <ul class="splide__pagination"></ul>
+            <button class="project-large__arrow project-large__arrow-next">
+              <div class="icon">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                    stroke="white" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="projects-hp__left">
+            <div class="projects-hp__left-head">
+              <div class="projects-hp__left-info">
+                <h2>
+                  Наши<br />
+                  <span>
+                    проекты
+                  </span>
+                </h2>
+                <div class="projects-hp__description">
+                  Мы гордимся каждым реализованным проектом и готовы делиться с вами нашими достижениями в сфере
+                  недвижимости
+                </div>
+              </div>
+              <a href="javascript:void(0)" class="all-projects">
+                <span>
+                  Смотреть все
+                </span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                    stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                </svg>
+              </a>
+            </div>
+            <ul class="projects-adv">
+              <li>
+                <p>
+                  115+
+                </p>
+                <span>
+                  Реализованных проектов
+                </span>
+              </li>
+              <li>
+                <p>
+                  98%
+                </p>
+                <span>
+                  Успешных сделок
+                </span>
+              </li>
+              <li>
+                <p>
+                  5+
+                </p>
+                <span>
+                  Средняя оценка партнёров
+                </span>
+              </li>
+            </ul>
+            <div class="splide project-small__slide">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img src="./assets//img/slidet1.png" alt="img">
+                    <div class="layer-bg"></div>
+                    <div class="project-small__tag">
+                      Премиум, бизнес
+                    </div>
+                    <div class="project-small__name">
+                      Кристалл Истра
+                    </div>
+                    <div class="project-small__arrow">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534" stroke="#242220"
+                          stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                      </svg>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/pr-slide.png" alt="img">
+                    <div class="layer-bg"></div>
+                    <div class="project-small__tag">
+                      Премиум, бизнес
+                    </div>
+                    <div class="project-small__name">
+                      Кристалл Истра
+                    </div>
+                    <div class="project-small__arrow">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534" stroke="#242220"
+                          stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                      </svg>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/slidet1.png" alt="img">
+                    <div class="layer-bg"></div>
+                    <div class="project-small__tag">
+                      Премиум, бизнес
+                    </div>
+                    <div class="project-small__name">
+                      Кристалл Истра
+                    </div>
+                    <div class="project-small__arrow">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534" stroke="#242220"
+                          stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                      </svg>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/pr-slide.png" alt="img">
+                    <div class="layer-bg"></div>
+                    <div class="project-small__tag">
+                      Премиум, бизнес
+                    </div>
+                    <div class="project-small__name">
+                      Кристалл Истра
+                    </div>
+                    <div class="project-small__arrow">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534" stroke="#242220"
+                          stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                      </svg>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/sl2.png" alt="img">
+                    <div class="layer-bg"></div>
+                    <div class="project-small__tag">
+                      Премиум, бизнес
+                    </div>
+                    <div class="project-small__name">
+                      Кристалл Истра
+                    </div>
+                    <div class="project-small__arrow">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534" stroke="#242220"
+                          stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                      </svg>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="projects-hp__right">
+            <div class="splide project-large__slide">
+
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img src="./assets//img/sl2.png" alt="img">
+                    <div class="blur-layer"></div>
+                    <div class="project_small_info">
+                      <div class="project_small_info-left">
+                        <div class="project_small_info-title">
+                          Кристалл Истра
+                        </div>
+                        <div class="project_small_info-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское | 10 мин
+                          </span>
+                        </div>
+                        <ul class="project_small_info-bubbles">
+                          <li>
+                            Бесконечная красота видов
+                          </li>
+                          <li>
+                            Скидка до 10%
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="project_small_info-right">
+                        <div class="project_small_info-price">
+                          <span>от</span> ₽ 16.000.000
+                        </div>
+                        <a href="javascript:void(0)" class="project-link__more">
+                          <span>
+                            Подробнее
+                          </span>
+                          <div class="icon">
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534"
+                                stroke="white" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/slidet1.png" alt="img">
+                    <div class="blur-layer"></div>
+                    <div class="project_small_info">
+                      <div class="project_small_info-left">
+                        <div class="project_small_info-title">
+                          Кристалл Истра
+                        </div>
+                        <div class="project_small_info-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское | 10 мин
+                          </span>
+                        </div>
+                        <ul class="project_small_info-bubbles">
+                          <li>
+                            Бесконечная красота видов
+                          </li>
+                          <li>
+                            Скидка до 10%
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="project_small_info-right">
+                        <div class="project_small_info-price">
+                          <span>от</span> ₽ 16.000.000
+                        </div>
+                        <a href="javascript:void(0)" class="project-link__more">
+                          <span>
+                            Подробнее
+                          </span>
+                          <div class="icon">
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534"
+                                stroke="white" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/pr-slide.png" alt="img">
+                    <div class="blur-layer"></div>
+                    <div class="project_small_info">
+                      <div class="project_small_info-left">
+                        <div class="project_small_info-title">
+                          Кристалл Истра
+                        </div>
+                        <div class="project_small_info-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское | 10 мин
+                          </span>
+                        </div>
+                        <ul class="project_small_info-bubbles">
+                          <li>
+                            Бесконечная красота видов
+                          </li>
+                          <li>
+                            Скидка до 10%
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="project_small_info-right">
+                        <div class="project_small_info-price">
+                          <span>от</span> ₽ 16.000.000
+                        </div>
+                        <a href="javascript:void(0)" class="project-link__more">
+                          <span>
+                            Подробнее
+                          </span>
+                          <div class="icon">
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534"
+                                stroke="white" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/slidet1.png" alt="img">
+                    <div class="blur-layer"></div>
+                    <div class="project_small_info">
+                      <div class="project_small_info-left">
+                        <div class="project_small_info-title">
+                          Кристалл Истра
+                        </div>
+                        <div class="project_small_info-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское | 10 мин
+                          </span>
+                        </div>
+                        <ul class="project_small_info-bubbles">
+                          <li>
+                            Бесконечная красота видов
+                          </li>
+                          <li>
+                            Скидка до 10%
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="project_small_info-right">
+                        <div class="project_small_info-price">
+                          <span>от</span> ₽ 16.000.000
+                        </div>
+                        <a href="javascript:void(0)" class="project-link__more">
+                          <span>
+                            Подробнее
+                          </span>
+                          <div class="icon">
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534"
+                                stroke="white" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="splide__slide">
+                    <img src="./assets//img/pr-slide.png" alt="img">
+                    <div class="blur-layer"></div>
+                    <div class="project_small_info">
+                      <div class="project_small_info-left">
+                        <div class="project_small_info-title">
+                          Кристалл Истра
+                        </div>
+                        <div class="project_small_info-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское | 10 мин
+                          </span>
+                        </div>
+                        <ul class="project_small_info-bubbles">
+                          <li>
+                            Бесконечная красота видов
+                          </li>
+                          <li>
+                            Скидка до 10%
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="project_small_info-right">
+                        <div class="project_small_info-price">
+                          <span>от</span> ₽ 16.000.000
+                        </div>
+                        <a href="javascript:void(0)" class="project-link__more">
+                          <span>
+                            Подробнее
+                          </span>
+                          <div class="icon">
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5.86411 0.75L11.3639 0.750488V6.25049M10.96 1.15389L1.06055 11.0534"
+                                stroke="white" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="show-off">
+      <div class="container">
+        <div class="show-off__inner">
+          <div class="show-bg">
+            <img src="./assets/img/show-bg.png" alt="img">
+          </div>
+          <div class="show-off__label">
+            О нас
+          </div>
+          <h2>
+            Мы <strong>ключевые</strong> партнёры в
+            <span>
+              реализации ваших проектов
+            </span>
+          </h2>
+          <div class="show-off__bottom">
+            <div class="show-off__info">
+              <svg width="219" height="62" viewBox="0 0 219 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_346_20741)">
+                  <rect y="8.75781" width="216.929" height="52.8218" rx="10" transform="rotate(-2.31352 0 8.75781)"
+                    fill="#242220" />
+                  <rect x="-59.4746" y="-299.094" width="940" height="520"
+                    transform="rotate(-2.31352 -59.4746 -299.094)" fill="#D9D9D9" />
+                  <rect x="24.4922" y="25.8828" width="46.7797" height="17.1659"
+                    transform="rotate(-2.31352 24.4922 25.8828)" fill="#FF7400" />
+                  <path
+                    d="M42.2688 26.7693L50.4356 26.4394L50.9948 40.2813L42.828 40.6112L42.5484 33.6903L38.6595 35.8567L38.5339 32.7473L42.2688 26.7693Z"
+                    fill="#242220" />
+                  <path
+                    d="M34.3289 27.0901L26.1621 27.42L26.7213 41.2619L34.8881 40.932L34.6085 34.011L38.6595 35.8567L38.5339 32.7473L34.3289 27.0901Z"
+                    fill="#242220" />
+                  <path
+                    d="M70.4477 34.3589L58.1033 36.3102L70.5063 35.8091L70.655 39.491L52.2995 40.2325L51.9434 31.4186L64.3368 30.0592L51.889 30.0725L51.7402 26.3906L70.0958 25.6491L70.4477 34.3589Z"
+                    fill="#242220" />
+                  <path
+                    d="M189.472 32.8817L197.504 24.3191L200 24.2183L200.439 35.0981L197.944 35.1989L197.612 26.9741L189.579 35.5368L187.084 35.6376L186.645 24.7578L189.14 24.657L189.472 32.8817Z"
+                    fill="#242220" />
+                  <path
+                    d="M184.852 24.8338L184.942 27.0497L179.532 27.2683L179.882 35.9322L177.386 36.033L177.036 27.3691L171.547 27.5909L171.457 25.375L184.852 24.8338Z"
+                    fill="#242220" />
+                  <path
+                    d="M170.881 31.0969C170.893 32.0562 170.704 32.9703 170.312 33.8392C169.92 34.6949 169.336 35.405 168.559 35.9696C167.794 36.5204 166.88 36.8173 165.815 36.8603C163.513 36.9533 161.733 36.452 160.476 35.3564L160.684 40.5068L158.188 40.6077L157.596 25.9349L159.672 25.851L160.056 27.4351C161.257 26.1602 163.023 25.4757 165.352 25.3816C166.376 25.3402 167.292 25.5565 168.097 26.0305C168.916 26.504 169.57 27.1707 170.058 28.0308C170.546 28.8909 170.818 29.8663 170.876 30.9571L170.878 31.017L170.881 31.0969ZM164.347 35.16C165.212 35.1251 165.936 34.8959 166.519 34.4724C167.114 34.0351 167.553 33.5108 167.835 32.8996C168.129 32.2745 168.272 31.6755 168.262 31.1027C168.221 30.4245 168.042 29.7852 167.725 29.1848C167.42 28.5706 166.953 28.0763 166.325 27.7017C165.71 27.3134 164.943 27.1377 164.024 27.1748C163.266 27.2055 162.601 27.4256 162.031 27.8352C161.461 28.2315 161.022 28.7425 160.714 29.3681C160.418 29.9799 160.284 30.6185 160.311 31.2839C160.341 32.0159 160.528 32.6816 160.872 33.2809C161.216 33.8801 161.688 34.3543 162.289 34.7033C162.902 35.0384 163.588 35.1907 164.347 35.16Z"
+                    fill="#242220" />
+                  <path
+                    d="M156.326 31.5853L144.987 32.0434C145.054 32.7206 145.273 33.3516 145.643 33.9365C146.013 34.5081 146.545 34.9665 147.239 35.3117C147.932 35.657 148.765 35.8099 149.737 35.7707C150.575 35.7368 151.308 35.5606 151.935 35.242C152.575 34.9095 153.059 34.5167 153.387 34.0636C153.728 33.5966 153.89 33.1568 153.873 32.7442L156.369 32.6434C156.397 33.3354 156.159 34.0515 155.656 34.7917C155.152 35.5319 154.398 36.1622 153.393 36.6828C152.387 37.2033 151.179 37.492 149.769 37.549C148.504 37.6001 147.323 37.4012 146.225 36.9523C145.127 36.4901 144.24 35.8261 143.565 34.9603C142.89 34.0811 142.529 33.0692 142.483 31.9247C142.436 30.7535 142.7 29.7097 143.276 28.7933C143.865 27.863 144.682 27.1369 145.728 26.6147C146.786 26.0788 147.974 25.7842 149.291 25.7309C150.635 25.6766 151.823 25.8686 152.854 26.3068C153.898 26.7446 154.717 27.3913 155.311 28.2471C155.919 29.089 156.253 30.0953 156.313 31.2659L156.326 31.5853ZM149.404 27.526C148.259 27.5722 147.344 27.8625 146.659 28.3967C145.974 28.9309 145.496 29.6168 145.223 30.4543L153.607 30.1155C153.348 29.2995 152.875 28.6521 152.189 28.1733C151.517 27.6939 150.588 27.4781 149.404 27.526Z"
+                    fill="#242220" />
+                  <path
+                    d="M127.203 27.1641L140.778 26.6156L141.217 37.4955L138.722 37.5963L138.372 28.9323L129.788 29.2791L130.138 37.9431L127.643 38.0439L127.203 27.1641Z"
+                    fill="#242220" />
+                  <path
+                    d="M118.826 27.0402C120.13 26.9875 121.312 27.1931 122.37 27.6568C123.442 28.1201 124.289 28.7924 124.911 29.6737C125.546 30.5412 125.886 31.5339 125.931 32.6518C125.976 33.7565 125.717 34.7734 125.155 35.7025C124.605 36.6179 123.815 37.3497 122.784 37.8979C121.766 38.4455 120.605 38.7457 119.301 38.7984C118.05 38.8489 116.862 38.6437 115.737 38.1826C114.625 37.7076 113.724 37.0375 113.036 36.1721C112.348 35.2935 111.981 34.3085 111.937 33.2172C111.893 32.1126 112.178 31.1013 112.794 30.1832C113.41 29.2519 114.253 28.5113 115.324 27.9615C116.394 27.3984 117.562 27.0913 118.826 27.0402ZM119.248 37.0009C120.473 36.9515 121.491 36.5837 122.303 35.8977C123.115 35.1984 123.492 34.1501 123.436 32.7527C123.379 31.3552 122.918 30.3408 122.053 29.7092C121.188 29.0776 120.143 28.7866 118.919 28.8361C118.147 28.8672 117.414 29.0368 116.72 29.3448C116.026 29.6528 115.465 30.122 115.037 30.7525C114.622 31.3824 114.434 32.1699 114.472 33.1148C114.511 34.0597 114.762 34.8294 115.226 35.4238C115.702 36.0044 116.292 36.4205 116.996 36.672C117.712 36.923 118.463 37.0326 119.248 37.0009Z"
+                    fill="#242220" />
+                  <path
+                    d="M110.643 33.5265C110.655 34.4858 110.465 35.4 110.074 36.2689C109.682 37.1246 109.097 37.8347 108.32 38.3993C107.556 38.9501 106.642 39.247 105.577 39.29C103.275 39.383 101.495 38.8817 100.237 37.7861L100.445 42.9365L97.9501 43.0373L97.3573 28.3646L99.4335 28.2807L99.8174 29.8648C101.019 28.5899 102.784 27.9054 105.113 27.8113C106.138 27.7699 107.053 27.9862 107.859 28.4602C108.678 28.9336 109.331 29.6004 109.819 30.4605C110.307 31.3206 110.58 32.296 110.637 33.3868L110.64 33.4467L110.643 33.5265ZM104.109 37.5897C104.974 37.5547 105.698 37.3255 106.28 36.9021C106.876 36.4648 107.315 35.9405 107.597 35.3293C107.891 34.7041 108.034 34.1052 108.024 33.5324C107.983 32.8542 107.804 32.2149 107.486 31.6145C107.182 31.0003 106.715 30.5059 106.087 30.1314C105.471 29.743 104.704 29.5674 103.786 29.6045C103.027 29.6351 102.363 29.8553 101.793 30.2649C101.223 30.6612 100.783 31.1722 100.475 31.7978C100.18 32.4096 100.046 33.0482 100.073 33.7136C100.102 34.4456 100.289 35.1112 100.633 35.7105C100.978 36.3098 101.45 36.784 102.051 37.133C102.664 37.4681 103.35 37.6203 104.109 37.5897Z"
+                    fill="#242220" />
+                  <path
+                    d="M95.1095 24.5577L95.7063 39.3303L93.0113 39.4391L92.5072 26.9623L81.7272 27.3978L82.2313 39.8747L79.5363 39.9835L78.9395 25.2109L95.1095 24.5577Z"
+                    fill="#242220" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_346_20741">
+                    <rect y="8.75781" width="216.929" height="52.8218" rx="10" transform="rotate(-2.31352 0 8.75781)"
+                      fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <span>
+                — это команда профессионалов, специализирующаяся на комплексном сопровождении проектов в
+                сфере недвижимости
+              </span>
+            </div>
+            <ul class="show-off__list">
+              <li>
+                <span>
+                  Работаем с
+                </span>
+                <p>
+                  2003 года
+                </p>
+              </li>
+              <li>
+                <span>
+                  Построили
+                </span>
+                <p>
+                  >2 млн м2
+                </p>
+              </li>
+              <li>
+                <span>
+                  Сдано точно в срок объектов
+                </span>
+                <p>
+                  >200
+                </p>
+              </li>
+              <li>
+                <span>
+                  Надежный застройщик России
+                </span>
+                <p>
+                  2014-2025
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="partners">
+      <div class="container">
+        <div class="partners-inner">
+          <h2>
+            <span>
+              Наши
+            </span><br />
+            партнеры
+          </h2>
+          <ul class="partners-list">
+            <li>
+              <img src="./assets/img/p1.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p2.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p3.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p4.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p5.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p6.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p7.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p8.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p9.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p10.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p11.png" alt="img">
+            </li>
+            <li>
+              <img src="./assets/img/p12.png" alt="img">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="special">
+      <div class="container">
+        <div class="special-inner">
+          <div class="special-bg">
+            <img src="./assets/img/spec.png" alt="img">
+          </div>
+          <h2>
+            <span>
+              Особенности
+            </span><br>
+            наших проектов
+          </h2>
+          <div class="tabs-hp-container">
+            <!-- Контент табов -->
+            <div class="tabs-hp-content">
+              <div class="tabs-hp-content__item active" data-tab="1">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tabs-hp-content__item" data-tab="2">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tabs-hp-content__item" data-tab="3">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tabs-hp-content__item" data-tab="4">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tabs-hp-content__item " data-tab="5">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tabs-hp-content__item" data-tab="6">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tabs-hp-content__item" data-tab="7">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="tabs-hp-content__item" data-tab="8">
+                <div class="hp-slider-navigation">
+                  <button class="hp-slider-arrow hp-slider-arrow-prev"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.95103 1.06069L1.06246 4.94995L4.95155 8.83904M1.63325 4.94966L15.6332 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                  <button class="hp-slider-arrow hp-slider-arrow-next"><svg width="17" height="10" viewBox="0 0 17 10"
+                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4318 1.06069L15.3204 4.94995L11.4313 8.83904M14.7496 4.94966L0.749563 4.94965"
+                        stroke="#242220" stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="hp-slider__content" class="splide hp-slider__content">
+                  <div class="splide__track hp-slider__content">
+                    <ul class="splide__list">
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      <li class="splide__slide hp-slider__slide">
+                        <p>
+                          Мы сделали метры разумными
+                        </p>
+                        <span>
+                          Пространство квартир максимально продумано: функциональные планировки и только полезные метры.
+                          Никаких длинных узких коридоров и темных углов. Больше площадь жилых комнат, удобное
+                          зонирование, места для гардеробных и постирочных — каждый квадратный метр квартиры приносит
+                          пользу
+                        </span>
+                      </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Горизонтальный слайдер табов -->
+            <div id="tabs-hp-slider" class="splide tabs-hp-slider">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="1"></li>
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="2"></li>
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="3"></li>
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="4"></li>
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="5"></li>
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="6"></li>
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="7"></li>
+                  <li class="splide__slide tabs-hp-slider__slide" data-tab="8"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
   </main>
   <footer>
     <div class="container">
@@ -224,6 +1566,9 @@
       </div>
     </div>
   </footer>
+
+  <script src="./assets/js/fancybox.umd.js"></script>
+  <script src="./assets/js/splide.min.js"></script>
   <script src="./assets/js/main.js"></script>
 </body>
 
