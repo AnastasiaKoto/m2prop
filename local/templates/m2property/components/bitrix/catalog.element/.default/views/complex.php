@@ -613,7 +613,10 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                                                     <div class="sync-gallery__main splide">
                                                         <div class="splide__track">
                                                             <ul class="splide__list">
-                                                                <? foreach ($item['GALLERY'] as $img): ?>
+                                                                <? $galleryFormat = $item['GALLERY'];
+                                                                $firstImg = array_shift($galleryFormat);
+                                                                array_push($galleryFormat, $firstImg);
+                                                                foreach ($galleryFormat as $img): ?>
                                                                     <li class="splide__slide"><img src="<?= $img; ?>"></li>
                                                                 <? endforeach; ?>
                                                             </ul>

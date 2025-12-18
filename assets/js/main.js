@@ -625,6 +625,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // });
 document.addEventListener('DOMContentLoaded', function () {
   const wrappers = document.querySelectorAll('.slider-wrapper');
+  if (!wrappers) return;
 
   wrappers.forEach(wrapper => {
     const secondary = wrapper.querySelector('.secondary-slider__tabs');
@@ -705,7 +706,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!smallEl || !mainEl) return;
 
-
     const small = new Splide(smallEl, {
       type: 'slide',
       perPage: 1,
@@ -716,50 +716,56 @@ document.addEventListener('DOMContentLoaded', function () {
       rewind: true,
     }).mount();
 
-    // Большой — текущий
     const main = new Splide(mainEl, {
       type: 'fade',
       pagination: false,
       arrows: false,
       rewind: true,
-      // breakpoints: {
-      //   1200: {
-      //     destroy: true
-      //   }
-      // }
     }).mount();
 
 
     main.on('move', (index) => {
-      const nextIndex = (index + 1) % main.length;
-      small.go(nextIndex);
+      small.go(index);
     });
 
+  
+    small.on('click', (slide) => {
+      main.go(slide.index);
+    });
 
+    // Внешние стрелки
     prev.addEventListener('click', () => main.go('<'));
     next.addEventListener('click', () => main.go('>'));
 
-    small.go(1);
+  
   });
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const faqItems = document.querySelectorAll('.faq-acc__item');
+  if (!faqItems || faqItems.length === 0) return; // Проверка на наличие элементов
 
   faqItems.forEach(item => {
     const head = item.querySelector('.faq-acc__item-head');
+    const content = item.querySelector('.faq-acc__item-content');
+
+    // Проверяем, что заголовок и контент существуют
+    if (!head || !content) return;
 
     head.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
 
+      // Закрываем все элементы
       faqItems.forEach(i => {
         i.classList.remove('active');
-        i.querySelector('.faq-acc__item-content').style.maxHeight = null;
+        const c = i.querySelector('.faq-acc__item-content');
+        if (c) c.style.maxHeight = null;
       });
 
+      // Открываем текущий элемент
       if (!isActive) {
         item.classList.add('active');
-        const content = item.querySelector('.faq-acc__item-content');
         content.style.maxHeight = content.scrollHeight + 'px';
       }
     });
@@ -768,6 +774,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  const sliderEl = document.getElementById('months-slider');
+  const tabs = document.querySelectorAll('.tab-month');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  // Проверяем, есть ли слайдер и табы
+  if (!sliderEl || !tabs.length || !panels.length) return;
+
   const splide = new Splide('#months-slider', {
     type: 'slide',
     perPage: 6,
@@ -783,57 +796,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
   splide.mount();
 
-  const tabs = document.querySelectorAll('.tab-month');
-  const panels = document.querySelectorAll('.tab-panel');
-
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const month = tab.getAttribute('data-month');
+      if (!month) return;
 
-  
+      // Находим индекс слайда
       const slides = splide.Components.Slides.get();
-      const index = slides.findIndex(slide => slide.slide === tab);
+      const index = slides.findIndex(slide => slide.slide.dataset.month === month);
 
-      if (index !== -1) {
-        splide.go(index);
-      }
+      if (index !== -1) splide.go(index);
 
-
+      // Сбрасываем активные классы
       tabs.forEach(t => t.classList.remove('is-active'));
       panels.forEach(p => p.classList.remove('active'));
 
-      // Активируем текущий таб
+      // Активируем текущий таб и панель
       tab.classList.add('is-active');
       const panel = document.querySelector(`.tab-panel[data-month="${month}"]`);
       if (panel) panel.classList.add('active');
     });
   });
 
-
+  // Инициализация первого таба
   if (tabs[0]) tabs[0].click();
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Проверяем ширину экрана
   if (window.innerWidth > 992) return;
 
+  // Находим все блоки с текстом
   const textBlocks = document.querySelectorAll('.main-slider__tabs-text');
+  if (!textBlocks || textBlocks.length === 0) return; // Проверка на наличие элементов
 
   textBlocks.forEach(text => {
+    // Проверяем, что кнопка ещё не добавлена
+    if (text.nextElementSibling && text.nextElementSibling.classList.contains('tabs-more-btn')) return;
+
+    // Создаём кнопку "Подробнее"
     const btn = document.createElement('button');
     btn.className = 'tabs-more-btn';
     btn.textContent = 'Подробнее';
 
+    // Вставляем кнопку после блока текста
     text.after(btn);
 
+    // Обработчик клика
     btn.addEventListener('click', () => {
       text.classList.toggle('is-open');
-
-      btn.textContent = text.classList.contains('is-open')
-        ? 'Скрыть'
-        : 'Подробнее...';
+      btn.textContent = text.classList.contains('is-open') ? 'Скрыть' : 'Подробнее...';
     });
   });
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
   Fancybox.bind('[data-fancybox="page-gallery"]');
@@ -852,3 +869,218 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const mainEl = document.getElementById('main-slider__hp');
+  const smallEl = document.getElementById('next-thumb__hp');
+
+  if (!mainEl || !smallEl) return;
+
+  // Миниатюра
+  const small = new Splide(smallEl, {
+    type: 'slide',
+    perPage: 1,
+    arrows: false,
+    pagination: false,
+    drag: false,
+    rewind: true,
+  }).mount();
+
+  // Главный слайдер
+  const main = new Splide(mainEl, {
+    type: 'fade',
+    arrows: false,
+    pagination: false, // стандартную пагинацию отключаем
+    rewind: true,
+  }).mount();
+
+  // Синхронизация миниатюры
+  main.on('move', (index) => {
+    small.go((index + 1) % main.length);
+    updatePagination(index);
+  });
+
+  small.go(1);
+
+  // ------------------------
+  // Кастомные стрелки
+  // ------------------------
+  const prevBtn = document.querySelector('.mainscreen-hp__arrow-prev');
+  const nextBtn = document.querySelector('.mainscreen-hp__arrow-next');
+
+  if (prevBtn) prevBtn.addEventListener('click', () => main.go('<'));
+  if (nextBtn) nextBtn.addEventListener('click', () => main.go('>'));
+
+  // ------------------------
+  // Кастомная внешняя пагинация
+  // ------------------------
+  const paginationContainer = document.querySelector('.mainscreen-hp__navigation .splide__pagination');
+
+  function createPagination() {
+    paginationContainer.innerHTML = '';
+    for (let i = 0; i < main.length; i++) {
+      const li = document.createElement('li');
+      li.className = 'splide__pagination__page';
+      li.dataset.index = i;
+      li.addEventListener('click', () => main.go(i));
+      paginationContainer.appendChild(li);
+    }
+    updatePagination(main.index);
+  }
+
+  function updatePagination(activeIndex) {
+    const pages = paginationContainer.querySelectorAll('.splide__pagination__page');
+    pages.forEach((p, i) => p.classList.toggle('is-active', i === activeIndex));
+  }
+
+  createPagination();
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sliderEl = document.getElementById('tabs-hp-slider');
+  const tabs = sliderEl ? sliderEl.querySelectorAll('.tabs-hp-slider__slide') : [];
+  const panels = document.querySelectorAll('.tabs-hp-content__item');
+
+  if (!sliderEl || !tabs.length || !panels.length) return;
+
+
+  const splide = new Splide('#tabs-hp-slider', {
+    type: 'slide',
+    perPage: 8,
+    focus: 'center',
+    autoWidth: true,
+    pagination: false,
+    arrows: false,
+    gap: '200px',
+    trimSpace: false,
+    drag: true,
+  }).mount();
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const tabId = tab.getAttribute('data-tab');
+      if (!tabId) return;
+
+      const slides = splide.Components.Slides.get();
+      const index = slides.findIndex(slide => slide.slide.dataset.tab === tabId);
+
+      if (index !== -1) splide.go(index);
+
+
+      tabs.forEach(t => t.classList.remove('is-active'));
+      panels.forEach(p => p.classList.remove('active'));
+
+
+      tab.classList.add('is-active');
+      const panel = document.querySelector(`.tabs-hp-content__item[data-tab="${tabId}"]`);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+
+  if (tabs[0]) tabs[0].click();
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sliders = document.querySelectorAll('.tabs-hp-content__item');
+
+  sliders.forEach(container => {
+    const sliderEl = container.querySelector('.hp-slider__content');
+    if (!sliderEl) return;
+
+
+    const splide = new Splide(sliderEl, {
+      type: 'slide',
+      perPage: 1,
+      focus: 0,
+      pagination: false,
+      arrows: false,
+      gap: '1rem',
+      rewind: true,
+    }).mount();
+
+
+    const prevBtn = container.querySelector('.hp-slider-arrow-prev');
+    const nextBtn = container.querySelector('.hp-slider-arrow-next');
+
+    if (prevBtn) prevBtn.addEventListener('click', () => splide.go('<'));
+    if (nextBtn) nextBtn.addEventListener('click', () => splide.go('>'));
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const smallEl = document.querySelector('.project-small__slide');
+  const largeEl = document.querySelector('.project-large__slide');
+  const prev = document.querySelector('.project-large__arrow-prev');
+  const next = document.querySelector('.project-large__arrow-next');
+  const paginationContainer = document.querySelector('.projects-navigation .splide__pagination');
+
+ 
+  if (!smallEl || !largeEl) return;
+
+  const small = new Splide(smallEl, {
+    gap: 16,
+    arrows: false,
+    pagination: false,
+    direction: 'ttb',
+    height: '100%',
+    fixedWidth: '100%',
+  });
+
+  const large = new Splide(largeEl, {
+    type: 'loop',
+    perPage: 1,
+    arrows: false,
+    pagination: false,
+  });
+
+  small.mount();
+  large.mount();
+
+ 
+  large.on('move', () => small.go(large.index));
+  small.on('click', (slide) => large.go(slide.index));
+
+
+  if (prev) prev.addEventListener('click', () => large.go('<'));
+  if (next) next.addEventListener('click', () => large.go('>'));
+
+
+  if (paginationContainer) {
+    large.on('mounted', () => {
+      paginationContainer.innerHTML = '';
+
+      const slidesCount = large.Components.Controller.getEnd() + 1;
+
+      for (let i = 0; i < slidesCount; i++) {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+
+        btn.type = 'button';
+        btn.className = 'splide__pagination__page';
+        btn.addEventListener('click', () => large.go(i));
+
+        li.appendChild(btn);
+        paginationContainer.appendChild(li);
+      }
+
+      updatePagination();
+    });
+
+    large.on('move', updatePagination);
+
+    function updatePagination() {
+      const activeIndex = large.index;
+
+      paginationContainer.querySelectorAll('.splide__pagination__page')
+        .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
+    }
+  }
+
+});
+
