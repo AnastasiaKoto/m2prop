@@ -728,7 +728,7 @@ document.addEventListener('DOMContentLoaded', function () {
       small.go(index);
     });
 
-  
+
     small.on('click', (slide) => {
       main.go(slide.index);
     });
@@ -737,7 +737,7 @@ document.addEventListener('DOMContentLoaded', function () {
     prev.addEventListener('click', () => main.go('<'));
     next.addEventListener('click', () => main.go('>'));
 
-  
+
   });
 });
 
@@ -956,6 +956,16 @@ document.addEventListener('DOMContentLoaded', () => {
     gap: '200px',
     trimSpace: false,
     drag: true,
+    breakpoints: {
+      992: {
+        gap: '100px'
+      },
+      700: {
+        perPage: 1,       // листаем по одному
+        gap: '40px',      // меньше отступ, чтобы помещалось
+        focus: 'center',  // активный всегда по центру
+      }
+    }
   }).mount();
 
   tabs.forEach((tab) => {
@@ -1020,7 +1030,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const next = document.querySelector('.project-large__arrow-next');
   const paginationContainer = document.querySelector('.projects-navigation .splide__pagination');
 
- 
+
   if (!smallEl || !largeEl) return;
 
   const small = new Splide(smallEl, {
@@ -1037,19 +1047,12 @@ document.addEventListener('DOMContentLoaded', function () {
     perPage: 1,
     arrows: false,
     pagination: false,
+    breakpoints: {
+      700: {
+        gap: 10
+      }
+    }
   });
-
-  small.mount();
-  large.mount();
-
- 
-  large.on('move', () => small.go(large.index));
-  small.on('click', (slide) => large.go(slide.index));
-
-
-  if (prev) prev.addEventListener('click', () => large.go('<'));
-  if (next) next.addEventListener('click', () => large.go('>'));
-
 
   if (paginationContainer) {
     large.on('mounted', () => {
@@ -1081,6 +1084,20 @@ document.addEventListener('DOMContentLoaded', function () {
         .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
     }
   }
+
+  small.mount();
+  large.mount();
+
+
+  large.on('move', () => small.go(large.index));
+  small.on('click', (slide) => large.go(slide.index));
+
+
+  if (prev) prev.addEventListener('click', () => large.go('<'));
+  if (next) next.addEventListener('click', () => large.go('>'));
+
+
+
 
 });
 
