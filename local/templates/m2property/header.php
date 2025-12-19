@@ -98,6 +98,10 @@
     $currentPage = $APPLICATION->GetCurPage();
     $page = '';
 
+    if($currentPage == '/') {
+      Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/homepage.css');
+    }
+
     if (preg_match('#/catalog/.+/.+/#', $currentPage)) {
       $page = 'detail';
     }
