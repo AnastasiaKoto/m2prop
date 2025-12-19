@@ -1026,82 +1026,82 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-//   const smallEl = document.querySelector('.project-small__slide');
-//   const largeEl = document.querySelector('.project-large__slide');
-//   const prev = document.querySelector('.project-large__arrow-prev');
-//   const next = document.querySelector('.project-large__arrow-next');
-//   const paginationContainer = document.querySelector('.projects-navigation .splide__pagination');
-
-
-//   if (!smallEl || !largeEl) return;
-
-//   const small = new Splide(smallEl, {
-//     gap: 16,
-//     arrows: false,
-//     pagination: false,
-//     direction: 'ttb',
-//     height: '100%',
-//     fixedWidth: '100%',
-//   });
-
-//   const large = new Splide(largeEl, {
-//     type: 'loop',
-//     perPage: 1,
-//     arrows: false,
-//     pagination: false,
-//     breakpoints: {
-//       700: {
-//         gap: 10
-//       }
-//     }
-//   });
-
-//   if (paginationContainer) {
-//     large.on('mounted', () => {
-//       paginationContainer.innerHTML = '';
-
-//       const slidesCount = large.Components.Controller.getEnd() + 1;
-
-//       for (let i = 0; i < slidesCount; i++) {
-//         const li = document.createElement('li');
-//         const btn = document.createElement('button');
-
-//         btn.type = 'button';
-//         btn.className = 'splide__pagination__page';
-//         btn.addEventListener('click', () => large.go(i));
-
-//         li.appendChild(btn);
-//         paginationContainer.appendChild(li);
-//       }
-
-//       updatePagination();
-//     });
-
-//     large.on('move', updatePagination);
-
-//     function updatePagination() {
-//       const activeIndex = large.index;
-
-//       paginationContainer.querySelectorAll('.splide__pagination__page')
-//         .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
-//     }
-//   }
-
-//   small.mount();
-//   large.mount();
+  const smallEl = document.querySelector('.project-small__slide');
+  const largeEl = document.querySelector('.project-large__slide');
+  const prev = document.querySelector('.project-large__arrow-prev');
+  const next = document.querySelector('.project-large__arrow-next');
+  const paginationContainer = document.querySelector('.projects-navigation .splide__pagination');
 
 
-//   large.on('move', () => small.go(large.index));
-//   small.on('click', (slide) => large.go(slide.index));
+  if (!smallEl || !largeEl) return;
+
+  const small = new Splide(smallEl, {
+    gap: 16,
+    arrows: false,
+    pagination: false,
+    direction: 'ttb',
+    height: '100%',
+    fixedWidth: '100%',
+  });
+
+  const large = new Splide(largeEl, {
+    type: 'loop',
+    perPage: 1,
+    arrows: false,
+    pagination: false,
+    breakpoints: {
+      700: {
+        gap: 10
+      }
+    }
+  });
+
+  if (paginationContainer) {
+    large.on('mounted', () => {
+      paginationContainer.innerHTML = '';
+
+      const slidesCount = large.Components.Controller.getEnd() + 1;
+
+      for (let i = 0; i < slidesCount; i++) {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+
+        btn.type = 'button';
+        btn.className = 'splide__pagination__page';
+        btn.addEventListener('click', () => large.go(i));
+
+        li.appendChild(btn);
+        paginationContainer.appendChild(li);
+      }
+
+      updatePagination();
+    });
+
+    large.on('move', updatePagination);
+
+    function updatePagination() {
+      const activeIndex = large.index;
+
+      paginationContainer.querySelectorAll('.splide__pagination__page')
+        .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
+    }
+  }
+
+  small.mount();
+  large.mount();
 
 
-//   if (prev) prev.addEventListener('click', () => large.go('<'));
-//   if (next) next.addEventListener('click', () => large.go('>'));
+  large.on('move', () => small.go(large.index));
+  small.on('click', (slide) => large.go(slide.index));
+
+
+  if (prev) prev.addEventListener('click', () => large.go('<'));
+  if (next) next.addEventListener('click', () => large.go('>'));
 
 
 
 
-// });
+});
 
