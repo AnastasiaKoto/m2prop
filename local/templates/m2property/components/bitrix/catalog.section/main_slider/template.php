@@ -26,7 +26,7 @@ use Bitrix\Catalog\ProductTable;
 $this->setFrameMode(true);
 if (!empty($arResult['ITEMS'])):
 	?>
-	<div class="mainscreen-hp__slider">
+	<div class="mainscreen-hp__slider" data-move-target=".mainscreen-hp__description" data-move-break="992">
 		<div id="slider-wrapper__hp" class="slider-wrapper__hp">
 			<!-- Большой слайдер -->
 			<div id="main-slider__hp" class="splide main-slider__hp">
