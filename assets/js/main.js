@@ -938,166 +938,170 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   const sliderEl = document.getElementById('tabs-hp-slider');
+//   const tabs = sliderEl ? sliderEl.querySelectorAll('.tabs-hp-slider__slide') : [];
+//   const panels = document.querySelectorAll('.tabs-hp-content__item');
+
+//   if (!sliderEl || !tabs.length || !panels.length) return;
+
+
+//   const splide = new Splide('#tabs-hp-slider', {
+//     type: 'slide',
+//     perPage: 8,
+//     focus: 'center',
+//     autoWidth: true,
+//     pagination: false,
+//     arrows: false,
+//     gap: '200px',
+//     trimSpace: false,
+//     drag: true,
+//     breakpoints: {
+//       992: {
+//         gap: '100px'
+//       },
+//       700: {
+//         perPage: 1,       // листаем по одному
+//         gap: '40px',      // меньше отступ, чтобы помещалось
+//         focus: 'center',  // активный всегда по центру
+//       }
+//     }
+//   }).mount();
+
+//   tabs.forEach((tab) => {
+//     tab.addEventListener('click', () => {
+//       const tabId = tab.getAttribute('data-tab');
+//       if (!tabId) return;
+
+//       const slides = splide.Components.Slides.get();
+//       const index = slides.findIndex(slide => slide.slide.dataset.tab === tabId);
+
+//       if (index !== -1) splide.go(index);
+
+
+//       tabs.forEach(t => t.classList.remove('is-active'));
+//       panels.forEach(p => p.classList.remove('active'));
+
+
+//       tab.classList.add('is-active');
+//       const panel = document.querySelector(`.tabs-hp-content__item[data-tab="${tabId}"]`);
+//       if (panel) panel.classList.add('active');
+//     });
+//   });
+
+
+//   if (tabs[0]) tabs[0].click();
+// });
+
+
 document.addEventListener('DOMContentLoaded', () => {
-  const sliderEl = document.getElementById('tabs-hp-slider');
-  const tabs = sliderEl ? sliderEl.querySelectorAll('.tabs-hp-slider__slide') : [];
-  const panels = document.querySelectorAll('.tabs-hp-content__item');
+  const slider = document.querySelector('.hp-slider__content');
+  const pagination = document.querySelector('.tabs-hp-content__dots .splide__pagination');
+  const prevBtn = document.querySelector('.hp-slider-arrow-prev');
+  const nextBtn = document.querySelector('.hp-slider-arrow-next');
 
-  if (!sliderEl || !tabs.length || !panels.length) return;
+  if (!slider || !pagination) return;
 
-
-  const splide = new Splide('#tabs-hp-slider', {
+  const splide = new Splide(slider, {
     type: 'slide',
-    perPage: 8,
-    focus: 'center',
-    autoWidth: true,
-    pagination: false,
-    arrows: false,
-    gap: '200px',
-    trimSpace: false,
-    drag: true,
-    breakpoints: {
-      992: {
-        gap: '100px'
-      },
-      700: {
-        perPage: 1,       // листаем по одному
-        gap: '40px',      // меньше отступ, чтобы помещалось
-        focus: 'center',  // активный всегда по центру
-      }
-    }
-  }).mount();
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const tabId = tab.getAttribute('data-tab');
-      if (!tabId) return;
-
-      const slides = splide.Components.Slides.get();
-      const index = slides.findIndex(slide => slide.slide.dataset.tab === tabId);
-
-      if (index !== -1) splide.go(index);
-
-
-      tabs.forEach(t => t.classList.remove('is-active'));
-      panels.forEach(p => p.classList.remove('active'));
-
-
-      tab.classList.add('is-active');
-      const panel = document.querySelector(`.tabs-hp-content__item[data-tab="${tabId}"]`);
-      if (panel) panel.classList.add('active');
-    });
-  });
-
-
-  if (tabs[0]) tabs[0].click();
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const sliders = document.querySelectorAll('.tabs-hp-content__item');
-
-  sliders.forEach(container => {
-    const sliderEl = container.querySelector('.hp-slider__content');
-    if (!sliderEl) return;
-
-
-    const splide = new Splide(sliderEl, {
-      type: 'slide',
-      perPage: 1,
-      focus: 0,
-      pagination: false,
-      arrows: false,
-      gap: '1rem',
-      rewind: true,
-    }).mount();
-
-
-    const prevBtn = container.querySelector('.hp-slider-arrow-prev');
-    const nextBtn = container.querySelector('.hp-slider-arrow-next');
-
-    if (prevBtn) prevBtn.addEventListener('click', () => splide.go('<'));
-    if (nextBtn) nextBtn.addEventListener('click', () => splide.go('>'));
-  });
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-
-  const smallEl = document.querySelector('.project-small__slide');
-  const largeEl = document.querySelector('.project-large__slide');
-  const prev = document.querySelector('.project-large__arrow-prev');
-  const next = document.querySelector('.project-large__arrow-next');
-  const paginationContainer = document.querySelector('.projects-navigation .splide__pagination');
-
-
-  if (!smallEl || !largeEl) return;
-
-  const small = new Splide(smallEl, {
-    gap: 16,
-    arrows: false,
-    pagination: false,
-    direction: 'ttb',
-    height: '100%',
-    fixedWidth: '100%',
-  });
-
-  const large = new Splide(largeEl, {
-    type: 'loop',
     perPage: 1,
-    arrows: false,
-    pagination: false,
-    breakpoints: {
-      700: {
-        gap: 10
-      }
-    }
+    gap: '1rem',
+    rewind: true,
+    arrows: false,     
+    pagination: true,   
+    paginationClass: 'splide__pagination',
   });
 
-  if (paginationContainer) {
-    large.on('mounted', () => {
-      paginationContainer.innerHTML = '';
 
-      const slidesCount = large.Components.Controller.getEnd() + 1;
+  splide.on('pagination:mounted', (data) => {
+    pagination.append(...data.list.children);
+    data.list.remove();
+  });
 
-      for (let i = 0; i < slidesCount; i++) {
-        const li = document.createElement('li');
-        const btn = document.createElement('button');
+  // Навешиваем стрелки
+  if (prevBtn) prevBtn.addEventListener('click', () => splide.go('<'));
+  if (nextBtn) nextBtn.addEventListener('click', () => splide.go('>'));
 
-        btn.type = 'button';
-        btn.className = 'splide__pagination__page';
-        btn.addEventListener('click', () => large.go(i));
-
-        li.appendChild(btn);
-        paginationContainer.appendChild(li);
-      }
-
-      updatePagination();
-    });
-
-    large.on('move', updatePagination);
-
-    function updatePagination() {
-      const activeIndex = large.index;
-
-      paginationContainer.querySelectorAll('.splide__pagination__page')
-        .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
-    }
-  }
-
-  small.mount();
-  large.mount();
-
-
-  large.on('move', () => small.go(large.index));
-  small.on('click', (slide) => large.go(slide.index));
-
-
-  if (prev) prev.addEventListener('click', () => large.go('<'));
-  if (next) next.addEventListener('click', () => large.go('>'));
-
-
-
-
+  splide.mount();
 });
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+
+//   const smallEl = document.querySelector('.project-small__slide');
+//   const largeEl = document.querySelector('.project-large__slide');
+//   const prev = document.querySelector('.project-large__arrow-prev');
+//   const next = document.querySelector('.project-large__arrow-next');
+//   const paginationContainer = document.querySelector('.projects-navigation .splide__pagination');
+
+
+//   if (!smallEl || !largeEl) return;
+
+//   const small = new Splide(smallEl, {
+//     gap: 16,
+//     arrows: false,
+//     pagination: false,
+//     direction: 'ttb',
+//     height: '100%',
+//     fixedWidth: '100%',
+//   });
+
+//   const large = new Splide(largeEl, {
+//     type: 'loop',
+//     perPage: 1,
+//     arrows: false,
+//     pagination: false,
+//     breakpoints: {
+//       700: {
+//         gap: 10
+//       }
+//     }
+//   });
+
+//   if (paginationContainer) {
+//     large.on('mounted', () => {
+//       paginationContainer.innerHTML = '';
+
+//       const slidesCount = large.Components.Controller.getEnd() + 1;
+
+//       for (let i = 0; i < slidesCount; i++) {
+//         const li = document.createElement('li');
+//         const btn = document.createElement('button');
+
+//         btn.type = 'button';
+//         btn.className = 'splide__pagination__page';
+//         btn.addEventListener('click', () => large.go(i));
+
+//         li.appendChild(btn);
+//         paginationContainer.appendChild(li);
+//       }
+
+//       updatePagination();
+//     });
+
+//     large.on('move', updatePagination);
+
+//     function updatePagination() {
+//       const activeIndex = large.index;
+
+//       paginationContainer.querySelectorAll('.splide__pagination__page')
+//         .forEach((btn, i) => btn.classList.toggle('is-active', i === activeIndex));
+//     }
+//   }
+
+//   small.mount();
+//   large.mount();
+
+
+//   large.on('move', () => small.go(large.index));
+//   small.on('click', (slide) => large.go(slide.index));
+
+
+//   if (prev) prev.addEventListener('click', () => large.go('<'));
+//   if (next) next.addEventListener('click', () => large.go('>'));
+
+
+
+
+// });
 
