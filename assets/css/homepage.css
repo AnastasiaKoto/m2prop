@@ -136,6 +136,10 @@
             gap: 8px;
           }
 
+          & .splide__track {
+            height: 100%;
+          }
+
 
           & .splide__slide {
             border-radius: 32px;
@@ -380,6 +384,10 @@
             @media(max-width: 600px) {
               max-width: 120px;
               height: 140px;
+            }
+
+            & .splide__track {
+              height: 100%;
             }
 
             & .next-thumb__layer {
