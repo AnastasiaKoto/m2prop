@@ -411,7 +411,8 @@
              @media(max-width: 1500px) {
                gap: 35px;
              }
-              @media(max-width: 1200px) {
+
+             @media(max-width: 1200px) {
                gap: 20px;
              }
 
@@ -441,16 +442,16 @@
            }
          }
 
-
-       }
-
-       & .nav-wrapper+.burger {
-         & svg {
-           & rect {
-             fill: #fff;
+         & +.burger {
+           & svg {
+             & rect {
+               fill: #fff;
+             }
            }
          }
        }
+
+
 
        & .consult {
          font-size: 20px;

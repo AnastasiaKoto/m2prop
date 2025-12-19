@@ -22,7 +22,7 @@ if(!empty($arResult['ITEMS'])):
 					в блоге
 				</span>
 			</h2>
-			<a href="/blog/" class="link-to">
+			<a href="/blog/" class="link-to" data-move-target=".last-news__items" data-move-break="992">
 				<span>
 					Читать блог
 				</span>

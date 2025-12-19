@@ -344,7 +344,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                     </div>
                 </div>
                 <div class="point__tabs">
-                    <div class="slider-wrapper">
+                    <div class="slider-wrapper about-slider-wrap">
                         <div class="secondary-slider__tabs splide">
                             <div class="splide__track">
                                 <ul class="splide__list point__tab-btns">
