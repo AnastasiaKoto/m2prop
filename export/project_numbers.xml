@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hiblock>
+	<hiblock>
+		<id>11</id>
+		<name>ProjectNumbers</name>
+		<table_name>project_numbers</table_name>
+	</hiblock>
+	<langs>
+		<lang>
+			<id>11</id>
+			<lid>ru</lid>
+			<name>Числа с блоке проектов</name>
+		</lang>
+		<lang>
+			<id>11</id>
+			<lid>en</lid>
+			<name>Числа с блоке проектов</name>
+		</lang>
+	</langs>
+	<fields>
+		<field>
+			<id>53</id>
+			<entity_id>HLBLOCK_11</entity_id>
+			<field_name>UF_TITLE</field_name>
+			<user_type_id>string</user_type_id>
+			<xml_id />
+			<sort>100</sort>
+			<multiple>N</multiple>
+			<mandatory>N</mandatory>
+			<show_filter>N</show_filter>
+			<show_in_list>Y</show_in_list>
+			<edit_in_list>Y</edit_in_list>
+			<is_searchable>N</is_searchable>
+			<settings>
+				<size>40</size>
+				<rows>1</rows>
+				<regexp />
+				<min_length>0</min_length>
+				<max_length>0</max_length>
+				<default_value />
+			</settings>
+			<edit_form_label>
+				<en />
+				<ru>Заголовок</ru>
+			</edit_form_label>
+			<list_column_label>
+				<en />
+				<ru>Заголовок</ru>
+			</list_column_label>
+			<list_filter_label>
+				<en />
+				<ru>Заголовок</ru>
+			</list_filter_label>
+			<error_message>
+				<en />
+				<ru />
+			</error_message>
+			<help_message>
+				<en />
+				<ru />
+			</help_message>
+			<base_type>string</base_type>
+		</field>
+		<field>
+			<id>54</id>
+			<entity_id>HLBLOCK_11</entity_id>
+			<field_name>UF_NUMBER</field_name>
+			<user_type_id>string</user_type_id>
+			<xml_id />
+			<sort>100</sort>
+			<multiple>N</multiple>
+			<mandatory>N</mandatory>
+			<show_filter>N</show_filter>
+			<show_in_list>Y</show_in_list>
+			<edit_in_list>Y</edit_in_list>
+			<is_searchable>N</is_searchable>
+			<settings>
+				<size>40</size>
+				<rows>1</rows>
+				<regexp />
+				<min_length>0</min_length>
+				<max_length>0</max_length>
+				<default_value />
+			</settings>
+			<edit_form_label>
+				<en />
+				<ru>Число</ru>
+			</edit_form_label>
+			<list_column_label>
+				<en />
+				<ru>Число</ru>
+			</list_column_label>
+			<list_filter_label>
+				<en />
+				<ru>Число</ru>
+			</list_filter_label>
+			<error_message>
+				<en />
+				<ru />
+			</error_message>
+			<help_message>
+				<en />
+				<ru />
+			</help_message>
+			<base_type>string</base_type>
+		</field>
+	</fields>
+	<items>
+		<item>
+			<id>1</id>
+			<uf_title>Реализованных проектов</uf_title>
+			<uf_number>115+</uf_number>
+		</item>
+		<item>
+			<id>2</id>
+			<uf_title>Успешных сделок</uf_title>
+			<uf_number>98%</uf_number>
+		</item>
+		<item>
+			<id>3</id>
+			<uf_title>Средняя оценка партнёров</uf_title>
+			<uf_number>5+</uf_number>
+		</item>
+	</items>
+</hiblock>
