@@ -4,7 +4,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 use Bitrix\Highloadblock\HighloadBlockTable as HLBT;
 use Bitrix\Main\Entity;
 
-$hlblock = HLBT::getById(11)->fetch();
+$hlblock = HLBT::getById(NUMBERS_HLBLOCK_ID)->fetch();
 $entity = HLBT::compileEntity($hlblock);
 $entityClass = $entity->getDataClass();
 
