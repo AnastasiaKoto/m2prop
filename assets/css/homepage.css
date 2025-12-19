@@ -1825,6 +1825,8 @@
           }
 
           & .hp-slider__content {
+            max-width: 1062px;
+
             & .hp-slider__slide {
               display: flex;
               gap: 46px;

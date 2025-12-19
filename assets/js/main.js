@@ -1003,7 +1003,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!slider || !pagination) return;
 
   const splide = new Splide(slider, {
-    type: 'slide',
+    type: 'loop',
     perPage: 1,
     gap: '1rem',
     rewind: true,
