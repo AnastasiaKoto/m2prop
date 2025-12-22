@@ -67,7 +67,7 @@ $pricePerMetr = round($price / $square);
 						</a>
 					<? endif; ?>
 					<? if (!empty($arResult['PROPERTIES']['GALLERY']['VALUE'])): ?>
-						<a href="javascript:void(0)" class="show-gallery">
+						<a href="javascript:void(0)" class="show-gallery" id="show-gallery">
 							<span>
 								Открыть галерею
 							</span>
@@ -151,6 +151,15 @@ $pricePerMetr = round($price / $square);
 		</div>
 	</div>
 </section>
+<? if(!empty($arResult['PROPERTIES']['GALLERY']['VALUE'])): ?>
+<div class="page-gallery" style="display:none;">
+	<? foreach($arResult['PROPERTIES']['GALLERY']['VALUE'] as $img): ?>
+	<a href="<?= CFile::GetPath($img); ?>" data-fancybox="page-gallery">
+	<img src="<?= CFile::GetPath($img); ?>" alt="img">
+	</a>
+	<? endforeach; ?>
+</div>
+<? endif; ?>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const curBtns = document.querySelectorAll('.detail-product_sm-price__currency');
