@@ -194,7 +194,7 @@ $APPLICATION->SetTitle("Главная");
 		</div>
 	</div>
 </section>
-<section class="about-hp">
+<section class="about-hp" id="company">
 	<div class="container">
 		<div class="about-hp__inner">
 			<div class="about-hp__head">
