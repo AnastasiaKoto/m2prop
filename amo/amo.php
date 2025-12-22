@@ -12,15 +12,15 @@ function setAmoDeal($formId, $formCode, $name, $phone, $email, $commerc)
     $user_amo = $config['user_amo'];
     $access_token = $config['access_token'];
 
-    logMessage($commerc);
-    $custom_fields = [];
+    $custom_fields = '';
     if($commerc == 'Y') {
-        $custom_fields[] = 
-        [
-            "field_id" => 1637716,
-            "values" => [
-                [
-                    "value" => true
+        $custom_fields = [
+            "custom_fields_values" => [
+                "field_id" => 1637716,
+                "values" => [
+                    [
+                        "value" => true
+                    ]
                 ]
             ]
         ];
@@ -67,7 +67,7 @@ function setAmoDeal($formId, $formCode, $name, $phone, $email, $commerc)
                     ]
                 ]
             ],
-            "custom_fields_values" => $custom_fields,
+            $custom_fields
         ]
     ];
 
