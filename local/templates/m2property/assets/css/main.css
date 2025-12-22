@@ -1675,8 +1675,8 @@
              padding-left: 30px;
            }
 
-           &:first-child {
-             margin-bottom: 10px;
+           &:not(:first-child) {
+             margin-top: 10px;
            }
 
            &:last-child {
