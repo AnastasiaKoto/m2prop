@@ -252,7 +252,6 @@ window.addEventListener("resize", () => renderPagination());
 
 
 
-
 class ProductGallery {
   constructor(options) {
     this.mainSelector = options.mainSelector;
@@ -349,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     thumbsSelector: '#thumbs-slider',
     prevButton: document.querySelector('.custom-detail__prev'),
     nextButton: document.querySelector('.custom-detail__next'),
-    showGalleryBtn: document.querySelector('.show-gallery')
+    // showGalleryBtn: document.querySelector('.show-gallery')
   });
 });
 
