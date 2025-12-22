@@ -14,7 +14,7 @@
 $this->setFrameMode(true);
 if (!empty($arResult['ITEMS'])):
 	?>
-	<ul class="about-hp__services-items">
+	<ul class="about-hp__services-items" id="services">
 		<? foreach($arResult['ITEMS'] as $arItem): ?>
 		<li>
 			<a href="javascript:void(0)">

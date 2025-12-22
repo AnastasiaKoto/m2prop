@@ -1,5 +1,5 @@
 </main>
-<footer>
+<footer id="footer">
   <div class="overlay"></div>
   <div class="modal">
     <div class="modal-inner">

@@ -32,7 +32,7 @@
     <div class="header-inner">
       <div class="container">
         <div class="header-navigation">
-          <a href="javascript:void(0)" class="logo">
+          <a href="/" class="logo">
             <img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/logo.svg" alt="img">
           </a>
           <div class="nav-wrapper">
