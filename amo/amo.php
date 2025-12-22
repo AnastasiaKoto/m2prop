@@ -12,20 +12,6 @@ function setAmoDeal($formId, $formCode, $name, $phone, $email, $commerc)
     $user_amo = $config['user_amo'];
     $access_token = $config['access_token'];
 
-    $custom_fields = '';
-    if($commerc == 'Y') {
-        $custom_fields = [
-            "custom_fields_values" => [
-                "field_id" => 1637716,
-                "values" => [
-                    [
-                        "value" => true
-                    ]
-                ]
-            ]
-        ];
-    }
-
     $data = [
         [
             "name" => $name,
@@ -66,10 +52,22 @@ function setAmoDeal($formId, $formCode, $name, $phone, $email, $commerc)
                         ]
                     ]
                 ]
-            ],
-            $custom_fields
+            ]
         ]
     ];
+
+    if($commerc == 'Y') {
+        $data["custom_fields_values"] = [
+            [
+                "field_id" => 1637716,
+                "values" => [
+                    [
+                        "value" => true
+                    ]
+                ]
+            ]
+        ];
+    }
 
     $method = "/api/v4/leads/complex";
 
