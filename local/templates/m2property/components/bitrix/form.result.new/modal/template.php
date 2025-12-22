@@ -32,10 +32,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 	  */ ?>
 	<? } elseif ($arResult["isFormNote"] != "Y") { ?>
 		<?= $arResult["FORM_HEADER"] ?>
-		<? foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) { ?>
+		<? foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) { 
+			$required = $arQuestion['REQUIRED'];
+		?>
 			<? if ($arQuestion["STRUCTURE"][0]["FIELD_TYPE"] != "checkbox") { ?>
 				<div class="input-wrap">
-					<?= recreateTextField($FIELD_SID, $arQuestion, $arQuestion["STRUCTURE"][0]["FIELD_TYPE"]); ?>
+					<?= recreateTextField($FIELD_SID, $arQuestion, $arQuestion["STRUCTURE"][0]["FIELD_TYPE"], false, $required); ?>
 				</div>
 			<? } ?>
 		<? } ?>
@@ -44,10 +46,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 			value="<?= htmlspecialcharsbx(trim($arResult["arForm"]["BUTTON"]) == "" ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]); ?>">
 
 		<div class="agreed-col">
-			<? foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) { ?>
+			<? foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) { 
+				$required = $arQuestion['REQUIRED'];
+			?>
 				<? if ($arQuestion["STRUCTURE"][0]["FIELD_TYPE"] == "checkbox") { ?>
 					<label class="custom-checkbox">
-						<?= recreateTextField($FIELD_SID, $arQuestion, $arQuestion["STRUCTURE"][0]["FIELD_TYPE"]); ?>
+						<?= recreateTextField($FIELD_SID, $arQuestion, $arQuestion["STRUCTURE"][0]["FIELD_TYPE"], false, $required); ?>
 						<span class="custom-checkbox__box"></span>
 						<span class="custom-checkbox__text"><?= $arQuestion['CAPTION']; ?></span>
 					</label>
@@ -61,26 +65,23 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 			foreach ($arResult['FORM_ERRORS'] as $key => $value) {
 				$fields[] = $key;
 			}
-			p($fields);
 			?>
-			<?/*
-			  <script>
-				  (() => {
-					  var fields = <?= json_encode($fields, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
+			<script>
+				(() => {
+					var fields = <?= json_encode($fields, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
 
-					  const form = document.querySelector('.question-form__inner form[name="<?= $arResult['arForm']['SID']; ?>"]');
-					  if (Array.isArray(fields) && fields.length > 0) {
-						  fields.forEach(field => {
-							  field = field + '<?= $prefix ?>';
-							  let parent = form.querySelector(`#${field}`).closest('.input-wrapper');
-							  if (!parent.classList.contains('error')) {
-								  parent.classList.add('error');
-							  }
-						  });
-					  }
-				  })();
-			  </script>
-			  */ ?>
+					const form = document.querySelector('.modal-content form[name="<?= $arResult['arForm']['SID']; ?>"]');
+					if (Array.isArray(fields) && fields.length > 0) {
+						fields.forEach(field => {
+							field = field + '<?= $prefix ?>';
+							let parent = form.querySelector(`#${field}`).closest('.input-wrap');
+							if (!parent.classList.contains('error')) {
+								parent.classList.add('error');
+							}
+						});
+					}
+				})();
+			</script>
 		<? } ?>
 	<? } ?>
 </div>
