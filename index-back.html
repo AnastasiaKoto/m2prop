@@ -19,7 +19,7 @@
           <a href="javascript:void(0)" class="logo">
             <img src="./assets/img/logo.svg" alt="img">
           </a>
-          <div class="nav-wrapper darken">
+          <div class="nav-wrapper">
             <div class="nav-content">
               <div class="nav-content__head">
                 <a href="javascript:void(0)" class="logo">
@@ -63,7 +63,7 @@
                   </li>
                 </ul>
               </nav>
-              <button type="button" class="consult">
+              <button type="button" class="consult" data-modal="open-modal">
                 Заказать консультацию
               </button>
               <ul class="header-social">
@@ -131,91 +131,219 @@
     <div class="detail-decor">
       <img src="./assets/img/detail-decor.svg" alt="img">
     </div>
-    <!-- <div class="detail-product-image">
-      <img src="./assets/img/homepage.jpg" alt="img">
-      <div class="layer"></div>
-    </div> -->
     <section class="mainscreen-hp">
-      <div class="splide slider-hp">
-        <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
-              <div class="slider-hp__image">
-                <img src="./assets/img/homepage.jpg" alt="img">
+      <div class="container">
+        <div class="mainscreen-hp__inner">
+          <div class="mainscreen-hp__info">
+            <h1>
+              Ваш надёжный партнёр в<br>
+              <span>
+                реализации недвижимости
+              </span>
+            </h1>
+            <div class="mainscreen-hp__description">
+              Комплексное сопровождение девелоперских проектов от концепции до успешной реализации
+            </div>
+            <div class="mainscreen-hp__bubbles">
+              <div class="mainscreen-hp__bubble">
+                Проектирование
+              </div>
+              <div class="mainscreen-hp__bubble">
+                Маркетинговое продвижение
+              </div>
+              <div class="mainscreen-hp__bubble">
+                Дальнейшая эксплуатация
+              </div>
+            </div>
+          </div>
+          <div class="mainscreen-hp__slider" data-move-target=".mainscreen-hp__description" data-move-break="992">
+            <div id="slider-wrapper__hp" class="slider-wrapper__hp">
+              <!-- Большой слайдер -->
+              <div id="main-slider__hp" class="splide main-slider__hp">
+                <div class="splide__track">
+                  <ul class="splide__list">
+                    <li class="splide__slide">
+                      <img src="./assets/img/card.png" alt="img">
+                      <div class="bg-layer"></div>
+                      <div class="main-slider__hp-tag">
+                        Премиум, бизнес
+                      </div>
+                      <div class="main-slider__hp-info">
+                        <div class="main-slider__hp-name">
+                          Кристалл Истра
+                        </div>
+                        <div class="main-slider__hp-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское
+                          </span>
+                        </div>
+                        <div class="main-slider__hp-price">
+                          <span>
+                            от
+                          </span>
+                          ₽ 65.593.000
+                        </div>
+                      </div>
+                      <a href="javascript:void(0)" class="main-slider__hp-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                            stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="splide__slide">
+                      <img src="./assets/img/sl2.png" alt="img">
+                      <div class="bg-layer"></div>
+                      <div class="main-slider__hp-tag">
+                        Премиум, бизнес
+                      </div>
+                      <div class="main-slider__hp-info">
+                        <div class="main-slider__hp-name">
+                          Кристалл Истра
+                        </div>
+                        <div class="main-slider__hp-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское
+                          </span>
+                        </div>
+                        <div class="main-slider__hp-price">
+                          <span>
+                            от
+                          </span>
+                          ₽ 65.593.000
+                        </div>
+                      </div>
+                      <a href="javascript:void(0)" class="main-slider__hp-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                            stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="splide__slide">
+                      <img src="./assets/img/slide2.png" alt="img">
+                      <div class="bg-layer"></div>
+                      <div class="main-slider__hp-tag">
+                        Премиум, бизнес
+                      </div>
+                      <div class="main-slider__hp-info">
+                        <div class="main-slider__hp-name">
+                          Кристалл Истра
+                        </div>
+                        <div class="main-slider__hp-address">
+                          <address>
+                            18 км от МКАД
+                          </address>
+                          <span>
+                            Новорижское
+                          </span>
+                        </div>
+                        <div class="main-slider__hp-price">
+                          <span>
+                            от
+                          </span>
+                          ₽ 65.593.000
+                        </div>
+                      </div>
+                      <a href="javascript:void(0)" class="main-slider__hp-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                            stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
-              <div class="mainscreen-hp__inner">
-                <div class="container">
-                  <div class="mainscreen-hp__info">
-                    <h1>
-                      Ваш надёжный партнёр
-                      в реализации недвижимости
-                    </h1>
-                    <div class="mainscreen-hp__description">
-                      Комплексное сопровождение девелоперских проектов от концепции до успешной реализации
-                    </div>
-                    <a href="javascript:void(0)" class="all-projects">
-                      <span>
-                        Все объекты
-                      </span>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
-                          stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
-                      </svg>
-                    </a>
+              <!-- Маленький слайд следующего изображения -->
+              <div class="next-thumb__wrap">
+                <a href="javascript:void(0)" class="all-projects">
+                  <span>
+                    Все объекты
+                  </span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
+                      stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                  </svg>
+                </a>
+                <div id="next-thumb__hp" class="splide next-thumb">
+                  <div class="splide__track">
+                    <ul class="splide__list">
+                      <li class="splide__slide">
+                        <img src="./assets/img/card.png" alt="img">
+                        <div class="next-thumb__layer"></div>
+                        <a href="javascript:void(0)" class="next-thumb__arrow">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                              stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                          </svg>
+                        </a>
+                        <div class="next-thumb__name">
+                          Кристалл Истра
+                        </div>
+                      </li>
+                      <li class="splide__slide">
+                        <img src="./assets/img/sl2.png" alt="img">
+                        <div class="next-thumb__layer"></div>
+                        <a href="javascript:void(0)" class="next-thumb__arrow">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                              stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                          </svg>
+                        </a>
+                        <div class="next-thumb__name">
+                          Кристалл Истра
+                        </div>
+                      </li>
+                      <li class="splide__slide">
+                        <img src="./assets/img/slide2.png" alt="img">
+                        <div class="next-thumb__layer"></div>
+                        <a href="javascript:void(0)" class="next-thumb__arrow">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.9989 7L17.4986 7.00049V12.5005M17.0948 7.40389L7.19531 17.3034" stroke="white"
+                              stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
+                          </svg>
+                        </a>
+                        <div class="next-thumb__name">
+                          Кристалл Истра
+                        </div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
-            </li>
-            <li class="splide__slide">
-              <div class="slider-hp__image">
-                <img src="./assets/img/homepage.jpg" alt="img">
-              </div>
 
-              <div class="mainscreen-hp__inner">
-                <div class="container">
-                  <div class="mainscreen-hp__info">
-                    <h1>
-                      Ваш надёжный партнёр
-                      в реализации недвижимости
-                    </h1>
-                    <div class="mainscreen-hp__description">
-                      Комплексное сопровождение девелоперских проектов от концепции до успешной реализации
-                    </div>
-                    <a href="javascript:void(0)" class="all-projects">
-                      <span>
-                        Все объекты
-                      </span>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.0028 7L17.5025 7.00049V12.5005M17.0987 7.40389L7.19922 17.3034" stroke="white"
-                          stroke-width="1.5" stroke-miterlimit="16" stroke-linecap="square" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="mainscreen-hp__navigation">
-          <button class="mainscreen-hp__arrow mainscreen-hp__arrow-prev">
-            <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4.33593 8.75L1.04304 5.45711C0.652517 5.06658 0.652517 4.43342 1.04304 4.04289L4.33593 0.75M1.33594 4.75L15.3359 4.75"
-                stroke="#F5F5F5" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
-          </button>
-          <ul class="splide__pagination"></ul>
-          <button class="mainscreen-hp__arrow mainscreen-hp__arrow-next">
-            <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M11.75 8.75L15.0429 5.45711C15.4334 5.06658 15.4334 4.43342 15.0429 4.04289L11.75 0.75M14.75 4.75L0.75 4.75"
-                stroke="#F5F5F5" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
-          </button>
+            </div>
+            <div class="mainscreen-hp__navigation">
+              <button class="mainscreen-hp__arrow mainscreen-hp__arrow-prev">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4.33593 8.75L1.04304 5.45711C0.652517 5.06658 0.652517 4.43342 1.04304 4.04289L4.33593 0.75M1.33594 4.75L15.3359 4.75"
+                    stroke="#242220" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </button>
+              <ul class="splide__pagination"></ul>
+              <button class="mainscreen-hp__arrow mainscreen-hp__arrow-next">
+                <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M11.75 8.75L15.0429 5.45711C15.4334 5.06658 15.4334 4.43342 15.0429 4.04289L11.75 0.75M14.75 4.75L0.75 4.75"
+                    stroke="#242220" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-
     </section>
     <section class="about-hp">
       <div class="container">
