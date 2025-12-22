@@ -1,5 +1,5 @@
 <?php
-function setAmoDeal($formCode, $name, $phone, $email)
+function setAmoDeal($formId, $formCode, $name, $phone, $email, $commerc)
 {
     $config = require_once $_SERVER['DOCUMENT_ROOT'] . '/amo/config.php';
     if (!$config) {
@@ -12,7 +12,18 @@ function setAmoDeal($formCode, $name, $phone, $email)
     $user_amo = $config['user_amo'];
     $access_token = $config['access_token'];
 
-    logMessage($access_token);
+    $custom_fields = [];
+    if($commerc == 'Y') {
+        $custom_fields[] = 
+        [
+            "field_id" => 1637716,
+            "values" => [
+                [
+                    "value" => true
+                ]
+            ]
+        ];
+    }
 
     $data = [
         [
@@ -23,9 +34,9 @@ function setAmoDeal($formCode, $name, $phone, $email)
             "_embedded" => [
                 "metadata" => [
                     "category" => "forms",
-                    "form_id" => 1,
+                    "form_id" => $formId,
                     "form_name" => $formCode,
-                    "form_page" => "https://m2property.ru/test/",
+                    "form_page" => "https://m2property.ru/",
                     "form_sent_at" => time(),
                     "referer" => $domain
                 ],
@@ -54,7 +65,8 @@ function setAmoDeal($formCode, $name, $phone, $email)
                         ]
                     ]
                 ]
-            ]
+            ],
+            "custom_fields_values" => $custom_fields,
         ]
     ];
 

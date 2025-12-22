@@ -1104,3 +1104,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.querySelector('.modal');
+  const overlay = document.querySelector('.overlay');
+  const html = document.querySelector('html');
+  if (!modal || !overlay) return;
+
+ 
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-modal="open-modal"]')) {
+      modal.classList.add('active');
+      overlay.classList.add('active');
+      html.classList.add('lock');
+    }
+  });
+
+
+  document.addEventListener('click', (e) => {
+    if (
+      e.target.closest('.close-modal') ||
+      e.target === overlay
+    ) {
+      closeModal();
+    }
+  });
+
+
+  modal.addEventListener('click', (e) => {
+    if (!e.target.closest('.modal-inner')) {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+    html.classList.remove('lock');
+  }
+});
