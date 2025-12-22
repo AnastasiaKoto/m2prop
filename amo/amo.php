@@ -56,8 +56,8 @@ function setAmoDeal($formId, $formCode, $name, $phone, $email, $commerc)
         ]
     ];
 
-    if($commerc == 'Y') {
-        $data["custom_fields_values"] = [
+    if ($commerc == 'Y') {
+        $data[0]["custom_fields_values"] = [
             [
                 "field_id" => 1637716,
                 "values" => [
