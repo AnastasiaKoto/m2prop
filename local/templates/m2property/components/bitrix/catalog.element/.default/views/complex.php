@@ -274,7 +274,7 @@ if (!empty($arResult['PROPERTIES']['PRESENTATION']['VALUE'])) {
                                             </span>
                                         </div>
                                     </div>
-                                    <a href="javascript:void(0)" class="plan-btn__more">
+                                    <a href="javascript:void(0)" class="plan-btn__more" data-modal="open-modal">
                                         <span>
                                             Подробнее
                                         </span>

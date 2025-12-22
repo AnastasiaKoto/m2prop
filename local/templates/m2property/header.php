@@ -64,7 +64,7 @@
                 ),
                 false
               );?>
-              <button type="button" class="consult">
+              <button type="button" class="consult" data-modal="open-modal">
                 Заказать консультацию
               </button>
               <?$APPLICATION->IncludeComponent("bitrix:highloadblock.list", "socials", Array(
