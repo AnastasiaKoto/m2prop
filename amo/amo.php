@@ -12,6 +12,7 @@ function setAmoDeal($formId, $formCode, $name, $phone, $email, $commerc)
     $user_amo = $config['user_amo'];
     $access_token = $config['access_token'];
 
+    logMessage($commerc);
     $custom_fields = [];
     if($commerc == 'Y') {
         $custom_fields[] = 
