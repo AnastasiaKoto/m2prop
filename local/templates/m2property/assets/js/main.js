@@ -869,71 +869,71 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  const mainEl = document.getElementById('main-slider__hp');
-  const smallEl = document.getElementById('next-thumb__hp');
+// document.addEventListener('DOMContentLoaded', function () {
+//   const mainEl = document.getElementById('main-slider__hp');
+//   const smallEl = document.getElementById('next-thumb__hp');
 
-  if (!mainEl || !smallEl) return;
+//   if (!mainEl || !smallEl) return;
 
-  // Миниатюра
-  const small = new Splide(smallEl, {
-    type: 'slide',
-    perPage: 1,
-    arrows: false,
-    pagination: false,
-    drag: false,
-    rewind: true,
-  }).mount();
+//   // Миниатюра
+//   const small = new Splide(smallEl, {
+//     type: 'slide',
+//     perPage: 1,
+//     arrows: false,
+//     pagination: false,
+//     drag: false,
+//     rewind: true,
+//   }).mount();
 
-  // Главный слайдер
-  const main = new Splide(mainEl, {
-    type: 'fade',
-    arrows: false,
-    pagination: false, // стандартную пагинацию отключаем
-    rewind: true,
-  }).mount();
+//   // Главный слайдер
+//   const main = new Splide(mainEl, {
+//     type: 'fade',
+//     arrows: false,
+//     pagination: false, // стандартную пагинацию отключаем
+//     rewind: true,
+//   }).mount();
 
-  // Синхронизация миниатюры
-  main.on('move', (index) => {
-    small.go((index + 1) % main.length);
-    updatePagination(index);
-  });
+//   // Синхронизация миниатюры
+//   main.on('move', (index) => {
+//     small.go((index + 1) % main.length);
+//     updatePagination(index);
+//   });
 
-  small.go(1);
+//   small.go(1);
 
-  // ------------------------
-  // Кастомные стрелки
-  // ------------------------
-  const prevBtn = document.querySelector('.mainscreen-hp__arrow-prev');
-  const nextBtn = document.querySelector('.mainscreen-hp__arrow-next');
+//   // ------------------------
+//   // Кастомные стрелки
+//   // ------------------------
+//   const prevBtn = document.querySelector('.mainscreen-hp__arrow-prev');
+//   const nextBtn = document.querySelector('.mainscreen-hp__arrow-next');
 
-  if (prevBtn) prevBtn.addEventListener('click', () => main.go('<'));
-  if (nextBtn) nextBtn.addEventListener('click', () => main.go('>'));
+//   if (prevBtn) prevBtn.addEventListener('click', () => main.go('<'));
+//   if (nextBtn) nextBtn.addEventListener('click', () => main.go('>'));
 
-  // ------------------------
-  // Кастомная внешняя пагинация
-  // ------------------------
-  const paginationContainer = document.querySelector('.mainscreen-hp__navigation .splide__pagination');
+//   // ------------------------
+//   // Кастомная внешняя пагинация
+//   // ------------------------
+//   const paginationContainer = document.querySelector('.mainscreen-hp__navigation .splide__pagination');
 
-  function createPagination() {
-    paginationContainer.innerHTML = '';
-    for (let i = 0; i < main.length; i++) {
-      const li = document.createElement('li');
-      li.className = 'splide__pagination__page';
-      li.dataset.index = i;
-      li.addEventListener('click', () => main.go(i));
-      paginationContainer.appendChild(li);
-    }
-    updatePagination(main.index);
-  }
+//   function createPagination() {
+//     paginationContainer.innerHTML = '';
+//     for (let i = 0; i < main.length; i++) {
+//       const li = document.createElement('li');
+//       li.className = 'splide__pagination__page';
+//       li.dataset.index = i;
+//       li.addEventListener('click', () => main.go(i));
+//       paginationContainer.appendChild(li);
+//     }
+//     updatePagination(main.index);
+//   }
 
-  function updatePagination(activeIndex) {
-    const pages = paginationContainer.querySelectorAll('.splide__pagination__page');
-    pages.forEach((p, i) => p.classList.toggle('is-active', i === activeIndex));
-  }
+//   function updatePagination(activeIndex) {
+//     const pages = paginationContainer.querySelectorAll('.splide__pagination__page');
+//     pages.forEach((p, i) => p.classList.toggle('is-active', i === activeIndex));
+//   }
 
-  createPagination();
-});
+//   createPagination();
+// });
 
 
 
@@ -991,6 +991,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //   if (tabs[0]) tabs[0].click();
 // });
+document.addEventListener('DOMContentLoaded', () => {
+	const slider = document.querySelector('.slider-hp');
+	if (!slider) return;
+
+	const splide = new Splide(slider, {
+		type: 'loop',
+		perPage: 1,
+		perMove: 1,
+		speed: 800,
+    // gap: 5,
+    easing: 'ease',
+		pagination: true,
+		arrows: false, 
+		drag: true,
+		classes: {
+			pagination: 'splide__pagination',
+			page: 'splide__pagination__page'
+		}
+	});
+
+	// ===== МОНТИРОВАНИЕ =====
+	splide.mount();
+
+	// ===== КАСТОМНЫЕ СТРЕЛКИ =====
+	const prevBtn = slider.querySelector('.mainscreen-hp__arrow-prev');
+	const nextBtn = slider.querySelector('.mainscreen-hp__arrow-next');
+
+	prevBtn?.addEventListener('click', () => {
+		splide.go('<');
+	});
+
+	nextBtn?.addEventListener('click', () => {
+		splide.go('>');
+	});
+
+	// ===== КАСТОМНАЯ ПАГИНАЦИЯ (контейнер уже в HTML) =====
+	const pagination = slider.querySelector('.splide__pagination');
+
+	splide.on('pagination:mounted', (data) => {
+		pagination.innerHTML = '';
+		pagination.append(...data.items.map(item => item.button));
+	});
+
+	// ===== АКТИВНЫЕ СТРЕЛКИ (опционально) =====
+	splide.on('move', () => {
+		prevBtn.classList.toggle('disabled', splide.index === 0);
+		nextBtn.classList.toggle('disabled', splide.index === splide.length - 1);
+	});
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1142,3 +1191,5 @@ document.addEventListener('DOMContentLoaded', () => {
     html.classList.remove('lock');
   }
 });
+
+
