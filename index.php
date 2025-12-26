@@ -2,9 +2,6 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Главная");
 ?>
-<div class="detail-decor">
-	<img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/main_decor.svg" alt="img">
-</div>
 <? $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"main_banner", 
