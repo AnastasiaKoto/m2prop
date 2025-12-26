@@ -152,7 +152,7 @@
         max-width: 100%;
       }
 
-      & h1 {
+      & h1, h2 {
         margin-bottom: 50px;
         color: #fff;
 
