@@ -1191,5 +1191,3 @@ document.addEventListener('DOMContentLoaded', () => {
     html.classList.remove('lock');
   }
 });
-
-
