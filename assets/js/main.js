@@ -469,6 +469,7 @@ class Tabs {
 
       if (isTarget) {
         const sliderElement = c.querySelector(this.sliderOptions.sliderSelector);
+
         if (sliderElement && !this.sliders[target]) {
           this.sliders[target] = new CustomSplide({
             slider: sliderElement,
@@ -478,15 +479,18 @@ class Tabs {
             padding: this.sliderOptions.padding,
             autoplay: this.sliderOptions.autoplay
           });
-        } else if (this.sliders[target]) {
-          this.sliders[target].refresh();
         }
 
         this.activeSlider = this.sliders[target];
-        this.updateArrowState();
+
+        requestAnimationFrame(() => {
+          this.activeSlider?.refresh();
+        });
+
       }
     });
   }
+
 
   updateArrowState() {
     if (this.activeSlider && this.prevButton && this.nextButton) {
@@ -496,7 +500,7 @@ class Tabs {
 }
 
 
-// Инициализация для Насти
+
 document.addEventListener('DOMContentLoaded', () => {
   const tabsExist = document.querySelector('.tab-content__similar-link');
 
@@ -512,6 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nextSelector: '.similar-arrow__next',
       perPage: 4,
       breakpoints: {
+        1600: { perPage: 2, },
         1024: { perPage: 2 },
         700: { gap: '4px', right: 10 }
       },
@@ -522,37 +527,131 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const buttons = document.querySelectorAll(".detail-product_sm-price__currency");
-//   const curPrice = document.querySelector(".detail-product_sm-price__num-cur");
-//   const oldPrice = document.querySelector(".detail-product_sm-price__num-old");
 
-//   if (!buttons.length || !curPrice || !oldPrice) return;
 
-//   const formatNumber = (num) =>
-//     num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
-//   const symbols = {
-//     rub: "₽",
-//     usd: "$",
-//     eur: "€",
-//   };
 
-//   buttons.forEach(btn => {
-//     btn.addEventListener("click", () => {
-//       const currency = btn.dataset.currency;
 
-//       buttons.forEach(b => b.classList.remove("active"));
-//       btn.classList.add("active");
 
-//       const cur = curPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
-//       const old = oldPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".detail-product_sm-price__currency");
+  const curPrice = document.querySelector(".detail-product_sm-price__num-cur");
+  const oldPrice = document.querySelector(".detail-product_sm-price__num-old");
 
-//       curPrice.innerHTML = `${formatNumber(cur)} ${symbols[currency]}`;
-//       oldPrice.innerHTML = `${formatNumber(old)} ${symbols[currency]}/м²`;
+  if (!buttons.length || !curPrice || !oldPrice) return;
+
+  const formatNumber = (num) =>
+    num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  const symbols = {
+    rub: "₽",
+    usd: "$",
+    eur: "€",
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const currency = btn.dataset.currency;
+
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const cur = curPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
+      const old = oldPrice.dataset[`price${currency.charAt(0).toUpperCase() + currency.slice(1)}`];
+
+      curPrice.innerHTML = `${formatNumber(cur)} ${symbols[currency]}`;
+      oldPrice.innerHTML = `${formatNumber(old)} ${symbols[currency]}/м²`;
+    });
+  });
+});
+
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const tabLinks = document.querySelectorAll('.tab-content__similar-link');
+//   const tabContents = document.querySelectorAll('.tab-content__similar-content');
+
+//   // Хранилище инициализированных слайдеров
+//   const splideInstances = new Map();
+
+//   function initSplide(el, options = {}) {
+//     if (splideInstances.has(el)) {
+//       splideInstances.get(el).refresh();
+//       return;
+//     }
+
+//     const splide = new Splide(el, options);
+//     splide.mount();
+//     splideInstances.set(el, splide);
+//   }
+
+//   function initTabSliders(tabContent) {
+//     // 1. Основной слайдер в табе
+//     const mainSliders = tabContent.querySelectorAll('.similar-slider');
+
+//     mainSliders.forEach(slider => {
+//       initSplide(slider, {
+//         perPage: 4,
+//         gap: 20,
+//         pagination: false,
+//         arrows: false,
+//         breakpoints: {
+//           1024: { perPage: 3 },
+//           768: { perPage: 2 },
+//           480: { perPage: 1 },
+//         },
+//       });
+//     });
+
+//     // 2. Вложенные слайдеры с картинками
+//     const innerSliders = tabContent.querySelectorAll('.catalog-images__slider');
+
+//     innerSliders.forEach(slider => {
+//       initSplide(slider, {
+//         type: 'loop',
+//         perPage: 1,
+//         arrows: false,
+//         pagination: true,
+//       });
+//     });
+//   }
+
+//   function showTab(tabName) {
+//     tabContents.forEach(content => {
+//       const isActive = content.dataset.tab === tabName;
+//       content.style.display = isActive ? 'block' : 'none';
+
+//       if (isActive) {
+//         initTabSliders(content);
+//       }
+//     });
+
+//     tabLinks.forEach(link => {
+//       link.classList.toggle(
+//         'active',
+//         link.dataset.tab === tabName
+//       );
+//     });
+//   }
+
+//   // Клик по табам
+//   tabLinks.forEach(link => {
+//     link.addEventListener('click', e => {
+//       e.preventDefault();
+//       showTab(link.dataset.tab);
 //     });
 //   });
+
+//   // Инициализация активного таба при загрузке
+//   const activeTab =
+//     document.querySelector('.tab-content__similar-link.active') ||
+//     tabLinks[0];
+
+//   if (activeTab) {
+//     showTab(activeTab.dataset.tab);
+//   }
 // });
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const curBtns = document.querySelectorAll('.detail-product_sm-price__currency');
@@ -837,7 +936,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Создаём кнопку "Подробнее"
     const btn = document.createElement('button');
     btn.className = 'tabs-more-btn';
-    btn.textContent = 'Подробнее';
+    btn.textContent = 'Подробнее...';
 
     // Вставляем кнопку после блока текста
     text.after(btn);
@@ -992,53 +1091,53 @@ document.addEventListener('DOMContentLoaded', () => {
 //   if (tabs[0]) tabs[0].click();
 // });
 document.addEventListener('DOMContentLoaded', () => {
-	const slider = document.querySelector('.slider-hp');
-	if (!slider) return;
+  const slider = document.querySelector('.slider-hp');
+  if (!slider) return;
 
-	const splide = new Splide(slider, {
-		type: 'loop',
-		perPage: 1,
-		perMove: 1,
-		speed: 800,
+  const splide = new Splide(slider, {
+    type: 'loop',
+    perPage: 1,
+    perMove: 1,
+    speed: 800,
     // gap: 5,
     easing: 'ease',
-		pagination: true,
-		arrows: false, 
-		drag: true,
-		classes: {
-			pagination: 'splide__pagination',
-			page: 'splide__pagination__page'
-		}
-	});
+    pagination: true,
+    arrows: false,
+    drag: true,
+    classes: {
+      pagination: 'splide__pagination',
+      page: 'splide__pagination__page'
+    }
+  });
 
-	// ===== МОНТИРОВАНИЕ =====
-	splide.mount();
+  // ===== МОНТИРОВАНИЕ =====
+  splide.mount();
 
-	// ===== КАСТОМНЫЕ СТРЕЛКИ =====
-	const prevBtn = slider.querySelector('.mainscreen-hp__arrow-prev');
-	const nextBtn = slider.querySelector('.mainscreen-hp__arrow-next');
+  // ===== КАСТОМНЫЕ СТРЕЛКИ =====
+  const prevBtn = slider.querySelector('.mainscreen-hp__arrow-prev');
+  const nextBtn = slider.querySelector('.mainscreen-hp__arrow-next');
 
-	prevBtn?.addEventListener('click', () => {
-		splide.go('<');
-	});
+  prevBtn?.addEventListener('click', () => {
+    splide.go('<');
+  });
 
-	nextBtn?.addEventListener('click', () => {
-		splide.go('>');
-	});
+  nextBtn?.addEventListener('click', () => {
+    splide.go('>');
+  });
 
-	// ===== КАСТОМНАЯ ПАГИНАЦИЯ (контейнер уже в HTML) =====
-	const pagination = slider.querySelector('.splide__pagination');
+  // ===== КАСТОМНАЯ ПАГИНАЦИЯ (контейнер уже в HTML) =====
+  const pagination = slider.querySelector('.splide__pagination');
 
-	splide.on('pagination:mounted', (data) => {
-		pagination.innerHTML = '';
-		pagination.append(...data.items.map(item => item.button));
-	});
+  splide.on('pagination:mounted', (data) => {
+    pagination.innerHTML = '';
+    pagination.append(...data.items.map(item => item.button));
+  });
 
-	// ===== АКТИВНЫЕ СТРЕЛКИ (опционально) =====
-	splide.on('move', () => {
-		prevBtn.classList.toggle('disabled', splide.index === 0);
-		nextBtn.classList.toggle('disabled', splide.index === splide.length - 1);
-	});
+  // ===== АКТИВНЫЕ СТРЕЛКИ (опционально) =====
+  splide.on('move', () => {
+    prevBtn.classList.toggle('disabled', splide.index === 0);
+    nextBtn.classList.toggle('disabled', splide.index === splide.length - 1);
+  });
 });
 
 
@@ -1055,8 +1154,8 @@ document.addEventListener('DOMContentLoaded', () => {
     perPage: 1,
     gap: '1rem',
     rewind: true,
-    arrows: false,     
-    pagination: true,   
+    arrows: false,
+    pagination: true,
     paginationClass: 'splide__pagination',
   });
 
@@ -1159,7 +1258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const html = document.querySelector('html');
   if (!modal || !overlay) return;
 
- 
+
   document.addEventListener('click', (e) => {
     if (e.target.closest('[data-modal="open-modal"]')) {
       modal.classList.add('active');
@@ -1191,3 +1290,5 @@ document.addEventListener('DOMContentLoaded', () => {
     html.classList.remove('lock');
   }
 });
+
+
