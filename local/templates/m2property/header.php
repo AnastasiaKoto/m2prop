@@ -107,11 +107,11 @@
   <main>
     <? 
     if($currentPage == '/') {
-      Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/homepage.css');
+      Asset::getInstance()->addCss('/assets/css/homepage.css');
     }
 
     if ($page === 'detail') {
-      Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/detail-product.css');
+      Asset::getInstance()->addCss('/assets/css/detail-product.css');
     }
     ?>
     <div class="container">
