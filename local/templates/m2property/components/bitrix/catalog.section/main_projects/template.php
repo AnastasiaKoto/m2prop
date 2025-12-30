@@ -69,7 +69,8 @@ if (!empty($arResult['ITEMS'])): ?>
 								); ?>
 							</div>
 						</div>
-						<a href="/catalog/" class="all-projects">
+						<a href="/catalog/" class="all-projects" data-move-target=".projects-hp__left-info h2"
+                data-move-break="992">
 							<span>
 								Смотреть все
 							</span>
