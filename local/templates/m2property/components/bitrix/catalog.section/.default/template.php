@@ -138,16 +138,18 @@ if (!empty($arResult['ITEMS'])): ?>
 							<div class="catalog-item__price">
 								<?= $arItem['PROPERTIES']['NEW_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['NEW_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
 							</div>
-							<div class="catalog-item__old-price">
-								<?= $arItem['PROPERTIES']['OLD_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
-							</div>
-							<?
-							$discount = discountPrecent($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], $arItem['PROPERTIES']['NEW_PRICE']['VALUE']);
-							if ($discount > 0):
-								?>
-								<div class="catalog-item__sale">
-									-<?= $discount; ?>%
+							<? if(!empty($arItem['PROPERTIES']['OLD_PRICE']['VALUE'])): ?>
+								<div class="catalog-item__old-price">
+									<?= number_format($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], 0, ',', ' ') . '₽'; ?>
 								</div>
+								<?
+								$discount = discountPrecent($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], $arItem['PROPERTIES']['NEW_PRICE']['VALUE']);
+								if ($discount > 0):
+									?>
+									<div class="catalog-item__sale">
+										-<?= $discount; ?>%
+									</div>
+								<? endif; ?>
 							<? endif; ?>
 						</div>
 						<div class="catalog-item__info">

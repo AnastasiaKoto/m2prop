@@ -281,7 +281,8 @@
 						{
 							if (items.hasOwnProperty(k))
 							{
-								items[k].removeAttribute('style');
+								window.catalogSliders.refresh();
+								setTimeout(items[k].removeAttribute('style'), 100);
 							}
 						}
 					}

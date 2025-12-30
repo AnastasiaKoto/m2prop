@@ -28,13 +28,23 @@
   <div id="panel">
     <? $APPLICATION->ShowPanel(); ?>
   </div>
-  <? $currentPage = $APPLICATION->GetCurPage(); ?>
+  <? $currentPage = $APPLICATION->GetCurPage(); 
+  $page = '';
+  if (preg_match('#/catalog/.+/.+/#', $currentPage)) {
+    $page = 'detail';
+  }
+  if($page === 'detail' || $currentPage === '/') {
+    $logoPath = SITE_TEMPLATE_PATH . '/assets/img/logo_white.svg';
+  } else {
+    $logoPath = SITE_TEMPLATE_PATH . '/assets/img/logo.svg';
+  }
+  ?>
   <header>
     <div class="header-inner">
       <div class="container">
         <div class="header-navigation">
           <a href="/" class="logo">
-            <img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/logo.svg" alt="img">
+            <img src="<?= $logoPath; ?>" alt="img">
           </a>
           <div class="nav-wrapper <?= $currentPage == '/' ? 'darken' : ''; ?>">
             <div class="nav-content">
@@ -96,14 +106,8 @@
   </header>
   <main>
     <? 
-    $page = '';
-
     if($currentPage == '/') {
       Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/homepage.css');
-    }
-
-    if (preg_match('#/catalog/.+/.+/#', $currentPage)) {
-      $page = 'detail';
     }
 
     if ($page === 'detail') {
