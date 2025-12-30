@@ -12,13 +12,13 @@
   <? echo $APPLICATION->GetPageProperty('description'); ?>
   <? echo $APPLICATION->GetPageProperty('keywords'); ?>
   <?
-  Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/fancybox.css');
-  Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/splide.min.css');
-  Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/main.css');
-  Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . '/assets/css/catalog.css');
-  Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/fancybox.umd.js');
-  Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/splide.min.js');
-  Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . '/assets/js/main.js');
+  Asset::getInstance()->addCss('/assets/css/fancybox.css');
+  Asset::getInstance()->addCss('/assets/css/splide.min.css');
+  Asset::getInstance()->addCss('/assets/css/main.css');
+  Asset::getInstance()->addCss('/assets/css/catalog.css');
+  Asset::getInstance()->addJs('/assets/js/fancybox.umd.js');
+  Asset::getInstance()->addJs('/assets/js/splide.min.js');
+  Asset::getInstance()->addJs('/assets/js/main.js');
 
   $APPLICATION->ShowHead();
   ?>
@@ -28,6 +28,7 @@
   <div id="panel">
     <? $APPLICATION->ShowPanel(); ?>
   </div>
+  <? $currentPage = $APPLICATION->GetCurPage(); ?>
   <header>
     <div class="header-inner">
       <div class="container">
@@ -35,7 +36,7 @@
           <a href="/" class="logo">
             <img src="<?= SITE_TEMPLATE_PATH ?>/assets/img/logo.svg" alt="img">
           </a>
-          <div class="nav-wrapper">
+          <div class="nav-wrapper <?= $currentPage == '/' ? 'darken' : ''; ?>">
             <div class="nav-content">
               <div class="nav-content__head">
                 <a href="javascript:void(0)" class="logo">
@@ -95,7 +96,6 @@
   </header>
   <main>
     <? 
-    $currentPage = $APPLICATION->GetCurPage();
     $page = '';
 
     if($currentPage == '/') {
