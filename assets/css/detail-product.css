@@ -183,6 +183,10 @@
       line-height: 100%;
       margin-bottom: 56px;
 
+      p {
+        padding-bottom: 20px;
+      }
+
       @media(max-width: 1600px) {
         font-size: 22px;
       }
