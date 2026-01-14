@@ -1907,6 +1907,8 @@ footer {
   gap: 15px;
   cursor: pointer;
   user-select: none;
+  position: relative;
+  z-index: 10;
 }
 
 .custom-checkbox input {
