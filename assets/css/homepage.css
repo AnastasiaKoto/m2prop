@@ -36,11 +36,23 @@
     }
 
     & .splide__slide {
+      /*
       padding-top: 112px;
       padding-bottom: 120px;
       height: 100dvh;
+      */
+      padding-top: 448px;
+      padding-bottom: 207px;
       display: flex;
       align-items: center;
+
+      @media(max-width: 1080px) {
+        padding-top: 248px;
+      }
+      @media(max-width: 780px) {
+        padding-top: 141px;
+        padding-bottom: 67px;
+      }
     }
 
     & .mainscreen-hp__inner {
@@ -66,7 +78,8 @@
 
     @media(max-width: 700px) {
       transform: translate(0);
-      top: initial;
+      /*top: initial;*/
+      bottom: 28px;
       right: 0;
       justify-content: center;
       left: 0;
@@ -153,15 +166,22 @@
         max-width: 100%;
       }
 
-      & h1 {
-        margin-bottom: 50px;
+      & h1, & h2 {
+        margin-bottom: 40px;
         color: #fff;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 90%;
 
         @media(max-width: 992px) {
           font-size: 30px;
           font-style: normal;
           font-weight: 700;
           line-height: 90%;
+        }
+        @media(max-width: 780px) {
+          margin-bottom: 27px;
         }
 
         & span {
@@ -177,7 +197,7 @@
       & .mainscreen-hp__description {
         max-width: 790px;
         color: rgba(255, 255, 255, 0.60);
-        font-size: 40px;
+        font-size: 22px;
         font-style: normal;
         font-weight: 600;
         line-height: 100%;
@@ -672,7 +692,7 @@
 
       & .about-hp__head-title {
         color: rgba(36, 34, 32, 0.80);
-        font-size: 30px;
+        font-size: 22px;
         font-style: normal;
         font-weight: 500;
         line-height: 100%;
@@ -687,7 +707,7 @@
 
       & .about-hp__head-description {
         color: rgba(36, 34, 32, 0.40);
-        font-size: 25px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 500;
         line-height: 100%;
@@ -783,7 +803,7 @@
 
         & .about-hp__services-item__title {
           color: rgba(0, 0, 0, 0.70);
-          font-size: 35px;
+          font-size: 32px;
           font-style: normal;
           font-weight: 500;
           line-height: 100%;
@@ -1078,7 +1098,7 @@
 
       & .projects-hp__description {
         color: rgba(36, 34, 32, 0.60);
-        font-size: 25px;
+        font-size: 22px;
         font-style: normal;
         font-weight: 500;
         line-height: 100%;
@@ -1112,7 +1132,7 @@
 
       & span {
         color: #FFF;
-        font-size: 25px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 500;
         line-height: 100%;
@@ -1222,7 +1242,7 @@
       & .project-small__name {
         color: #FFF;
         font-family: 'Ubuntu';
-        font-size: 40px;
+        font-size: 32px;
         font-style: normal;
         font-weight: 700;
         line-height: 90%;
@@ -1333,7 +1353,7 @@
               & .project_small_info-title {
                 color: #FFF;
                 font-family: 'Ubuntu';
-                font-size: 40px;
+                font-size: 32px;
                 font-style: normal;
                 font-weight: 700;
                 line-height: 90%;
@@ -1363,7 +1383,7 @@
 
                 & address {
                   color: rgba(255, 255, 255, 0.40);
-                  font-size: 25px;
+                  font-size: 18px;
                   font-style: normal;
                   font-weight: 500;
                   line-height: 100%;
@@ -1377,7 +1397,7 @@
 
                 & span {
                   color: rgba(255, 255, 255, 0.40);
-                  font-size: 25px;
+                  font-size: 18px;
                   font-style: normal;
                   font-weight: 500;
                   line-height: 100%;
@@ -1459,7 +1479,7 @@
                 display: flex;
                 gap: 18px;
                 color: #FFF;
-                font-size: 40px;
+                font-size: 32px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 90%;
@@ -1773,7 +1793,7 @@
 
         & span {
           color: rgba(36, 34, 32, 0.40);
-          font-size: 30px;
+          font-size: 22px;
           font-style: normal;
           font-weight: 500;
           line-height: 100%;
@@ -1811,7 +1831,7 @@
 
           & span {
             color: rgba(36, 34, 32, 0.60);
-            font-size: 25px;
+            font-size: 22px;
             font-style: normal;
             font-weight: 500;
             line-height: 100%;
@@ -2070,7 +2090,7 @@
 
               & p {
                 color: #FFF;
-                font-size: 35px;
+                font-size: 32px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 90%;
@@ -2085,7 +2105,7 @@
 
               & span {
                 color: rgba(255, 255, 255, 0.40);
-                font-size: 25px;
+                font-size: 22px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 100%;
