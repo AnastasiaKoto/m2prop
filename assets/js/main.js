@@ -968,6 +968,68 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function inputCallback() {
+  let input = this.value.replace(/\D/g, '');
+
+  if (input.startsWith('8')) {
+    input = '7' + input.slice(1);
+  } else if (!input.startsWith('7')) {
+    input = '7' + input;
+  }
+
+  input = input.substring(0, 11);
+
+  let formatted = '+7';
+  if (input.length > 1) {
+    formatted += ' (' + input.substring(1, 4);
+  }
+  if (input.length >= 5) {
+    formatted += ') ' + input.substring(4, 7);
+  }
+  if (input.length >= 8) {
+    formatted += '-' + input.substring(7, 9);
+  }
+  if (input.length >= 10) {
+    formatted += '-' + input.substring(9, 11);
+  }
+
+  this.value = formatted;
+}
+
+function focusCallback() {
+  if (!this.value) {
+    this.value = '+7 (';
+  }
+}
+
+function blurCallback() {
+  if (this.value === '+7 (' || this.value === '+7') {
+    this.value = '';
+  }
+}
+
+function applyPhoneMaskToInput(phoneInput) {
+  if (phoneInput.dataset.maskApplied) return;
+
+  phoneInput.dataset.maskApplied = "true";
+
+  phoneInput.addEventListener('input', inputCallback);
+
+  phoneInput.addEventListener('focus', focusCallback);
+
+  phoneInput.addEventListener('blur', blurCallback);
+}
+
+function applyPhoneMask() {
+  const inputs = document.querySelectorAll('input[type="tel"]');
+  //console.log('Телефонные поля:', inputs);
+  inputs.forEach(applyPhoneMaskToInput);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(applyPhoneMask, 100); // дать DOM прогрузиться
+});
+
 // document.addEventListener('DOMContentLoaded', function () {
 //   const mainEl = document.getElementById('main-slider__hp');
 //   const smallEl = document.getElementById('next-thumb__hp');
@@ -1253,6 +1315,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  const modal = document.querySelector('.modal__thankyou');
+  const overlay = document.querySelector('.overlay');
+  const html = document.querySelector('html');
+  if (!modal || !overlay) return;
+
+  document.addEventListener('click', (e) => {
+    if (
+      e.target.closest('.close-modal') ||
+      e.target === overlay
+    ) {
+      closeModal(modal, overlay, html);
+      setTimeout(100, location.reload());
+    }
+  });
+})
+
+document.addEventListener('DOMContentLoaded', () => {
   const modal = document.querySelector('.modal');
   const overlay = document.querySelector('.overlay');
   const html = document.querySelector('html');
@@ -1273,22 +1353,20 @@ document.addEventListener('DOMContentLoaded', () => {
       e.target.closest('.close-modal') ||
       e.target === overlay
     ) {
-      closeModal();
+      closeModal(modal, overlay, html);
     }
   });
 
 
   modal.addEventListener('click', (e) => {
     if (!e.target.closest('.modal-inner')) {
-      closeModal();
+      closeModal(modal, overlay, html);
     }
   });
-
-  function closeModal() {
-    modal.classList.remove('active');
-    overlay.classList.remove('active');
-    html.classList.remove('lock');
-  }
 });
 
-
+function closeModal(modal, overlay, html) {
+  modal.classList.remove('active');
+  overlay.classList.remove('active');
+  html.classList.remove('lock');
+}

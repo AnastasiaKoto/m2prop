@@ -1,7 +1,7 @@
 </main>
 <footer id="footer">
   <div class="overlay"></div>
-  <div class="modal">
+  <div class="modal modal-form">
     <div class="modal-inner">
       <div class="form-decor">
         <img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/form-decor.png" alt="img">
@@ -100,6 +100,51 @@
           false
         ); ?>
         
+      </div>
+    </div>
+  </div>
+  <div class="modal__thankyou modal">
+    <div class="modal-inner">
+      <button class="close-modal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M2.23242 20.8516L10.7314 12.3525L2.23242 3.85352L3.64648 2.43945L12.1455 10.9385L20.6445 2.43945L22.0586 3.85352L13.5596 12.3525L22.0586 20.8516L20.6445 22.2656L12.1455 13.7666L3.64648 22.2656L2.23242 20.8516Z"
+            fill="#FFFFFF" fill-opacity="1" />
+        </svg>
+      </button>
+      <div class="modal-content">
+        <div class="modal-content__info">
+          <h2>
+            <span>Спасибо</span> за Вашу заявку!
+          </h2>
+          <p>
+            Наш менеджер свяжется с вами по указанному телефону в самое ближайшее время
+          </p>
+          <div class="modal__socials">
+            <? $APPLICATION->IncludeComponent(
+              "bitrix:highloadblock.list",
+              "socials",
+              array(
+                "BLOCK_ID" => "7",	// ID highload блока
+                "CHECK_PERMISSIONS" => "N",	// Проверять права доступа
+                "DETAIL_URL" => "",	// Путь к странице просмотра записи
+                "FILTER_NAME" => "",	// Идентификатор фильтра
+                "PAGEN_ID" => "",	// Идентификатор страницы
+                "ROWS_PER_PAGE" => "",	// Разбить по страницам количеством
+                "SORT_FIELD" => "ID",	// Поле сортировки
+                "SORT_ORDER" => "ASC",	// Направление сортировки
+                "LOC_CLASS" => "footer-social"
+              ),
+              false
+            ); ?>
+          </div>
+        </div>
+      </div>
+      <div class="modal__decor">
+        <picture>
+          <source media="(min-width: 640px)" srcset="<?= SITE_TEMPLATE_PATH; ?>/assets/img/modal_decor.png">
+          <img src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/modal_decor_mobile.png" alt="">
+        </picture>
       </div>
     </div>
   </div>
