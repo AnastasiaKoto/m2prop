@@ -28,7 +28,9 @@
   <div id="panel">
     <? $APPLICATION->ShowPanel(); ?>
   </div>
-  <? $currentPage = $APPLICATION->GetCurPage(); 
+  <? 
+  $currentPage = $APPLICATION->GetCurPage(); 
+  
   $page = '';
   if (preg_match('#/catalog/.+/.+/#', $currentPage)) {
     $page = 'detail';

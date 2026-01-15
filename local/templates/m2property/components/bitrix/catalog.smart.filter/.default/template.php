@@ -341,6 +341,9 @@ if(!empty($arResult["ITEMS"])):
 				?>
 			<div class="filters-sort">
 				<div class="select-wrap">
+					<div class="sort-label">
+						Сортировать:
+					</div>
 					<div class="select" data-select="sort">
 						<div class="select__current" data-select-current>
 							<span class="select__value"><?= $currentSort; ?></span>

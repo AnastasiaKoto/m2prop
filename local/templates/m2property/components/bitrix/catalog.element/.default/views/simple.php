@@ -179,5 +179,11 @@ $pricePerMetr = round($price / $square);
 				})
 			});
 		}
+
+		const logo = document.querySelector('.header-navigation img');
+		console.log(logo);
+		if(logo) {
+			logo.setAttribute('src', '<?= SITE_TEMPLATE_PATH ?>/assets/img/logo.svg');
+		}
 	})
 </script>

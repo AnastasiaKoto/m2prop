@@ -96,7 +96,7 @@ h1 {
 
   & span {
     color: #242220;
-    font-size: 60px;
+    font-size: 48px;
     font-style: normal;
     font-weight: 700;
     line-height: 90%;
@@ -133,7 +133,7 @@ h2 {
   }
 
   @media(max-width: 992px) {
-    font-size: 30px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 90%;
@@ -238,7 +238,7 @@ h4 {
   border-radius: 110px;
   background: #FF7400;
   backdrop-filter: blur(17px);
-  padding: 20px 30px;
+  padding: 15px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -249,7 +249,7 @@ h4 {
 
   & span {
     color: #FFF;
-    font-size: 25px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 500;
     line-height: 100%;
@@ -380,6 +380,10 @@ header {
               &:hover {
                 color: var(--accent-color);
               }
+
+              @media(max-width: 992px) {
+                font-size: 16px;
+              }
             }
           }
         }
@@ -443,6 +447,9 @@ header {
 
                 &:hover {
                   color: var(--accent-color);
+                }
+                @media(max-width: 992px) {
+                  font-size: 16px;
                 }
               }
             }
@@ -557,6 +564,9 @@ header {
 
               & svg {
                 height: 33px;
+                @media(max-width: 992px) {
+                  height: 22px;
+                }
               }
             }
           }
@@ -624,7 +634,7 @@ header {
           transition: color .3s ease-in;
 
           @media(max-width: 992px) {
-            font-size: 12px;
+            font-size: 10px;
             font-style: normal;
             line-height: 22px;
           }
@@ -835,11 +845,15 @@ header {
 
   & .select-label {
     color: #7C8589;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 22px;
     margin-bottom: 8px;
+
+    @media(max-width: 992px) {
+      font-size: 14px;
+    }
   }
 
   & .select {
@@ -868,7 +882,7 @@ header {
 
       & .select__value {
         color: #242220;
-        font-size: 18px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
@@ -884,6 +898,10 @@ header {
         line-clamp: 1;
         box-orient: vertical;
         font-family: 'Avenir Next Cyr';
+
+        @media(max-width: 992px) {
+          font-size: 14px;
+        }
 
         /* 18px */
         & .custom-radio {
@@ -984,7 +1002,7 @@ header {
           border-radius: 6px;
           transition: all .3s ease-in;
           color: #242220;
-          font-size: 18px;
+          font-size: 16px;
           font-style: normal;
           font-weight: 400;
           line-height: 100%;
@@ -1257,7 +1275,7 @@ footer {
             transition: color .3s ease-in;
 
             @media(max-width: 992px) {
-              font-size: 14px;
+              font-size: 12px;
               font-style: normal;
               line-height: 100%;
             }
@@ -1527,13 +1545,13 @@ footer {
   line-height: 100%;
 
   @media(max-width: 992px) {
-    max-width: 60%;
+    max-width: 100%;
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 12px;
     font-style: normal;
     line-height: 100%;
     padding: 15px 15px;
-    height: 46px;
+    height: 44px;
   }
 
   /* 25px */
