@@ -15,7 +15,7 @@ use Bitrix\Catalog\ProductTable;
  * @var string $componentPath
  * @var string $templateFolder
  */
-
+$APPLICATION->SetPageProperty("logo", "white");
 $this->setFrameMode(true);
 $viewsPath = $_SERVER['DOCUMENT_ROOT'] . $templateFolder . '/views/';
 

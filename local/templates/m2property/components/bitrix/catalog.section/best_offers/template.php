@@ -128,9 +128,11 @@ if(!empty($arResult['ITEMS'])):
 							<div class="catalog-item__price">
 								<?= $arItem['PROPERTIES']['NEW_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['NEW_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
 							</div>
+							<? if(!empty($arItem['PROPERTIES']['OLD_PRICE']['VALUE'])): ?>
 							<div class="catalog-item__old-price">
 								<?= $arItem['PROPERTIES']['OLD_PRICE']['VALUE'] ? number_format($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], 0, ',', ' ') . '₽' : ''; ?>
 							</div>
+							<? endif; ?>
 							<?
 							$discount = discountPrecent($arItem['PROPERTIES']['OLD_PRICE']['VALUE'], $arItem['PROPERTIES']['NEW_PRICE']['VALUE']);
 							if ($discount > 0):

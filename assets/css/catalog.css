@@ -20,7 +20,7 @@
 
     & p {
       color: rgba(36, 34, 32, 0.40);
-      font-size: 30px;
+      font-size: 22px;
       font-style: normal;
       font-weight: 500;
       line-height: 100%;
@@ -30,6 +30,9 @@
         font-size: 18px;
         font-style: normal;
         line-height: 100%;
+      }
+      @media(max-width: 992px) {
+        font-size: 14px;
       }
     }
   }
@@ -81,7 +84,7 @@
           transition: all .3s ease-in;
 
           & .filters-cats__name {
-            font-size: 25px;
+            font-size: 18px;
             font-style: normal;
             font-weight: 500;
             line-height: 100%;
@@ -91,7 +94,7 @@
 
           & .filters-cats__count {
             color: #78747A;
-            font-size: 13px;
+            font-size: 12px;
             font-style: normal;
             font-weight: 500;
             line-height: 16px;
@@ -166,7 +169,7 @@
         & span {
           color: #7C8589;
           text-align: center;
-          font-size: 14px;
+          font-size: 12px;
           font-style: normal;
           font-weight: 400;
           line-height: 22px;
@@ -206,6 +209,46 @@
 
         @media(max-width: 992px) {
           max-width: 100%;
+        }
+
+        & .select-wrap {
+          max-width: 400px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .sort-label {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 100%;
+            color: #7c8589;
+
+            @media(max-width: 992px) {
+              font-size: 14px;
+            }
+          }
+
+          & .select {
+            max-width: 200px;
+
+            & .select__current {
+              background-color: transparent;
+              border: none;
+              border-radius: 0;
+
+              & .select__value {
+                font-size: 18px;
+
+                @media(max-width: 992px) {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+
+          & .custom-radio__text {
+            text-align: left;
+          }
         }
       }
 
@@ -376,7 +419,7 @@
               top: 20px;
               left: 20px;
               color: #FFF;
-              font-size: 18px;
+              font-size: 16px;
               font-style: normal;
               font-weight: 400;
               line-height: 28px;
@@ -652,7 +695,7 @@
               margin-right: 0;
               order: 2;
               color: #242220;
-              font-size: 40px;
+              font-size: 32px;
               font-style: normal;
               font-weight: 500;
               line-height: 90%;
@@ -719,7 +762,7 @@
 
             & .catalog-item__name {
               color: #242220;
-              font-size: 40px;
+              font-size: 32px;
               font-style: normal;
               font-weight: 700;
               line-height: 90%;
@@ -744,7 +787,7 @@
 
             & .catalog-item__location {
               color: rgba(36, 34, 32, 0.40);
-              font-size: 25px;
+              font-size: 18px;
               font-style: normal;
               font-weight: 400;
               line-height: 100%;
@@ -1598,11 +1641,11 @@
 
   & .more-items {
     color: #FFF;
-    font-size: 25px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 100%;
-    padding: 20px 30px;
+    padding: 15px 24px;
     border-radius: 110px;
     background: #242220;
     backdrop-filter: blur(17px);
@@ -1724,7 +1767,7 @@
 
         & .author-collection___item-name {
           color: #fff;
-          font-size: 35px;
+          font-size: 32px;
           font-style: normal;
           font-weight: 500;
           line-height: 90%;
@@ -1911,7 +1954,7 @@
       font-weight: 500;
       line-height: 100%;
       padding: 15px 30px;
-      height: 54px;
+      height: 36px;
       gap: 3px;
       max-width: 194px;
 
@@ -2006,7 +2049,7 @@
           position: relative;
           z-index: 3;
           color: #FFF;
-          font-size: 35px;
+          font-size: 32px;
           font-style: normal;
           font-weight: 500;
           line-height: 90%;
